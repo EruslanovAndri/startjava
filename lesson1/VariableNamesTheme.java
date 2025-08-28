@@ -14,13 +14,13 @@ public class VariableNamesTheme{
 
 		int num1 = 5;
 		int num2 = 4;
-		int resultSum = num1 + num2;
-		System.out.println("Сумма чисел: " + resultSum);
+		int sumDidgit = num1 + num2;
+		System.out.println("Сумма чисел: " + sumDidgit);
 
 		// Произведение цифр
 
-		int multiplicationResult = num1 * num2;
-		System.out.println("Произведение цифр: " + multiplicationResult);
+		int multiplicationDidgit = num1 * num2;
+		System.out.println("Произведение цифр: " + multiplicationDidgit);
 
 		// Максимальное число
 
@@ -29,13 +29,13 @@ public class VariableNamesTheme{
 
 		// Kоличество десятков
 
-		int tensCount = 10;
-		System.out.println("Kоличество десятков: " + tensCount);
+		int tenCount = 10;
+		System.out.println("Kоличество десятков: " + tenCount);
 
 		// вес собаки
 
-		int dogWeight = 15;
-		System.out.println("Вес собаки: " + dogWeight);
+		int weightDog = 15;
+		System.out.println("Вес собаки: " + weightDog);
 
 		// исходное число
 
@@ -44,8 +44,8 @@ public class VariableNamesTheme{
 
 		// процент по вкладу
 
-		int intersOnDeposit = 10;
-		System.out.println("Процент по вкладу: " + intersOnDeposit);
+		int depositInteres = 10;
+		System.out.println("Процент по вкладу: " + depositInteres);
 
 		// символ &
 
@@ -54,18 +54,18 @@ public class VariableNamesTheme{
 
 		// код ошибки
 
-		int errorCode = 404;
-		System.out.println("Код ошибки: " + errorCode);
+		int codeError = 404;
+		System.out.println("Код ошибки: " + codeError);
 
 		// тип сообщения
 
-		String messageType = "NullPointerException";
-		System.out.println("Тип ошибки: " + messageType);
+		String typeMessage = "NullPointerException";
+		System.out.println("Тип ошибки: " + typeMessage);
 
 		// число нулей
 
-		int numberOfZeros = 5;
-		System.out.println("Число нулей: " + numberOfZeros);
+		int numberZeros = 5;
+		System.out.println("Число нулей: " + numberZeros);
 
 		// уникальное число
 
@@ -79,13 +79,13 @@ public class VariableNamesTheme{
 
 		// математическое выражение
 
-		String mathExpretion = "2 + 3";
-		System.out.println("Mатематическое выражение: " + mathExpretion);
+		String expressionMathematical = "2 + 3";
+		System.out.println("Mатематическое выражение: " + expressionMathematical);
 
 		// счет в игре
 
-		int scoreInGame = 23;
-		System.out.println("счет в игре: " + scoreInGame);
+		int gameScore = 23;
+		System.out.println("счет в игре: " + gameScore);
 
 		// максимальная длина
 
@@ -94,8 +94,8 @@ public class VariableNamesTheme{
 
 		// пункт меню
 
-		int menuItem = 2;
-		System.out.println("пункт меню: " + menuItem);
+		int itemMenu = 2;
+		System.out.println("пункт меню: " + itemMenu);
 
 		// стоимость кофе
 
@@ -109,18 +109,18 @@ public class VariableNamesTheme{
 
      	// окончание диапазона
 
-     	int endOfRange = 40;
-     	System.out.println("Окончание диапазона: " + endOfRange);
+     	int endRange = 40;
+     	System.out.println("Окончание диапазона: " + endRange);
 
 		// имя работника месяца
 
-		String employeeOfTheMonthName = "Max";
-		System.out.println("имя работника месяца: " + employeeOfTheMonthName);
+		String nameEmployeeMonth = "Max";
+		System.out.println("имя работника месяца: " + nameEmployeeMonth);
 
 		// название электронной книги
 
-		String nameOfeBook = "Java";
-		System.out.println("название электронной книги: " + nameOfeBook);
+		String nameE_Book = "Java";
+		System.out.println("название электронной книги: " + nameE_Book);
 
 		// размер
 
@@ -139,13 +139,110 @@ public class VariableNamesTheme{
 
 		// путь до файла
 
-		String pathToFile = "url.....";
-		System.out.println("Путь до файла: " + pathToFile);
+		String pathFile = "url.....";
+		System.out.println("Путь до файла: " + pathFile);
 
 		// количество чисел в строке
 
-		int NumberOfNumbersInOneRow = 2;
-		System.out.println("количество чисел в строке: " + NumberOfNumbersInOneRow);
+		int countDidgitInRow = 2;
+		System.out.println("количество чисел в строке: " + countDidgitInRow);
+
+		System.out.println("************************************************");
+
+
+		System.out.println("Блок номер 2 \nBOOLEAN-ПЕРЕМЕННЫЕ");
+
+
+		// сотни равны?
+
+		boolean hasHundredsEqual = true;
+		System.out.println("Сотни равны? " + hasHundredsEqual);
+
+		// компьютер включен?
+
+		boolean isComputerConnected = false;
+		System.out.println("Компьютер включен?" + isComputerConnected);
+
+		// есть равные цифры?
+
+		boolean isEqualDidgit = true;
+		System.out.println("есть равные цифры?" + isEqualDidgit);
+
+		// служба создана?
+
+		boolean hasServiceCreat = true;
+		System.out.println("Служба создана?" + hasServiceCreat);
+
+		// файл пустой?
+
+		boolean isFileEmpty = false;
+		System.out.println("файл пустой?" + isFileEmpty);
+
+		// соединение активное?
+
+		boolean hasActiveConnection = true;
+		System.out.println("соединение активное?" + hasActiveConnection);
+
+		// новый?
+
+		boolean isNew = false;
+		System.out.println("новый?" + isNew);
+
+		// электронная почта действительная?
+
+		boolean isValideEmail = true;
+		System.out.println("электронная почта действительная?" + isValideEmail);
+
+		// имеются уникальные строки?
+
+		boolean hasUniqueString = true;
+		System.out.println("имеются уникальные строки?" + hasUniqueString);
+
+		System.out.println("************************************************");
+
+		System.out.println("Блок номер 2 \nАББРЕВИАТУРЫ");
+
+		// старый universally unique identifier
+
+		String Uuid = "старый universally unique identifier";
+		System.out.println(Uuid);
+
+
+		// производительность оперативной памяти
+
+		String Ram = "производительность оперативной памяти";
+		System.out.println(Ram);
+
+		// емкость жесткого диска
+
+		String Hdd = "емкость жесткого диска";
+		System.out.println(Hdd);
+
+		// определение термина протокола передачи гипертекста
+
+		String Http = "определение термина протокола передачи гипертекста";
+		System.out.println(Http);
+
+		// сокращенный uniform resource locator
+
+		String Url = "сокращенный uniform resource locator";
+		System.out.println(Url);
+
+		// новый идентификатор клиента
+
+		String newId = "новый идентификатор клиента";
+		System.out.println(newId);
+
+		// количество символов в american standard code for information interchange
+
+		String Ascii = "128";
+		System.out.println(Ascii);
+
+
+
+
+
+
 		
 
 	}
