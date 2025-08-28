@@ -236,14 +236,7 @@ public class VariableNamesTheme{
 		// количество символов в american standard code for information interchange
 
 		String Ascii = "128";
-		System.out.println(Ascii);
-
-
-
-
-
-
-		
+		System.out.println(Ascii);	
 
 	}
 }
