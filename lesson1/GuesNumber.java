@@ -7,7 +7,7 @@ public class GuesNumber {
 
 		int startRange = 1;
 
-		int endRange = 10_000_001;
+		int endRange = 101;
 
 	    int	hiddenNumber = rnd.nextInt(startRange,endRange);
 
@@ -18,11 +18,15 @@ public class GuesNumber {
 
 			if (myNumber < hiddenNumber) {
 
-			myNumber = rnd.nextInt((startRange + endRange) / 2,endRange);
+				System.out.println(myNumber + " меньше того что загадал компьютер");
+
+				myNumber = rnd.nextInt((startRange + endRange) / 2,endRange);
 
 			} else if (myNumber > hiddenNumber) {
 
-			myNumber = rnd.nextInt(startRange,(startRange + endRange) / 2);
+				System.out.println(myNumber + " больше того что загадал компьютер");
+
+				myNumber = rnd.nextInt(startRange,(startRange + endRange) / 2);
 			
 			}
 		}
