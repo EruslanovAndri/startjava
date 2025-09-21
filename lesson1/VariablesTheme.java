@@ -7,8 +7,8 @@ public class VariablesTheme {
     public static void main(String[] args) {
         final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
 
-       	final LocalTime startTime = LocalTime.now();
-       	
+        final LocalTime startTime = LocalTime.now();
+        
         final long start = System.nanoTime();
 
         System.out.println("ВЫВОД ASCII-ГРАФИКИ");
@@ -16,26 +16,26 @@ public class VariablesTheme {
         System.out.println("первый (с помощью конкатенации)");
 
         System.out.print("                       " + "/" + "\\" + "\n" + "    " + 
-        				"j" + "    " + "a" + "  " + "v" + "       " +
-						"v" + " " + "/" + " " + " \\" + "\n" + "    " + "j" + "   " + 
-						"a" + " " + "a" + "  " + "v" + "     " +
-						"v" + " " + "/" + "" + "_" + "(" + " " + ")" + "" +
-						"\\" + "\n" + "j" + "   " + "j" + "  " + "aaaaa" +
-						"  " + "V" + "   " + "V" + " " + "/" + "      " + 
-						"\\" + "\n" + "  " + "jj" + "  " + "a" + "     " + 
-						"a" + "   " + "V" + "  " + "/" + "___" + "/" + "\\" + 
-						"___" + "\\" + "\n");
+                        "j" + "    " + "a" + "  " + "v" + "       " +
+                        "v" + " " + "/" + " " + " \\" + "\n" + "    " + "j" + "   " + 
+                        "a" + " " + "a" + "  " + "v" + "     " +
+                        "v" + " " + "/" + "" + "_" + "(" + " " + ")" + "" +
+                        "\\" + "\n" + "j" + "   " + "j" + "  " + "aaaaa" +
+                        "  " + "V" + "   " + "V" + " " + "/" + "      " + 
+                        "\\" + "\n" + "  " + "jj" + "  " + "a" + "     " + 
+                        "a" + "   " + "V" + "  " + "/" + "___" + "/" + "\\" + 
+                        "___" + "\\" + "\n");
 
         System.out.println("второй (с помощью текстового блока)");
 
         String block = 
-				"""
-						    /\\
-				j    a   v     v   /  \\
-				j   a a   v   v   /_( )\\	
-			j	j  aaaaa   V V	 /      \\
-			 jj	  a     a   V   /___/\\___\\
-			 	""".indent(4);
+                """
+                                    /\\
+                j    a   v     v   /  \\
+                j   a a   v   v   /_( )\\
+            j   j  aaaaa   V V   /      \\
+              jj  a     a   V   /___/\\___\\
+                """.indent(4);
 
         System.out.println(block);
 
@@ -113,7 +113,7 @@ public class VariablesTheme {
         System.out.println();
 
         System.out.println("С помощью арифметических операций");
-	
+
         a = a + b; 
 
         b = a - b;
@@ -133,7 +133,7 @@ public class VariablesTheme {
         b = a ^ b;
 
         a = a ^ b;
-		
+
         System.out.println("Метод : побитовый.");
 
         System.out.println("Результат: A = " + a + " B = " + b);
@@ -173,8 +173,8 @@ public class VariablesTheme {
         System.out.println("-----------");
 
         System.out.printf("%n %d %n %d %n %d %n %d %n %d %n %d %n",
-						codeAsciiOne, codeAsciiTwo, codeAsciiThree,
-						codeAsciiFour, codeAsciiFive, codeAsciiSix);
+                        codeAsciiOne, codeAsciiTwo, codeAsciiThree,
+                        codeAsciiFour, codeAsciiFive, codeAsciiSix);
 
         System.out.println();
 
@@ -183,8 +183,8 @@ public class VariablesTheme {
         System.out.println("-----------");
 
         System.out.printf("%n %d %5c %n %d %5c %n %d %5c %n %d %5c %n %d %5c %n %d %5c",
-						codeAsciiOne, ch1, codeAsciiTwo, ch2, codeAsciiThree, ch3,
-						codeAsciiFour, ch4, codeAsciiFive, ch5, codeAsciiSix, ch6);
+                        codeAsciiOne, ch1, codeAsciiTwo, ch2, codeAsciiThree, ch3,
+                        codeAsciiFour, ch4, codeAsciiFive, ch5, codeAsciiSix, ch6);
 
         System.out.println("\n");
 
@@ -203,12 +203,12 @@ public class VariablesTheme {
         int codeVerification = categoryProduct * codeSubcategory * typePackage;
 
         System.out.printf("%s %d %n %25s %d %n %21s %5d %n %17s %9d %n %s %d %n %s %d",
-			        "Код товара:", codeProduct,
-				    "категория товара - ", categoryProduct,
-				    "подкатегория - ", codeSubcategory,
-				    "упаковка - ", typePackage,
-			        "Контрольная сумма: ", checkSum,
-			        "Проверочный код: ", codeVerification);
+                    "Код товара:", codeProduct,
+                    "категория товара - ", categoryProduct,
+                    "подкатегория - ", codeSubcategory,
+                    "упаковка - ", typePackage,
+                    "Контрольная сумма: ", checkSum,
+                    "Проверочный код: ", codeVerification);
 
         System.out.println("\n");
 
@@ -220,7 +220,7 @@ public class VariablesTheme {
 
         System.out.printf("%s %c %s %s %n %15s %d",
                     "[ Температура, ", (char) symbolTemp, "C", "]",
-				    "Исходное: ", temperature);
+                    "Исходное: ", temperature);
 
         temperature++;
 
@@ -235,8 +235,8 @@ public class VariablesTheme {
         short pressure = Short.MAX_VALUE;
 
         System.out.printf("%s %s %n %14s %d",
-		            "[ Давление, PA", "]",
-				    "Исходное:", pressure);
+                    "[ Давление, PA", "]",
+                    "Исходное:", pressure);
 
         pressure++;
 
@@ -251,8 +251,8 @@ public class VariablesTheme {
         char myChar = Character.MAX_VALUE;
 
         System.out.printf("%s %s %n %14s %d",
-		            "[ Код состояния системы,", "]",
-				    "Исходное:", (int) myChar);
+                    "[ Код состояния системы,", "]",
+                    "Исходное:", (int) myChar);
 
         myChar++;
 
@@ -268,7 +268,7 @@ public class VariablesTheme {
 
         System.out.printf("%s %s %s %n %15s %d",
                         "[ Пройденное расстояние,", "км", "]",
-				        "Исходное: ", traveledDistance);
+                        "Исходное: ", traveledDistance);
 
         traveledDistance++;
 
@@ -283,8 +283,8 @@ public class VariablesTheme {
         long timeSinceLaunch = Long.MAX_VALUE;
 
         System.out.printf("%s %s %s %n %15s %d",
-		                "[ Время с момента старта,", "часов", "]",
-				        "Исходное:", timeSinceLaunch);
+                        "[ Время с момента старта,", "часов", "]",
+                        "Исходное:", timeSinceLaunch);
 
         timeSinceLaunch++;
 
@@ -307,16 +307,16 @@ public class VariablesTheme {
         long maxMemory = Runtime.getRuntime().maxMemory();
 
         System.out.printf("%s %n %5s %d %n %5s %.1f %s %n %s %.1f %s %n %5s %.1f %s %n %5s %.1f %s",
-						"Параметры JVM:",
-						"Доступное число ядер - ", processors,
-						"Выделенная память - ",
-						(float) maxMemory / (1024 * 1024), "Мб",
-						"Свободная память - ",
-						(float) freeMemory / (1024 * 1024), "Мб",
-						"Используемая память - ",
-						(float) (maxMemory - freeMemory) / 1_048_576, "Мб",
-						"Максимально доступная для выделения память - ", 
-						(float) (maxMemory + freeMemory) / 1_048_576, "Мб");
+                        "Параметры JVM:",
+                        "Доступное число ядер - ", processors,
+                        "Выделенная память - ",
+                        (float) maxMemory / (1024 * 1024), "Мб",
+                        "Свободная память - ",
+                        (float) freeMemory / (1024 * 1024), "Мб",
+                        "Используемая память - ",
+                        (float) (maxMemory - freeMemory) / 1_048_576, "Мб",
+                        "Максимально доступная для выделения память - ",
+                        (float) (maxMemory + freeMemory) / 1_048_576, "Мб");
 
         System.out.println("\n");
 
@@ -331,11 +331,11 @@ public class VariablesTheme {
         String pathSeparetor = System.getProperty("file.separator");
 
         System.out.printf("%s %n %5s %s %n %5s %s %n %5s %s %n %5s %s",
-		                "Параметры ОС:",
-				        "Системный диск - ", systemDisk,
-				        "Версия ОС - ", osVersion,
-				        "Версия Java - ", javaVersion,
-				        "Символ разделения пути - ", pathSeparetor);
+                        "Параметры ОС:",
+                        "Системный диск - ", systemDisk,
+                        "Версия ОС - ", osVersion,
+                        "Версия Java - ", javaVersion,
+                        "Символ разделения пути - ", pathSeparetor);
 
         System.out.println("\n");
 
@@ -348,9 +348,9 @@ public class VariablesTheme {
         LocalTime endTime = LocalTime.now();
 
         System.out.printf("%17s %s %n %s %s %n %s %.3f",
-    				"Старт проверки:", dtf.format(startTime),
-    				"Финиш проверки:", dtf.format(endTime),
-    				"Время работы:", (float) timeElapsed / 1_000_000_000);
+                    "Старт проверки:", dtf.format(startTime),
+                    "Финиш проверки:", dtf.format(endTime),
+                    "Время работы:", (float) timeElapsed / 1_000_000_000);
 
         System.out.println("\n");
 
