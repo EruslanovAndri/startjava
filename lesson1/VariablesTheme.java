@@ -39,9 +39,7 @@ public class VariablesTheme {
 
         System.out.println(block);
 
-        System.out.println("РАСЧЕТ СТОИМОСТИ ТОВАРА");
-
-        System.out.println();
+        System.out.println("РАСЧЕТ СТОИМОСТИ ТОВАРА \n ");
 
         System.out.println("Первый вариант решения.");
 
@@ -63,9 +61,7 @@ public class VariablesTheme {
 
         System.out.println("Стоимость товара со скидкой = " + costDiscountedItem);
 
-        System.out.println();
-
-        System.out.println("Второй вариант решения.");
+        System.out.println(" \n Второй вариант решения.");
 
         var costPenBd = new BigDecimal("105.5");
 
@@ -86,11 +82,7 @@ public class VariablesTheme {
 
         System.out.println("Стоимость товара со скидкой = " + costDiscountedItemBd);
 
-        System.out.println();
-
-        System.out.println("ПЕРЕСТАНОВКА ЗНАЧЕНИЙ ЯЧЕЕК В ТАБЛИЦЕ");
-
-        System.out.println();
+        System.out.println(" \n ПЕРЕСТАНОВКА ЗНАЧЕНИЙ ЯЧЕЕК В ТАБЛИЦЕ \n ");
 
         System.out.println("С помощью третьей переменной");
 
@@ -110,9 +102,7 @@ public class VariablesTheme {
 
         System.out.println("Результат: A = " + a + " B = " + b);
 
-        System.out.println();
-
-        System.out.println("С помощью арифметических операций");
+        System.out.println(" \n С помощью арифметических операций");
 
         a = a + b; 
 
@@ -124,9 +114,7 @@ public class VariablesTheme {
 
         System.out.println("Результат: A = " + a + " B = " + b);
 
-        System.out.println();
-
-        System.out.println("С помощью побитовых операций");
+        System.out.println(" \n С помощью побитовых операций");
 
         a = a ^ b;
 
@@ -138,11 +126,7 @@ public class VariablesTheme {
 
         System.out.println("Результат: A = " + a + " B = " + b);
 
-        System.out.println();
-
-        System.out.println("ДЕКОДИРОВАНИЕ СООБЩЕНИЯ");
-
-        System.out.println();
+        System.out.println(" \n ДЕКОДИРОВАНИЕ СООБЩЕНИЯ \n ");
 
         int codeAsciiOne = 1055;
 
@@ -186,9 +170,7 @@ public class VariablesTheme {
                         codeAsciiOne, ch1, codeAsciiTwo, ch2, codeAsciiThree, ch3,
                         codeAsciiFour, ch4, codeAsciiFive, ch5, codeAsciiSix, ch6);
 
-        System.out.println("\n");
-
-        System.out.println("АНАЛИЗ КОДА ТОВАРА \n");
+        System.out.println(" \n АНАЛИЗ КОДА ТОВАРА \n");
 
         int codeProduct = 123;
 
@@ -210,9 +192,7 @@ public class VariablesTheme {
                     "Контрольная сумма: ", checkSum,
                     "Проверочный код: ", codeVerification);
 
-        System.out.println("\n");
-
-        System.out.println("ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ");
+        System.out.println(" \n ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ \n ");
 
         byte temperature = Byte.MAX_VALUE;
 
@@ -294,9 +274,7 @@ public class VariablesTheme {
 
         System.out.printf("%n %8s %d", "-1:", timeSinceLaunch);
 
-        System.out.println("\n");
-
-        System.out.println("ВЫВОД ПАРАМЕТРОВ JVM");
+        System.out.println(" \n ВЫВОД ПАРАМЕТРОВ JVM \n ");
 
         int processors = Runtime.getRuntime().availableProcessors();
 
@@ -318,9 +296,7 @@ public class VariablesTheme {
                         "Максимально доступная для выделения память - ",
                         (float) (maxMemory + freeMemory) / 1_048_576, "Мб");
 
-        System.out.println("\n");
-
-        System.out.println("ВЫВОД ПАРАМЕТРОВ OC");
+        System.out.println(" \n ВЫВОД ПАРАМЕТРОВ OC \n ");
 
         String systemDisk = System.getProperty("java.vendor");
 
@@ -337,9 +313,7 @@ public class VariablesTheme {
                         "Версия Java - ", javaVersion,
                         "Символ разделения пути - ", pathSeparetor);
 
-        System.out.println("\n");
-
-        System.out.println("ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА");
+        System.out.println(" \n ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА \n ");
 
         long finish = System.nanoTime();
 
@@ -347,13 +321,11 @@ public class VariablesTheme {
 
         LocalTime endTime = LocalTime.now();
 
-        System.out.printf("%17s %s %n %s %s %n %s %.3f",
+        System.out.printf("%16s %s %n %s %s %n %s %.3f",
                     "Старт проверки:", dtf.format(startTime),
                     "Финиш проверки:", dtf.format(endTime),
                     "Время работы:", (float) timeElapsed / 1_000_000_000);
 
-        System.out.println("\n");
-
-        System.out.printf("%8s %.3f %s", "Time = ", (float) timeElapsed / 1_000_000_000, "sec");
+        System.out.printf("%n %s %.3f %s", "Time =", (float) timeElapsed / 1_000_000_000, "sec");
     }
 }
