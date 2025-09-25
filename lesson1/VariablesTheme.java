@@ -11,7 +11,7 @@ public class VariablesTheme {
         
         final long start = System.nanoTime();
 
-        System.out.println("ВЫВОД ASCII-ГРАФИКИ");
+        System.out.println("ВЫВОД ASCII-ГРАФИКИ \n");
         System.out.println("первый (с помощью конкатенации)");
         System.out.print("                       " + "/" + "\\" + "\n" + "    " + 
                         "j" + "    " + "a" + "  " + "v" + "       " +
@@ -34,9 +34,7 @@ public class VariablesTheme {
                 """.indent(4);
         System.out.println(block);
 
-        System.out.println();
-
-        System.out.println("РАСЧЕТ СТОИМОСТИ ТОВАРА");
+        System.out.println("\n РАСЧЕТ СТОИМОСТИ ТОВАРА \n");
         System.out.println("Первый вариант решения.");
         float costPen = 105.5f; 
         float costBook = 235.23f;
@@ -81,8 +79,7 @@ public class VariablesTheme {
         System.out.println("Метод : побитовый.");
         System.out.println("Результат: A = " + a + " B = " + b);
 
-        System.out.println();
-        System.out.println("ДЕКОДИРОВАНИЕ СООБЩЕНИЯ");
+        System.out.println("\n ДЕКОДИРОВАНИЕ СООБЩЕНИЯ \n");
         int codeAsciiOne = 1055;
         int codeAsciiTwo = 1088;
         int codeAsciiThree = 1080;
@@ -107,7 +104,6 @@ public class VariablesTheme {
                         codeAsciiOne, ch1, codeAsciiTwo, ch2, codeAsciiThree, ch3,
                         codeAsciiFour, ch4, codeAsciiFive, ch5, codeAsciiSix, ch6);
 
-        System.out.println();
         System.out.println("\n АНАЛИЗ КОДА ТОВАРА \n");
         int codeProduct = 123;
         int categoryProduct = codeProduct / 100 % 10;
@@ -123,8 +119,7 @@ public class VariablesTheme {
                     "Контрольная сумма: ", checkSum,
                     "Проверочный код: ", codeVerification);
 
-        System.out.println();
-        System.out.println(" \n ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ");
+        System.out.println(" \n ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ \n");
         byte temperature = Byte.MAX_VALUE;
         int symbolTemp = 176;
         System.out.printf("%s %c %s %s %n %15s %d",
@@ -167,8 +162,7 @@ public class VariablesTheme {
         timeSinceLaunch--;
         System.out.printf("%n %8s %d", "-1:", timeSinceLaunch);
 
-        System.out.println();
-        System.out.println("\n ВЫВОД ПАРАМЕТРОВ JVM");
+        System.out.println("\n ВЫВОД ПАРАМЕТРОВ JVM \n");
         int processors = Runtime.getRuntime().availableProcessors();
         long freeMemory = Runtime.getRuntime().freeMemory();
         long totalMemory = Runtime.getRuntime().totalMemory();
@@ -185,8 +179,7 @@ public class VariablesTheme {
                         "Максимально доступная для выделения память - ",
                         (float) (maxMemory + freeMemory) / 1_048_576, "Мб");
 
-        System.out.println();
-        System.out.println("\n ВЫВОД ПАРАМЕТРОВ OC");
+        System.out.println("\n ВЫВОД ПАРАМЕТРОВ OC \n");
         String systemDisk = System.getProperty("java.vendor");
         String osVersion = System.getProperty("os.version");
         String javaVersion = System.getProperty("java.version");
@@ -198,8 +191,7 @@ public class VariablesTheme {
                         "Версия Java - ", javaVersion,
                         "Символ разделения пути - ", pathSeparetor);
 
-        System.out.println();
-        System.out.println("\n ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА");
+        System.out.println("\n ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА \n");
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
         LocalTime endTime = LocalTime.now();
