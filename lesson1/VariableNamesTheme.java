@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class VariableNamesTheme {
     public static void main(String[] args) {
         // Разные переменные.
@@ -94,8 +96,8 @@ public class VariableNamesTheme {
         System.out.println("имя работника месяца: " + employeeMonthName);
 
         // название электронной книги
-        String eBookTitle = "Java";
-        System.out.println("название электронной книги: " + eBookTitle);
+        String ebookTitle = "Java";
+        System.out.println("название электронной книги: " + ebookTitle);
 
         // размер
         int size = 5;
@@ -166,27 +168,28 @@ public class VariableNamesTheme {
         System.out.println(oldUuid);
 
         // производительность оперативной памяти
-        String ram = "производительность оперативной памяти";
-        System.out.println(ram);
+        long ram = Runtime.getRuntime().totalMemory();
+        System.out.println("Производительность оперативной памяти = " + ram + " bytes");
 
         // емкость жесткого диска
-        String hdd = "емкость жесткого диска";
-        System.out.println(hdd);
+        File disk = new File("//");
+        long hdd = disk.getTotalSpace() / (1024 * 1024 * 1024);
+        System.out.println("Емкость жесткого диска = " + hdd + " GB");
 
         // определение термина протокола передачи гипертекста
-        String setHttp = "определение термина протокола передачи гипертекста";
-        System.out.println(setHttp);
+        String aboutHttp = "определение термина протокола передачи гипертекста";
+        System.out.println(aboutHttp);
 
         // сокращенный uniform resource locator
-        String url = "сокращенный uniform resource locator";
+        String url = System.getProperty("java.vendor.url");
         System.out.println(url);
 
         // новый идентификатор клиента
-        String newId = "новый идентификатор клиента";
-        System.out.println(newId);
+        String newCid = "новый идентификатор клиента";
+        System.out.println(newCid);
 
         // количество символов в american standard code for information interchange
-        String numbersOfAsciiCharacters = "128";
-        System.out.println(numbersOfAsciiCharacters);
+        String asciiSymbolCount = "128";
+        System.out.println(asciiSymbolCount);
     }
 }
