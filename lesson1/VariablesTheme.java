@@ -61,16 +61,15 @@ public class VariablesTheme {
         System.out.println("Результат: A = " + a + " B = " + b);
         System.out.println("С помощью арифметических операций");
         System.out.println("Метод : арифмeтический.");
-        a = a + b; 
-        b = a - b;
-        a = a - b;
+        a += b; 
+        a -= b;
         System.out.println("Результат: A = " + a + " B = " + b);
         System.out.println("С помощью побитовых операций");
         System.out.println("Метод : побитовый.");
-        a = a ^ b;
-        b = a ^ b;
-        a = a ^ b;
+        a ^= b;
+        a ^= b;
         System.out.println("Результат: A = " + a + " B = " + b);
+
         System.out.println("\n4 ДЕКОДИРОВАНИЕ СООБЩЕНИЯ \n");
         int codeAsciiOne = 1055;
         int codeAsciiTwo = 1088;
