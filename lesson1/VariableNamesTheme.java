@@ -3,7 +3,7 @@ import java.io.File;
 public class VariableNamesTheme {
     public static void main(String[] args) {
         // Разные переменные.
-        System.out.println("Блок номер 1 \nРазные переменные");
+        System.out.println("Блок номер 1 \nРазные переменные\n");
 
         // Цифра
         int digit = 1;
@@ -118,10 +118,7 @@ public class VariableNamesTheme {
         // количество чисел в строке
         int stringCountOfDigit = 2;
         System.out.println("количество чисел в строке: " + stringCountOfDigit);
-
-        System.out.println("************************************************");
-
-        System.out.println("Блок номер 2 \nBOOLEAN-ПЕРЕМЕННЫЕ");
+        System.out.println("\nБлок номер 2 \nBOOLEAN-ПЕРЕМЕННЫЕ");
 
         // сотни равны?
         boolean isEqualHundreds = true;
@@ -158,31 +155,27 @@ public class VariableNamesTheme {
         // имеются уникальные строки?
         boolean hasUniqueStrings = true;
         System.out.println("имеются уникальные строки?" + hasUniqueStrings);
-
-        System.out.println("************************************************");
-
-        System.out.println("Блок номер 2 \nАББРЕВИАТУРЫ");
+        System.out.println("\nБлок номер 3 \nАББРЕВИАТУРЫ");
 
         // старый universally unique identifier
         String oldUuid = "старый universally unique identifier";
         System.out.println(oldUuid);
 
-        // производительность оперативной памяти
-        long ram = Runtime.getRuntime().totalMemory();
-        System.out.println("Производительность оперативной памяти = " + ram + " bytes");
+        // производитель оперативной памяти
+        String ramManufacturer = "Производитель оперативной памяти";
+        System.out.println(ramManufacturer);
 
         // емкость жесткого диска
-        File disk = new File("//");
-        long hdd = disk.getTotalSpace() / (1024 * 1024 * 1024);
-        System.out.println("Емкость жесткого диска = " + hdd + " GB");
+        String capacityHdd = "Емкость жесткого диска";
+        System.out.println(capacityHdd);
 
         // определение термина протокола передачи гипертекста
         String aboutHttp = "определение термина протокола передачи гипертекста";
         System.out.println(aboutHttp);
 
         // сокращенный uniform resource locator
-        String url = System.getProperty("java.vendor.url");
-        System.out.println(url);
+        String shortUrl = "Сокращенный URL";
+        System.out.println(shortUrl);
 
         // новый идентификатор клиента
         String newCid = "новый идентификатор клиента";
