@@ -13,8 +13,6 @@ public class IfElseStatementTheme {
             System.out.println("Женский пол.");
         }
 
-        System.out.println("\n");
-
         int age = 15;
 
         if (age > 18) {
@@ -22,8 +20,6 @@ public class IfElseStatementTheme {
         } else {
             System.out.println("Доступ запрещен, ваш возраст меньше 18.");
         }
-
-        System.out.println("\n");
 
         double height = 1.6;
 
@@ -46,31 +42,27 @@ public class IfElseStatementTheme {
         if (todaySteps > yesterdaySteps) {
             System.out.println("Сегодня было больше шагов чем вчера.");
             System.out.printf("%s %n %s %d %n %s %d %n %s %.1f", 
-                        "Кол-во шагов:",
-                        "Сегодня:", todaySteps,
-                        "Вчера:", yesterdaySteps,
-                        "Среднее значение:", everageSteps);
+                    "Кол-во шагов:",
+                    "Сегодня:", todaySteps,
+                    "Вчера:", yesterdaySteps,
+                    "Среднее значение:", everageSteps);
         } else if (todaySteps < yesterdaySteps) {
             System.out.println("Вчера было больше шагов чем сегодня.");
             System.out.printf("%s %n %s %d %n %s %d %n %s %.1f",
-                        "Кол-во шагов:",
-                        "Сегодня:", todaySteps,
-                        "Вчера:", yesterdaySteps,
-                        "Среднее значение:", everageSteps);
+                    "Кол-во шагов:",
+                    "Сегодня:", todaySteps,
+                    "Вчера:", yesterdaySteps,
+                    "Среднее значение:", everageSteps);
         } else {
             System.out.println("Кол-во шагов равно.");
             System.out.printf("%s %n %s %d %n %s %d %n %s %.1f",
-                        "Кол-во шагов:",
-                        "Сегодня:", todaySteps,
-                        "Вчера:", yesterdaySteps,
-                        "Среднее значение:", everageSteps);
+                    "Кол-во шагов:",
+                    "Сегодня:", todaySteps,
+                    "Вчера:", yesterdaySteps,
+                    "Среднее значение:", everageSteps);
         }
- 
-        System.out.println("\n");
 
-        System.out.println("3 ПРОВЕРКА КОЛИЧЕСТВА ГОСТЕЙ");
-
-        System.out.println();
+        System.out.println("\n\n3 ПРОВЕРКА КОЛИЧЕСТВА ГОСТЕЙ");
 
         int guestNumber = 5;
 
@@ -86,9 +78,7 @@ public class IfElseStatementTheme {
             System.out.println("отрицательное: число не должно быть меньше ноля");
         }
 
-        System.out.println("\n");
-
-        System.out.println("4 ОПРЕДЕЛЕНИЕ ПЕРВОГО СИМВОЛА НИКНЕЙМА");
+        System.out.println("\n\n4 ОПРЕДЕЛЕНИЕ ПЕРВОГО СИМВОЛА НИКНЕЙМА");
 
         System.out.println();
 
@@ -115,9 +105,7 @@ public class IfElseStatementTheme {
                     "нначинается с маленькой буквы -", firstChar);
         }
 
-        System.out.println("\n");
-
-        System.out.println("Второй вариант: с помощью методов класса Character, определяющих символы");
+        System.out.println("\nВторой вариант: с помощью методов класса Character, определяющих символы");
 
         if (Character.isLowerCase(firstChar)) {
             System.out.printf("%s %s %n %s %s", "Имя: ", name, "нначинается с маленькой буквы -", firstChar);
@@ -129,9 +117,7 @@ public class IfElseStatementTheme {
             System.out.printf("%s %s %n %s %s", "Имя: ", name, "начинается с символа -", firstChar);
         }
 
-        System.out.println("\n");
-
-        System.out.println("5 ИНВЕНТАРИЗАЦИЯ \n");
+        System.out.println("\n\n5 ИНВЕНТАРИЗАЦИЯ");
 
         int serialNumber = 234;
 
@@ -150,9 +136,9 @@ public class IfElseStatementTheme {
                 (serialNumberLength - itemNumberLength) == 2) {
             String msg = (serialNumber % 10 == itemNumber % 10) ? "Частичное совпадение:" : "совпадений нет";
             System.out.printf("""
-                %s
-                База данных: = [№ %d ]
-                Фактический: = [№ __%d ]
+                    %s
+                    База данных: = [№ %d ]
+                    Фактический: = [№ __%d ]
                     """, msg, serialNumber, itemNumber);
         } else if (serialNumberLength > itemNumberLength && (serialNumberLength - itemNumberLength) == 1) {
             String msg = (serialNumber % 10 == itemNumber % 10) ? "Частичное совпадение:" : "совпадений нет";
@@ -160,98 +146,78 @@ public class IfElseStatementTheme {
                         ? "Частичное совпадение:" : "совпадений нет";
             if (msg == "Частичное совпадение:") {
                 System.out.printf("""
-                %s
-                База данных: = [№ %d ]
-                Фактический: = [№ _%d ]
+                        %s
+                        База данных: = [№ %d ]
+                        Фактический: = [№ _%d ]
                         """, msg, serialNumber, itemNumber);
             } else {
                 System.out.println("Совпадений не найдено.");
             }
         }
 
-        System.out.println("\n"); 
-
-        System.out.println("6 ПОДСЧЕТ НАЧИСЛЕННЫХ БАНКОМ % \n");
-
+        System.out.println("\n\n6 ПОДСЧЕТ НАЧИСЛЕННЫХ БАНКОМ %");
         System.out.println("Первый вариант");
-
         float depositAmount = 400_000.79f;
-
         float fivePersent = depositAmount * 0.05f;
-
         float sevenPersent = depositAmount * 0.07f;
-
         float tenPersent = depositAmount * 0.1f;
 
         if (depositAmount < 100_000.000f) {
             System.out.printf("""
-                Сумма депозита: %f
-                Cумму начисленного %%: %f
-                Итоговую сумму с %%: %f
+                    Сумма депозита: %f
+                    Cумму начисленного %%: %f
+                    Итоговую сумму с %%: %f
                     """, depositAmount, fivePersent, depositAmount + fivePersent);
         } else if (depositAmount > 100_000 & depositAmount < 300_000) {
             System.out.printf("""
-                Сумма депозита: %f
-                Cумму начисленного %%: %f
-                Итоговую сумму с %%: %f
+                    Сумма депозита: %f
+                    Cумму начисленного %%: %f
+                    Итоговую сумму с %%: %f
                     """, depositAmount, sevenPersent, depositAmount + sevenPersent);
         } else if (depositAmount > 300_000) {
             System.out.printf("""
-                Сумма депозита: %f
-                Cумму начисленного %%: %f
-                Итоговую сумму с %%: %f
+                    Сумма депозита: %f
+                    Cумму начисленного %%: %f
+                    Итоговую сумму с %%: %f
                     """, depositAmount, tenPersent, depositAmount + tenPersent);
         }
 
-        System.out.println("\n Второй вариант");
-
+        System.out.println("\nВторой вариант");
         var depositAmountBd = new BigDecimal("1150000");
-
         var fivePersentBd = depositAmountBd.multiply(new BigDecimal("0.05"))
                 .setScale(2, RoundingMode.HALF_UP);
-
         var sevenPersentBd = depositAmountBd.multiply(new BigDecimal("0.07"))
                 .setScale(2, RoundingMode.HALF_UP);
-
         var tenPersentBd = depositAmountBd.multiply(new BigDecimal("0.1"))
                 .setScale(2, RoundingMode.HALF_UP);
-
         if (depositAmountBd.compareTo(new BigDecimal("100000")) < 0) {
             System.out.printf("""
-                Сумма депозита: %.2f
-                Cумму начисленного %%: %.2f
-                Итоговую сумму с %%: %.2f
+                    Сумма депозита: %.2f
+                    Cумму начисленного %%: %.2f
+                    Итоговую сумму с %%: %.2f
                     """, depositAmountBd, fivePersentBd, depositAmountBd.add(fivePersentBd));
         } else if (depositAmountBd.compareTo(new BigDecimal("100000")) > 0 &
                     depositAmountBd.compareTo(new BigDecimal("300000")) < 0) {
             System.out.printf("""
-                Сумма депозита: %.2f
-                Cумму начисленного %%: %.2f
-                Итоговую сумму с %%: %.2f
+                    Сумма депозита: %.2f
+                    Cумму начисленного %%: %.2f
+                    Итоговую сумму с %%: %.2f
                     """, depositAmountBd, sevenPersentBd,
                     depositAmountBd.add(sevenPersentBd));
         } else if (depositAmountBd.compareTo(new BigDecimal("300000")) > 0) {
             System.out.printf("""
-                Сумма депозита: %.2f
-                Cумму начисленного %%: %.2f
-                Итоговую сумму с %%: %.2f
+                    Сумма депозита: %.2f
+                    Cумму начисленного %%: %.2f
+                    Итоговую сумму с %%: %.2f
                     """, depositAmountBd, tenPersentBd, depositAmountBd.add(tenPersentBd));
         }
 
-        System.out.println("\n");
-
-        System.out.println("7 ОПРЕДЕЛЕНИЕ ОЦЕНКИ ПО ПРЕДМЕТАМ\n");
-
+        System.out.println("\n\n7 ОПРЕДЕЛЕНИЕ ОЦЕНКИ ПО ПРЕДМЕТАМ");
         float history = 59.0f;
-
         int historyGrade = 0;
-
         float programming = 61.0f;
-
         int programmingGrade = 0;
-
         int cntGrade = 0;
-
         float averageGrade = 0.0f;
 
         if (history <= 60) {
@@ -275,11 +241,8 @@ public class IfElseStatementTheme {
         }
 
         averageGrade = ((float) historyGrade + (float) programmingGrade) / 2; 
-
         float persent = 0.0f;
-
         persent = (history + programming) / 2;
-
         System.out.printf("""
             История: %.1f %%
             Программирование: %.1f %%
@@ -287,33 +250,23 @@ public class IfElseStatementTheme {
             Cредний %% по предметам: %.1f %%
                 """, history, programming, averageGrade, persent);
 
-        System.out.println("\n");
-
-        System.out.println("8 РАСЧЕТ ГОДОВОЙ ПРИБЫЛИ\n");
-
+        System.out.println("\n\n8 РАСЧЕТ ГОДОВОЙ ПРИБЫЛИ\n");
         var soldOneMonth = new BigDecimal("13025.233");
-
         var costRent = new BigDecimal("5123.018");
-
         var costProduction = new BigDecimal("9001.729");
-
         var period = new BigDecimal("12");
-
         var profitOneYear = soldOneMonth.multiply(period);
-
         var costRentOneYear = costRent.multiply(period);
-
         var costProductionOneYear = costProduction.multiply(period);
-
         profitOneYear = profitOneYear.subtract(costRentOneYear).subtract(costProductionOneYear);
 
         if (profitOneYear.compareTo(new BigDecimal("0")) > 0) {
             System.out.printf("""
-            Прибыль за год: +%.2f
+                    Прибыль за год: +%.2f
                     """, profitOneYear);
         } else {
             System.out.printf("""
-            Прибыль за год: %.2f
+                    Прибыль за год: %.2f
                     """, profitOneYear);
         }
     }
