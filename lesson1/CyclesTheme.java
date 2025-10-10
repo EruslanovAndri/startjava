@@ -40,7 +40,7 @@ public class CyclesTheme {
             System.out.println();
         }
 
-        System.out.println("\n 3 ВЫВОД ТАБЛИЦЫ УМНОЖЕНИЯ");
+        System.out.println("\n3 ВЫВОД ТАБЛИЦЫ УМНОЖЕНИЯ");
         System.out.printf("%3s", "|");
         for (int i = 2; i <= 9; i++) {
             System.out.printf("%3d", i);
@@ -56,7 +56,7 @@ public class CyclesTheme {
             System.out.println();
         }
 
-        System.out.println("\n 4 ВЫВОД ЧИСЕЛ В НЕСКОЛЬКО СТРОК");
+        System.out.println("\n4 ВЫВОД ЧИСЕЛ В НЕСКОЛЬКО СТРОК");
         int limit = 30;
         int cnt = 0;
         int numInRow = 5;
@@ -77,7 +77,7 @@ public class CyclesTheme {
             }
         }
 
-        System.out.println("\n 5 ВЫВОД ЧИСЕЛ МЕЖДУ MIN И MAX");
+        System.out.println("\n5 ВЫВОД ЧИСЕЛ МЕЖДУ MIN И MAX");
         int num1 = 10;
         int num2 = 5;
         int num3 = -1;
@@ -95,7 +95,7 @@ public class CyclesTheme {
             System.out.print(i + " ");
         }
 
-        System.out.println("\n 6 РАЗНЫЕ ОПЕРАЦИИ НАД ЧИСЛОМ");
+        System.out.println("\n6 РАЗНЫЕ ОПЕРАЦИИ НАД ЧИСЛОМ");
         int num = 2234321;
         String strNumber = Integer.toString(num);
         int reversedNumber = 0;
@@ -145,7 +145,7 @@ public class CyclesTheme {
                 "Сумма цифр:", rigthSideStr, "=", sumRightSide,
                 "Сумма цифр:", leftSideStr, "=", sumLeftSide);
 
-        System.out.println("\n\n 8 ПРОСТОЙ ГЕНЕРАТОР ПАРОЛЯ");
+        System.out.println("\n8 ПРОСТОЙ ГЕНЕРАТОР ПАРОЛЯ");
         String password = "";
         int lengthPassword = 0;
         Random rnd = new Random();
