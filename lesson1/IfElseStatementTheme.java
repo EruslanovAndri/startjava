@@ -6,39 +6,28 @@ public class IfElseStatementTheme {
         System.out.println("1 Перевод псевдокода на язык JAVA");
 
         boolean isManGenger = true;
-
         if (!isManGenger) {
             System.out.println("Мужской пол.");
         } else {
             System.out.println("Женский пол.");
         }
-
         int age = 15;
-
         if (age > 18) {
             System.out.println("Доступ открыт.");
         } else {
             System.out.println("Доступ запрещен, ваш возраст меньше 18.");
         }
-
         double height = 1.6;
-
         if (height < 1.8) {
             System.out.println("Ваш рост ниже 1.8 метра.");
         } else {
             System.out.println("Ваш рост выше 1.8 метра.");
         }
 
-        System.out.println("\n");
-
-        System.out.println("2 ПОИСК БОЛЬШЕГО ЧИСЛА ШАГОВ");
-
+        System.out.println("\n2 ПОИСК БОЛЬШЕГО ЧИСЛА ШАГОВ");
         int todaySteps = 1500;
-
         int yesterdaySteps = 500;
-
         double everageSteps = (todaySteps + yesterdaySteps) / 2; 
-
         if (todaySteps > yesterdaySteps) {
             System.out.println("Сегодня было больше шагов чем вчера.");
             System.out.printf("%s %n %s %d %n %s %d %n %s %.1f", 
@@ -63,9 +52,7 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n\n3 ПРОВЕРКА КОЛИЧЕСТВА ГОСТЕЙ");
-
         int guestNumber = 5;
-
         if (guestNumber >= 0) {
             if (guestNumber == 0) {
                 System.out.println("Пока никто не записался на мероприятие!");
@@ -78,18 +65,11 @@ public class IfElseStatementTheme {
             System.out.println("отрицательное: число не должно быть меньше ноля");
         }
 
-        System.out.println("\n\n4 ОПРЕДЕЛЕНИЕ ПЕРВОГО СИМВОЛА НИКНЕЙМА");
-
-        System.out.println();
-
+        System.out.println("\n4 ОПРЕДЕЛЕНИЕ ПЕРВОГО СИМВОЛА НИКНЕЙМА");
         System.out.println("Первый вариант: с помощью проверки символа на его вхождение в диапазон кодов");
-
         String name = "(Maria";
-
         char firstChar = name.charAt(0);
-
         int numChar = (int) firstChar;
-
         if (numChar >= 0 && numChar <= 64 || numChar >= 91 && 
                 numChar <= 96 || numChar >= 123 && numChar <= 127) {
             System.out.printf("%s %s %n %s %s", "Имя: ", name,
@@ -106,7 +86,6 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\nВторой вариант: с помощью методов класса Character, определяющих символы");
-
         if (Character.isLowerCase(firstChar)) {
             System.out.printf("%s %s %n %s %s", "Имя: ", name, "нначинается с маленькой буквы -", firstChar);
         } else if (Character.isUpperCase(firstChar)) {
@@ -118,15 +97,10 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n\n5 ИНВЕНТАРИЗАЦИЯ");
-
         int serialNumber = 234;
-
         int itemNumber = 24;
-
         int serialNumberLength = Integer.toString(serialNumber).length();
-
         int itemNumberLength = Integer.toString(itemNumber).length();
-
         if (serialNumberLength == itemNumberLength && serialNumber == itemNumber) {
             System.out.printf("%s %d %s", "[№", serialNumber, "]: находится на 3 этаже кабинет 2");
         } else if (serialNumberLength == itemNumberLength && serialNumber != itemNumber) {
@@ -155,7 +129,7 @@ public class IfElseStatementTheme {
             }
         }
 
-        System.out.println("\n\n6 ПОДСЧЕТ НАЧИСЛЕННЫХ БАНКОМ %");
+        System.out.println("\n6 ПОДСЧЕТ НАЧИСЛЕННЫХ БАНКОМ %");
         System.out.println("Первый вариант");
         float depositAmount = 400_000.79f;
         float fivePersent = depositAmount * 0.05f;
@@ -212,14 +186,13 @@ public class IfElseStatementTheme {
                     """, depositAmountBd, tenPersentBd, depositAmountBd.add(tenPersentBd));
         }
 
-        System.out.println("\n\n7 ОПРЕДЕЛЕНИЕ ОЦЕНКИ ПО ПРЕДМЕТАМ");
+        System.out.println("\n7 ОПРЕДЕЛЕНИЕ ОЦЕНКИ ПО ПРЕДМЕТАМ");
         float history = 59.0f;
         int historyGrade = 0;
         float programming = 61.0f;
         int programmingGrade = 0;
         int cntGrade = 0;
         float averageGrade = 0.0f;
-
         if (history <= 60) {
             historyGrade += 2;
         } else if (history > 60 & history < 73) {
@@ -229,7 +202,6 @@ public class IfElseStatementTheme {
         } else if (history > 91) {
             historyGrade += 5;
         }
-
         if (programming <= 60) {
             programmingGrade += 2;
         } else if (programming > 60 & programming < 73) {
@@ -250,24 +222,23 @@ public class IfElseStatementTheme {
             Cредний %% по предметам: %.1f %%
                 """, history, programming, averageGrade, persent);
 
-        System.out.println("\n\n8 РАСЧЕТ ГОДОВОЙ ПРИБЫЛИ\n");
+        System.out.println("\n8 РАСЧЕТ ГОДОВОЙ ПРИБЫЛИ");
         var soldOneMonth = new BigDecimal("13025.233");
-        var costRent = new BigDecimal("5123.018");
-        var costProduction = new BigDecimal("9001.729");
+        var rentCost = new BigDecimal("5123.018");
+        var productionCost = new BigDecimal("9001.729");
         var period = new BigDecimal("12");
-        var profitOneYear = soldOneMonth.multiply(period);
-        var costRentOneYear = costRent.multiply(period);
-        var costProductionOneYear = costProduction.multiply(period);
-        profitOneYear = profitOneYear.subtract(costRentOneYear).subtract(costProductionOneYear);
-
-        if (profitOneYear.compareTo(new BigDecimal("0")) > 0) {
+        var oneYearProfit = soldOneMonth.multiply(period);
+        var oneYearRentCost = rentCost.multiply(period);
+        var oneYearProductionCost = productionCost.multiply(period);
+        oneYearProfit = oneYearProfit.subtract(oneYearRentCost).subtract(oneYearProductionCost);
+        if (oneYearProfit.compareTo(new BigDecimal("0")) > 0) {
             System.out.printf("""
                     Прибыль за год: +%.2f
-                    """, profitOneYear);
+                    """, oneYearProfit);
         } else {
             System.out.printf("""
                     Прибыль за год: %.2f
-                    """, profitOneYear);
+                    """, oneYearProfit);
         }
     }
 }
