@@ -5,13 +5,9 @@ import java.util.Scanner;
 public class Calculator {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
         System.out.println("Введите пример: ");
-
         String inputString = input.nextLine().replaceAll("\\s", "");
-
         System.out.println("Введенный пример = " + inputString);
-
         int operatorIndex = -1; 
 
         if (inputString.contains("+")) {
@@ -29,15 +25,10 @@ public class Calculator {
         }
 
         String leftOperandStr = inputString.substring(0, operatorIndex);
-
         String rightOperandStr = inputString.substring(operatorIndex + 1, inputString.length());
-
         Double leftOperand = Double.parseDouble(leftOperandStr);
-
         Double rightOperand = Double.parseDouble(rightOperandStr);
-
         char operator = inputString.charAt(operatorIndex);
-
         Double result = 0d;
 
         switch (operator) {
