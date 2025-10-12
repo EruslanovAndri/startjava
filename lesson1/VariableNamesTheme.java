@@ -166,8 +166,8 @@ public class VariableNamesTheme {
         System.out.println(ramManufacturer);
 
         // емкость жесткого диска
-        String capacityHdd = "Емкость жесткого диска";
-        System.out.println(capacityHdd);
+        String hddCapacity = "Емкость жесткого диска";
+        System.out.println(hddCapacity);
 
         // определение термина протокола передачи гипертекста
         String aboutHttp = "определение термина протокола передачи гипертекста";
