@@ -62,8 +62,7 @@ public class VariablesTheme {
         System.out.println("С помощью арифметических операций");
         a += b;
         b -= a;
-        b *= -1;
-        a -= b;
+        a += b;
         System.out.println("Результат: A = " + a + " B = " + b);
         System.out.println("С помощью побитовых операций");
         a ^= b;
@@ -82,9 +81,9 @@ public class VariablesTheme {
                 codeAsciiOne, codeAsciiTwo, codeAsciiThree,
                 codeAsciiFour, codeAsciiFive, codeAsciiSix);
         System.out.printf("\n%4c %4c %4c %4c %4c %4c %n",
-                (char) codeAsciiOne, (char) codeAsciiTwo,
-                (char) codeAsciiThree, (char) codeAsciiFour,
-                (char) codeAsciiFive, (char) codeAsciiSix, "\n");
+                codeAsciiOne, codeAsciiTwo,
+                codeAsciiThree, codeAsciiFour,
+                codeAsciiFive, codeAsciiSix, "\n");
 
         System.out.println("\n5 АНАЛИЗ КОДА ТОВАРА \n");
         int productCode = 123;
@@ -103,85 +102,86 @@ public class VariablesTheme {
 
         System.out.println("\n6 ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ \n");
         byte temperature = Byte.MAX_VALUE;
-        int symbolTemp = 176;
-        System.out.printf("%s %c %s %s %n %15s %d",
-                "[Температура, ", (char) symbolTemp, "C", "]",
-                "Исходное: ", temperature);
-        temperature++;
-        System.out.printf("%n %8s %d", "+1:", temperature);
-        temperature--;
-        System.out.printf("%n %8s %d", "-1:", temperature);
+        System.out.printf("""
+                [Температура: С ]
+                Исходное: %d
+                +1: %d
+                -1: %d%n
+                """, temperature, ++temperature, --temperature);
+
         short pressure = Short.MAX_VALUE;
-        System.out.printf("%n %s %s %n %14s %d",
-                "[Давление, PA", "]",
-                "Исходное:", pressure);
-        pressure++;
-        System.out.printf("%n %8s %d", "+1:", pressure);
-        pressure--;
-        System.out.printf("%n %8s %d", "-1:", pressure);
-        char myChar = Character.MAX_VALUE;
-        System.out.printf("%n %s %s %n %14s %d",
-                "[Код состояния системы,", "]",
-                "Исходное:", (int) myChar);
-        myChar++;
-        System.out.printf("%n %8s %d", "+1:", (int) myChar);
-        myChar--;
-        System.out.printf("%n %8s %d", "-1:", (int) myChar);
+        System.out.printf("""
+                [Давление: PA]
+                Исходное: %d
+                +1: %d
+                -1: %d%n
+                """, pressure, ++pressure, --pressure);
+
+        char statusCodeSystem = Character.MAX_VALUE;
+        System.out.printf("""
+                [Код состояния системы]
+                Исходное: %d
+                +1: %d
+                -1: %d%n
+                """, (int) statusCodeSystem, (int) ++statusCodeSystem, (int) --statusCodeSystem);
+
         int traveledDistance = Integer.MAX_VALUE;
-        System.out.printf("%n %s %s %s %n %15s %d",
-                "[Пройденное расстояние,", "км", "]",
-                "Исходное: ", traveledDistance);
-        traveledDistance++;
-        System.out.printf("%n %8s %d", "+1:", traveledDistance);
-        traveledDistance--;
-        System.out.printf("%n %8s %d", "-1:", traveledDistance);
+        System.out.printf("""
+                [Пройденное расстояние км:]
+                Исходное: %d
+                +1: %d
+                -1: %d%n
+                """, traveledDistance, ++traveledDistance, --traveledDistance);
+
         long timeSinceLaunch = Long.MAX_VALUE;
-        System.out.printf("%n %s %s %s %n %15s %d",
-                "[Время с момента старта,", "часов", "]",
-                "Исходное:", timeSinceLaunch);
-        timeSinceLaunch++;
-        System.out.printf("%n %8s %d", "+1:", timeSinceLaunch);
-        timeSinceLaunch--;
-        System.out.printf("%n %8s %d %n", "-1:", timeSinceLaunch, "\n");
+        System.out.printf("""
+                [Время с момента старта часов]
+                Исходное: %d
+                +1: %d
+                -1: %d%n
+                """, timeSinceLaunch, ++timeSinceLaunch, --timeSinceLaunch);
 
         System.out.println("\n7 ВЫВОД ПАРАМЕТРОВ JVM \n");
-        int processors = Runtime.getRuntime().availableProcessors();
-        long freeMemory = Runtime.getRuntime().freeMemory();
-        long totalMemory = Runtime.getRuntime().totalMemory();
-        long maxMemory = Runtime.getRuntime().maxMemory();
-        System.out.printf("%s %n %5s %d %n %5s %.1f %s %n %s %.1f %s %n %5s %.1f %s %n %5s %.1f %s %n",
-                "Параметры JVM:",
-                "Доступное число ядер - ", processors,
-                "Выделенная память - ",
-                (float) maxMemory / (1024 * 1024), "Мб",
-                "Свободная память - ",
-                (float) freeMemory / (1024 * 1024), "Мб",
-                "Используемая память - ",
-                (float) (maxMemory - freeMemory) / 1_048_576, "Мб",
-                "Максимально доступная для выделения память - ",
-                (float) (maxMemory + freeMemory) / 1_048_576, "Мб", "\n");
+        Runtime rt = Runtime.getRuntime();
+        int convertMegabyte = 1_048_576;
+        int processors = rt.availableProcessors();
+        long freeMemory = rt.freeMemory() / convertMegabyte;
+        long totalMemory = rt.totalMemory() / convertMegabyte;
+        long maxMemory = rt.maxMemory() / convertMegabyte;
+        long usedMemory = (totalMemory - freeMemory) / convertMegabyte;
+        System.out.printf("""
+                Параметры JVM:
+                Доступное число ядер: %d
+                Выделенная память: %d Мб.
+                Свободная память: %d Мб.
+                Используемая память: %d Мб.
+                Максимально доступная для выделения память: %d Мб.%n
+                """, processors, totalMemory, freeMemory, usedMemory, maxMemory);
 
-        System.out.println("\n8 ВЫВОД ПАРАМЕТРОВ OC \n");
-        String systemDisk = System.getProperty("java.vendor");
+        System.out.println("\nВЫВОД ПАРАМЕТРОВ OC \n");
+        String systemDisk = System.getProperty("os.name");
         String osVersion = System.getProperty("os.version");
         String javaVersion = System.getProperty("java.version");
         String pathSeparetor = System.getProperty("file.separator");
-        System.out.printf("%s %n %5s %s %n %5s %s %n %5s %s %n %5s %s %n",
-                "Параметры ОС:",
-                "Системный диск - ", systemDisk,
-                "Версия ОС - ", osVersion,
-                "Версия Java - ", javaVersion,
-                "Символ разделения пути - ", pathSeparetor, "\n");
+        System.out.printf("""
+                Параметры ОС:
+                Системный диск: %s
+                Версия ОС: %s
+                Версия Java: %s
+                Символ разделения пути: %s
+                """, systemDisk, osVersion, javaVersion, pathSeparetor);
 
-        System.out.println("\n9 ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА \n");
+        System.out.println("\n8 ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА \n");
         final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
         long finish = System.nanoTime();
-        long timeElapsed = finish - start;
+        long timeElapsed = (finish - start) / 1_000_000_000;
         LocalTime endTime = LocalTime.now();
-        System.out.printf("%16s %s %n %s %s %n %s %.3f",
-                "Старт проверки:", dtf.format(startTime),
-                "Финиш проверки:", dtf.format(endTime),
-                "Время работы:", (float) timeElapsed / 1_000_000_000);
-        System.out.printf("%n %s %.3f %s", "Time =", (float) timeElapsed / 1_000_000_000, "sec");
+        System.out.printf("""
+                | Старт проверки | %s |
+                + -------------- + ------------ +
+                | Финиш проверки | %s |
+                + -------------- + ------------ +
+                | Время работы   | %.3f сек    |
+                """, dtf.format(startTime), dtf.format(endTime), (float) timeElapsed);
     }
 }
