@@ -174,7 +174,7 @@ public class VariablesTheme {
         System.out.println("\n8 ЗАМЕР ВРЕМЕНИ РАБОТЫ КОДА \n");
         final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
         long finish = System.nanoTime();
-        long timeElapsed = (finish - start) / 1_000_000_000;
+        float timeElapsed = (finish - start);
         LocalTime endTime = LocalTime.now();
         System.out.printf("""
                 | Старт проверки | %s |
@@ -182,6 +182,6 @@ public class VariablesTheme {
                 | Финиш проверки | %s |
                 + -------------- + ------------ +
                 | Время работы   | %.3f сек    |
-                """, dtf.format(startTime), dtf.format(endTime), (float) timeElapsed);
+                """, dtf.format(startTime), dtf.format(endTime), timeElapsed / 1_000_000_000);
     }
 }
