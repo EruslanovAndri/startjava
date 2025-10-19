@@ -89,21 +89,21 @@ public class IfElseStatementTheme {
 
         System.out.println("\n5 ИНВЕНТАРИЗАЦИЯ");
         int serialNumber = 234;
-        int itemNumber = 234;
-        boolean flag = false;
+        int itemNumber = 34;
+        boolean hasEqualDigit = false;
 
-        if (flag = (serialNumber % 10 == itemNumber % 10 &&
+        if (hasEqualDigit = (serialNumber % 10 == itemNumber % 10 &&
                 serialNumber / 10 % 10 == itemNumber / 10 % 10 &&
                 serialNumber / 100 % 10 == itemNumber / 100 % 10) ? true : false) {
             System.out.println("[№" + itemNumber + "]: " + "компьютер на 3-м этаже в кабинете 2");
-        } else if (flag = (serialNumber % 10 == itemNumber % 10 &&
+        } else if (hasEqualDigit = (serialNumber % 10 == itemNumber % 10 &&
                         serialNumber / 10 % 10 == itemNumber / 10 % 10) ? true : false) {
             System.out.printf("""
                     Нет полного совпадения:
                     База данных: [№%d]
                     Фактический: [№_%d]
                     """, serialNumber, itemNumber % 100);
-        } else if (flag = (serialNumber % 10 == itemNumber % 10) ? true : false) {
+        } else if (hasEqualDigit = (serialNumber % 10 == itemNumber % 10) ? true : false) {
             System.out.printf("""
                     Нет полного совпадения:
                     База данных: [№%d]
