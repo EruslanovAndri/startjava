@@ -60,9 +60,9 @@ public class VariablesTheme {
         b = tmp;
         System.out.println("Результат: A = " + a + " B = " + b);
         System.out.println("С помощью арифметических операций");
-        a += b;
         b -= a;
-        a += b;
+        a += b; 
+        b = a - b;
         System.out.println("Результат: A = " + a + " B = " + b);
         System.out.println("С помощью побитовых операций");
         a ^= b;
@@ -104,46 +104,46 @@ public class VariablesTheme {
         byte temperature = Byte.MAX_VALUE;
         System.out.printf("""
                 [Температура: С ]
-                Исходное: %d
-                +1: %d
-                -1: %d%n
+                    Исходное: %d
+                    +1: %d
+                    -1: %d%n
                 """, temperature, ++temperature, --temperature);
 
         short pressure = Short.MAX_VALUE;
         System.out.printf("""
                 [Давление: PA]
-                Исходное: %d
-                +1: %d
-                -1: %d%n
+                    Исходное: %d
+                    +1: %d
+                    -1: %d%n
                 """, pressure, ++pressure, --pressure);
 
-        char statusCodeSystem = Character.MAX_VALUE;
+        char codeSystemStatus = Character.MAX_VALUE;
         System.out.printf("""
                 [Код состояния системы]
-                Исходное: %d
-                +1: %d
-                -1: %d%n
-                """, (int) statusCodeSystem, (int) ++statusCodeSystem, (int) --statusCodeSystem);
+                    Исходное: %d
+                    +1: %d
+                    -1: %d%n
+                """, (int) codeSystemStatus, (int) ++codeSystemStatus, (int) --codeSystemStatus);
 
         int traveledDistance = Integer.MAX_VALUE;
         System.out.printf("""
                 [Пройденное расстояние км:]
-                Исходное: %d
-                +1: %d
-                -1: %d%n
+                    Исходное: %d
+                    +1: %d
+                    -1: %d%n
                 """, traveledDistance, ++traveledDistance, --traveledDistance);
 
-        long timeSinceLaunch = Long.MAX_VALUE;
+        long sinceLaunchTime = Long.MAX_VALUE;
         System.out.printf("""
                 [Время с момента старта часов]
-                Исходное: %d
-                +1: %d
-                -1: %d%n
-                """, timeSinceLaunch, ++timeSinceLaunch, --timeSinceLaunch);
+                    Исходное: %d
+                    +1: %d
+                    -1: %d%n
+                """, sinceLaunchTime, ++sinceLaunchTime, --sinceLaunchTime);
 
         System.out.println("\n7 ВЫВОД ПАРАМЕТРОВ JVM \n");
         Runtime rt = Runtime.getRuntime();
-        int convertMegabyte = 1_048_576;
+        int convertMegabyte = 1024 * 1024;
         int processors = rt.availableProcessors();
         long freeMemory = rt.freeMemory() / convertMegabyte;
         long totalMemory = rt.totalMemory() / convertMegabyte;
@@ -159,7 +159,7 @@ public class VariablesTheme {
                 """, processors, totalMemory, freeMemory, usedMemory, maxMemory);
 
         System.out.println("\nВЫВОД ПАРАМЕТРОВ OC \n");
-        String systemDisk = System.getProperty("os.name");
+        String systemDisk = System.getProperty("Я не могу найти информацию о том как вывести названия диска.");
         String osVersion = System.getProperty("os.version");
         String javaVersion = System.getProperty("java.version");
         String pathSeparetor = System.getProperty("file.separator");
@@ -182,6 +182,6 @@ public class VariablesTheme {
                 | Финиш проверки | %s |
                 + -------------- + ------------ +
                 | Время работы   | %.3f сек    |
-                """, dtf.format(startTime), dtf.format(endTime), timeElapsed / 1_000_000_000);
+                """, dtf.format(startTime), dtf.format(endTime), timeElapsed / 1e9);
     }
 }
