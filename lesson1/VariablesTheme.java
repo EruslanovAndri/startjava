@@ -92,13 +92,15 @@ public class VariablesTheme {
         int packageType = productCode % 10;
         int checksum = productCategory + subcategoryCode + packageType;
         int verificationCode = productCategory * subcategoryCode * packageType;
-        System.out.printf("%s %d %n %25s %d %n %21s %5d %n %17s %9d %n %s %d %n %s %d %n",
-                "Код товара:", productCode,
-                "категория товара - ", productCategory,
-                "подкатегория - ", subcategoryCode,
-                "упаковка - ", packageType,
-                "Контрольная сумма: ", checksum,
-                "Проверочный код: ", verificationCode, "\n");
+        System.out.printf("""
+                Код товара: %d
+                    категория товара - %d
+                    подкатегория - %d
+                    упаковка - %d
+                Контрольная сумма: %d
+                Проверочный код: %d
+                    """, productCode, productCategory, subcategoryCode,
+                        packageType, checksum, verificationCode);
 
         System.out.println("\n6 ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ \n");
         byte temperature = Byte.MAX_VALUE;
@@ -159,7 +161,7 @@ public class VariablesTheme {
                 """, processors, totalMemory, freeMemory, usedMemory, maxMemory);
 
         System.out.println("\nВЫВОД ПАРАМЕТРОВ OC \n");
-        String systemDisk = System.getProperty("Я не могу найти информацию о том как вывести названия диска.");
+        char systemDisk = System.getProperty("user.home").charAt(0);
         String osVersion = System.getProperty("os.version");
         String javaVersion = System.getProperty("java.version");
         String pathSeparetor = System.getProperty("file.separator");
