@@ -99,7 +99,7 @@ public class VariablesTheme {
                     упаковка - %d
                 Контрольная сумма: %d
                 Проверочный код: %d
-                    """, productCode, productCategory, subcategoryCode,
+                """, productCode, productCategory, subcategoryCode,
                         packageType, checksum, verificationCode);
 
         System.out.println("\n6 ТЕСТИРОВАНИЕ ДАТЧИКОВ ПЕРЕД ЗАПУСКОМ РАКЕТЫ \n");
