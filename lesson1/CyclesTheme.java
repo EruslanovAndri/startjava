@@ -5,37 +5,33 @@ import java.util.regex.Pattern;
 public class CyclesTheme {
     public static void main(String[] args) {
         System.out.println("1 ВЫВОД ASCII-СИМВОЛОВ");
-        System.out.printf("%s %s %s %n", "DECIMAL", "CHARACTER", " DESCRIPTION");
-        for (int i = 33; i < 48; i++) {
+        System.out.printf("%s %s %s %n", "DECIMAL", "CHARACTER", "DESCRIPTION");
+        for (int i = 33; i <= 47; i++) {
             char ch = (char) i;
             if (i % 2 != 0) {
+                System.out.printf("%-10d %-10s %-10s %n", i, ch, Character.getName(i));
+            } 
+        }
+        for (int i = 97; i <= 122; i++) {
+            char ch = (char) i;
+            if (i % 2 == 0) {
                 System.out.printf("%-10d %-10s %-10s %n", i, ch, Character.getName(i));
             }
         }
 
         System.out.println("\n2 ВЫВОД ГЕОМЕТРИЧЕСКИХ ФИГУР");
-        int row = 5;
-        char dashSymbol = '-';
-        char asteriskSymbol = '*';
-        char caretSymbol = '^';
-        for (int i = 0; i < row; i++) {
+        int rows = 5;
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < 10; j++) {
-                System.out.print(dashSymbol);
+                System.out.print("-");
             }
-            System.out.println();
-        }
-        for (int i = row; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                System.out.print(asteriskSymbol);
+            System.out.print(" ");
+            for (int j = 0; j < 5 - i; j++) {
+                System.out.print("*");
             }
-            System.out.println();
-        }
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < row - i - 1; j++) {
-                System.out.print(" ");
-            }
-            for (int k = 0; k < 2 * i + 1; k++) {
-                System.out.print(caretSymbol);
+            System.out.print(" ");
+            for (int j = 0; j < 1 + 2 * i; j++) {
+                System.out.print("^");
             }
             System.out.println();
         }
@@ -45,9 +41,7 @@ public class CyclesTheme {
         for (int i = 2; i <= 9; i++) {
             System.out.printf("%3d", i);
         }
-        System.out.println();
-        System.out.print("--+------------------------");
-        System.out.println();
+        System.out.println("\n--+------------------------");
         for (int i = 2; i <= 9; i++) {
             System.out.printf("%1d %s", i, "|");
             for (int j = 2; j <= 9; j++) {
