@@ -69,7 +69,7 @@ public class IfElseStatementTheme {
             outputMessage = " начинается с большой буквы - ";
         } else if (firstChar >= '0' && firstChar <= '9') {
             outputMessage = " начинается с цифры - ";
-        } else if (firstChar >= '!' && firstChar <= '/') {
+        } else {
             outputMessage = " начинается с символа - ";
         }
         System.out.println("Имя: " + name + outputMessage + firstChar);
@@ -88,54 +88,71 @@ public class IfElseStatementTheme {
 
         System.out.println("\n5 ИНВЕНТАРИЗАЦИЯ");
         int serialNumber = 234;
-        int itemNumber = 134;
+        int itemNumber = 131;
+        String resultStr = "";
         boolean lastDigit = (serialNumber % 10 == itemNumber % 10);
         boolean middleDigit = (serialNumber / 10 % 10 == itemNumber / 10 % 10);
         boolean firstDigit = (serialNumber / 100 % 10 == itemNumber / 100 % 10);
 
         if (lastDigit && middleDigit && firstDigit) {
             System.out.println("[№" + itemNumber + "]: " + "компьютер на 3-м этаже в кабинете 2");
+        } else if (!lastDigit && !middleDigit && !firstDigit) {
+            System.out.println("[№" + itemNumber + "]: " + "оборудование не идентифицировано");
         } else {
-            if (!lastDigit && !middleDigit && !firstDigit) {
-                System.out.println("[№" + itemNumber + "]: " + "оборудование не идентифицировано");
-            } else {
-                System.out.printf("""
-                        Нет полного совпадения:
-                        База данных: [№%d]
-                        Фактический: [№_%d]
-                        """, serialNumber, itemNumber % 100);
+            if (lastDigit && !middleDigit && !firstDigit) {
+                resultStr = "__" + Integer.toString(itemNumber % 10);
+            } else if (lastDigit && middleDigit && !firstDigit) {
+                resultStr = "_" + Integer.toString(itemNumber % 100);
+            } else if (lastDigit && !middleDigit && firstDigit) {
+                String tmp = Integer.toString(itemNumber / 100 % 10);
+                resultStr = tmp + "_" + Integer.toString(itemNumber % 10);
+            } else if (!lastDigit && !middleDigit && firstDigit) {
+                String tmp = "__";
+                resultStr = Integer.toString(itemNumber / 100) + tmp;
+            } else if (!lastDigit && middleDigit && !firstDigit) {
+                int tmp = itemNumber / 10;
+                resultStr = "_" + Integer.toString(tmp % 10) + "_";
+            } else if (!lastDigit && middleDigit && firstDigit) {
+                resultStr = Integer.toString(itemNumber / 10) + "_";
             }
+            System.out.printf("""
+                    Нет полного совпадения:
+                    База данных: [№%d]
+                    Фактический: [№%s]
+                    """, serialNumber, resultStr);
         }
 
         System.out.println("\n6 ПОДСЧЕТ НАЧИСЛЕННЫХ БАНКОМ %");
         System.out.println("Первый вариант");
-        float depositAmount = 300_000f;
-        float interesOnDeposit = 0.0f;
-        if (depositAmount < 100_000.000f) {
-            interesOnDeposit = 0.05f;
-        } else if (depositAmount > 100_000 & depositAmount < 300_000) {
+        float depositAmount = 150_000f;
+        float interesOnDeposit = 0.05f;
+
+        if (depositAmount > 100_000 & depositAmount < 300_000) {
             interesOnDeposit = 0.07f;
         } else if (depositAmount >= 300_000) {
             interesOnDeposit = 0.1f;
         }
+        interesOnDeposit *= depositAmount;
+        float totalSum = depositAmount + interesOnDeposit;
         System.out.println("Сумма вклада: " + depositAmount + "\n" +
-                "Сумма начисленного %: " + depositAmount * interesOnDeposit + "\n" +
-                "Итоговая сумма с %: " + (depositAmount + interesOnDeposit));
+                "Сумма начисленного %: " + interesOnDeposit + "\n" +
+                "Итоговая сумма с %: " + totalSum);
 
         System.out.println("\nВторой вариант");
-        var depositAmountBd = BigDecimal.valueOf(150220_000);
-        var interesOnDepositBd = BigDecimal.ZERO;
-        if (depositAmountBd.compareTo(BigDecimal.valueOf(100000)) < 0) {
-            interesOnDepositBd = depositAmountBd.multiply(new BigDecimal("0.05"));
-        } else if (depositAmountBd.compareTo(BigDecimal.valueOf(100000)) > 0 &
+        var depositAmountBd = BigDecimal.valueOf(150_000);
+        var interesOnDepositBd = new BigDecimal("0.05");
+
+        if (depositAmountBd.compareTo(BigDecimal.valueOf(100000)) > 0 &
                 depositAmountBd.compareTo(BigDecimal.valueOf(300000)) < 0) {
-            interesOnDepositBd = depositAmountBd.multiply(new BigDecimal("0.07"));
-        } else if (depositAmountBd.compareTo((BigDecimal.valueOf(300000))) > 0) {
-            interesOnDepositBd = depositAmountBd.multiply(new BigDecimal("0.1"));
+            interesOnDepositBd = new BigDecimal("0.07");
+        } else if (depositAmountBd.compareTo((BigDecimal.valueOf(300000))) >= 0) {
+            interesOnDepositBd = new BigDecimal("0.1");
         }
+        interesOnDepositBd = depositAmountBd.multiply(interesOnDepositBd);
+        var totalSumBd = depositAmountBd.add(interesOnDepositBd);
         System.out.println("Сумма вклада: " + depositAmountBd + "\n" +
                 "Сумма начисленного %: " + interesOnDepositBd + "\n" +
-                "Итоговая сумма с %: " + depositAmountBd.add(interesOnDepositBd));
+                "Итоговая сумма с %: " + totalSumBd);
 
         System.out.println("\n7 ОПРЕДЕЛЕНИЕ ОЦЕНКИ ПО ПРЕДМЕТАМ");
         float historyPersent = 61.0f;
@@ -176,7 +193,7 @@ public class IfElseStatementTheme {
         var period = BigDecimal.valueOf(12);
         var oneYearProfit = soldOneMonth.multiply(period).subtract(oneMonthRentCost.multiply(period))
                 .subtract(oneMonthProductionCost.multiply(period));
-        var symbol = (oneYearProfit.compareTo(BigDecimal.valueOf(0)) > 0)
+        var symbol = (oneYearProfit.compareTo(BigDecimal.ZERO) > 0)
                 ? "Прибыль за год: +" : "Прибыль за год:";
         System.out.println(symbol + oneYearProfit);
     }
