@@ -193,8 +193,7 @@ public class IfElseStatementTheme {
         var period = BigDecimal.valueOf(12);
         var oneYearProfit = soldOneMonth.multiply(period).subtract(oneMonthRentCost.multiply(period))
                 .subtract(oneMonthProductionCost.multiply(period));
-        var symbol = (oneYearProfit.compareTo(BigDecimal.ZERO) > 0)
-                ? "Прибыль за год: +" : "Прибыль за год:";
-        System.out.println(symbol + oneYearProfit);
+        var plusSymbol = (oneYearProfit.compareTo(BigDecimal.ZERO) > 0) ? "+" : "";
+        System.out.println("Прибыль за год: " + plusSymbol + oneYearProfit);
     }
 }
