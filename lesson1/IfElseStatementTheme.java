@@ -124,34 +124,36 @@ public class IfElseStatementTheme {
 
         System.out.println("\n6 ПОДСЧЕТ НАЧИСЛЕННЫХ БАНКОМ %");
         System.out.println("Первый вариант");
-        float depositAmount = 150_000f;
-        float interesOnDeposit = 0.05f;
+        float bankDeposit = 100_000f;
+        float interestRate = 0.05f;
+        float percentSum = 0.0f;
 
-        if (depositAmount > 100_000 & depositAmount < 300_000) {
-            interesOnDeposit = 0.07f;
-        } else if (depositAmount >= 300_000) {
-            interesOnDeposit = 0.1f;
+        if (bankDeposit > 100_000 & bankDeposit < 300_000) {
+            interestRate = 0.07f;
+        } else if (bankDeposit >= 300_000) {
+            interestRate = 0.1f;
         }
-        interesOnDeposit *= depositAmount;
-        float totalSum = depositAmount + interesOnDeposit;
-        System.out.println("Сумма вклада: " + depositAmount + "\n" +
-                "Сумма начисленного %: " + interesOnDeposit + "\n" +
+        percentSum = interestRate * bankDeposit;
+        float totalSum = bankDeposit + percentSum;
+        System.out.println("Сумма вклада: " + bankDeposit + "\n" +
+                "Сумма начисленного %: " + percentSum + "\n" +
                 "Итоговая сумма с %: " + totalSum);
 
         System.out.println("\nВторой вариант");
-        var depositAmountBd = BigDecimal.valueOf(150_000);
-        var interesOnDepositBd = new BigDecimal("0.05");
+        var bankDepositBd = BigDecimal.valueOf(100_000);
+        var interestRateBd = new BigDecimal("0.05");
+        var percentSumBd = BigDecimal.ZERO;
 
-        if (depositAmountBd.compareTo(BigDecimal.valueOf(100000)) > 0 &
-                depositAmountBd.compareTo(BigDecimal.valueOf(300000)) < 0) {
-            interesOnDepositBd = new BigDecimal("0.07");
-        } else if (depositAmountBd.compareTo((BigDecimal.valueOf(300000))) >= 0) {
-            interesOnDepositBd = new BigDecimal("0.1");
+        if (bankDepositBd.compareTo(BigDecimal.valueOf(100000)) > 0 &
+                bankDepositBd.compareTo(BigDecimal.valueOf(300000)) < 0) {
+            interestRateBd = new BigDecimal("0.07");
+        } else if (bankDepositBd.compareTo((BigDecimal.valueOf(300000))) >= 0) {
+            interestRateBd = new BigDecimal("0.1");
         }
-        interesOnDepositBd = depositAmountBd.multiply(interesOnDepositBd);
-        var totalSumBd = depositAmountBd.add(interesOnDepositBd);
-        System.out.println("Сумма вклада: " + depositAmountBd + "\n" +
-                "Сумма начисленного %: " + interesOnDepositBd + "\n" +
+        percentSumBd = bankDepositBd.multiply(interestRateBd);
+        var totalSumBd = bankDepositBd.add(percentSumBd);
+        System.out.println("Сумма вклада: " + bankDepositBd + "\n" +
+                "Сумма начисленного %: " + percentSumBd + "\n" +
                 "Итоговая сумма с %: " + totalSumBd);
 
         System.out.println("\n7 ОПРЕДЕЛЕНИЕ ОЦЕНКИ ПО ПРЕДМЕТАМ");
