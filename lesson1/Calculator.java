@@ -1,58 +1,52 @@
-import java.lang.ArithmeticException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Введите пример: ");
-        String inputString = input.nextLine().replaceAll("\\s", "");
-        System.out.println("Введенный пример = " + inputString);
-        int operatorIndex = -1; 
+        System.out.println("Калькулятор");
+        System.out.println("Введите первое число: ");
+        int num1 = input.nextInt();
+        System.out.println("Введите математичиский оператор: ");
+        char mathSymbol = input.next().charAt(0);
+        System.out.println("Введите второе число: ");
+        int num2 = input.nextInt();
+        String result = "";
 
-        if (inputString.contains("+")) {
-            operatorIndex = inputString.indexOf("+");
-        } else if (inputString.contains("-")) {
-            operatorIndex = inputString.indexOf("-");
-        } else if (inputString.contains("*")) {
-            operatorIndex = inputString.indexOf("*");
-        } else if (inputString.contains("/")) {
-            operatorIndex = inputString.indexOf("/");
-        } else if (inputString.contains("%")) {
-            operatorIndex = inputString.indexOf("%");
-        } else if (inputString.contains("^")) {
-            operatorIndex = inputString.indexOf("^");
+        if (mathSymbol == '+') {
+            int tmp = num1 + num2;
+            result = Integer.toString(tmp);
+        } else if (mathSymbol == '-') {
+            int tmp = num1 - num2;
+            result = Integer.toString(tmp);
+        } else if (mathSymbol == '*') {
+            int tmp = num1 * num2;
+            result = Integer.toString(tmp);
+        } else if (mathSymbol == '^') {
+            int tmp = 1;
+            int degreeOfNumber = num2;
+            while (degreeOfNumber > 0) {
+                tmp = tmp * num1;
+                degreeOfNumber--;
+            }
+            result = Integer.toString(tmp);
+        } else if (mathSymbol == '/') {
+            if (num2 == 0) {
+                System.out.println("Деление на ноль.");
+            } else {
+                double num1Double = num1;
+                double num2Double = num2;
+                double resultDouble = 0.0f;
+                resultDouble = num1Double / num2Double;
+                result = Double.toString(resultDouble); 
+            }
+        } else if (mathSymbol == '%') {
+            if (num2 == 0) {
+                System.out.println("Деление на ноль."); 
+            } else {
+                int tmp = num1 % num2;
+                result = Integer.toString(tmp);
+            }
         }
-
-        String leftOperandStr = inputString.substring(0, operatorIndex);
-        String rightOperandStr = inputString.substring(operatorIndex + 1, inputString.length());
-        Double leftOperand = Double.parseDouble(leftOperandStr);
-        Double rightOperand = Double.parseDouble(rightOperandStr);
-        char operator = inputString.charAt(operatorIndex);
-        Double result = 0d;
-
-        switch (operator) {
-            case '+': result = leftOperand + rightOperand;
-                break;
-            case '-':result = leftOperand - rightOperand;
-                break;
-            case '*': result = leftOperand * rightOperand;
-                break;
-            case '/': if (rightOperand == 0) {
-                    throw new ArithmeticException("Деление на ноль");
-                } else {
-                    result = leftOperand / rightOperand;
-                }
-                break;
-            case '%': result = leftOperand % rightOperand;
-                break;
-            case '^': result = leftOperand;
-                for (int i = 1; i < rightOperand; i++) {
-                    result *= leftOperand;
-                }
-                break;
-            default: System.out.println("Yes");;
-        }
-        System.out.printf("%.2f %s %.2f %s %.2f", leftOperand, operator, rightOperand, "=", result);
+        System.out.printf("%d %s %d %s %s", num1, mathSymbol, num2, "=", result);
     }
 }
