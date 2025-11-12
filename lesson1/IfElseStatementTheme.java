@@ -88,33 +88,21 @@ public class IfElseStatementTheme {
 
         System.out.println("\n5 ИНВЕНТАРИЗАЦИЯ");
         int serialNumber = 234;
-        int itemNumber = 131;
+        int itemNumber = 218;
         String resultStr = "";
-        boolean lastDigit = (serialNumber % 10 == itemNumber % 10);
-        boolean middleDigit = (serialNumber / 10 % 10 == itemNumber / 10 % 10);
-        boolean firstDigit = (serialNumber / 100 % 10 == itemNumber / 100 % 10);
+        boolean isLastDigit = (serialNumber % 10 == itemNumber % 10);
+        boolean isMiddleDigit = (serialNumber / 10 % 10 == itemNumber / 10 % 10);
+        boolean isFirstDigit = (serialNumber / 100 == itemNumber / 100);
 
-        if (lastDigit && middleDigit && firstDigit) {
+        if (isLastDigit && isMiddleDigit && isFirstDigit) {
             System.out.println("[№" + itemNumber + "]: " + "компьютер на 3-м этаже в кабинете 2");
-        } else if (!lastDigit && !middleDigit && !firstDigit) {
+        } else if (!isLastDigit && !isMiddleDigit && !isFirstDigit) {
             System.out.println("[№" + itemNumber + "]: " + "оборудование не идентифицировано");
         } else {
-            if (lastDigit && !middleDigit && !firstDigit) {
-                resultStr = "__" + Integer.toString(itemNumber % 10);
-            } else if (lastDigit && middleDigit && !firstDigit) {
-                resultStr = "_" + Integer.toString(itemNumber % 100);
-            } else if (lastDigit && !middleDigit && firstDigit) {
-                String tmp = Integer.toString(itemNumber / 100 % 10);
-                resultStr = tmp + "_" + Integer.toString(itemNumber % 10);
-            } else if (!lastDigit && !middleDigit && firstDigit) {
-                String tmp = "__";
-                resultStr = Integer.toString(itemNumber / 100) + tmp;
-            } else if (!lastDigit && middleDigit && !firstDigit) {
-                int tmp = itemNumber / 10;
-                resultStr = "_" + Integer.toString(tmp % 10) + "_";
-            } else if (!lastDigit && middleDigit && firstDigit) {
-                resultStr = Integer.toString(itemNumber / 10) + "_";
-            }
+            String lastDigitStr = isLastDigit ? Integer.toString(itemNumber % 10) : "_";
+            String middleDigitStr = isMiddleDigit ? Integer.toString(itemNumber / 10 % 10) : "_";
+            String firstDigitStr = isFirstDigit ? Integer.toString(itemNumber / 100) : "_";
+            resultStr = firstDigitStr + middleDigitStr + lastDigitStr;
             System.out.printf("""
                     Нет полного совпадения:
                     База данных: [№%d]
