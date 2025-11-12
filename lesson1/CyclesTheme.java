@@ -7,32 +7,36 @@ public class CyclesTheme {
         System.out.println("1 ВЫВОД ASCII-СИМВОЛОВ");
         System.out.printf("%s %s %s %n", "DECIMAL", "CHARACTER", "DESCRIPTION");
         for (int i = 33; i <= 47; i++) {
-            char ch = (char) i;
             if (i % 2 != 0) {
-                System.out.printf("%-10d %-10s %-10s %n", i, ch, Character.getName(i));
+                if (i == 47) {
+                    System.out.printf("%4d %8c %16s %n", i, i, Character.getName(i));
+                }
             } 
         }
         for (int i = 97; i <= 122; i++) {
-            char ch = (char) i;
             if (i % 2 == 0) {
-                System.out.printf("%-10d %-10s %-10s %n", i, ch, Character.getName(i));
+                if (i >= 98 && i <= 102) {
+                    System.out.printf("%4d %8c %29s %n", i, i, Character.getName(i));
+                }
             }
         }
 
         System.out.println("\n2 ВЫВОД ГЕОМЕТРИЧЕСКИХ ФИГУР");
         int rows = 5;
         for (int i = 0; i < rows; i++) {
+            String str = "";
             for (int j = 0; j < 10; j++) {
-                System.out.print("-");
+                str += "-";
             }
-            System.out.print(" ");
-            for (int j = 0; j < 5 - i; j++) {
-                System.out.print("*");
+            str += " ";
+            for (int j = 0; j < rows - i; j++) {
+                str += "*";
             }
-            System.out.print(" ");
+            str += " ";
             for (int j = 0; j < 1 + 2 * i; j++) {
-                System.out.print("^");
+                str += "^";
             }
+            System.out.print(str);
             System.out.println();
         }
 
@@ -52,20 +56,20 @@ public class CyclesTheme {
 
         System.out.println("\n4 ВЫВОД ЧИСЕЛ В НЕСКОЛЬКО СТРОК");
         int limit = 30;
-        int cnt = 0;
-        int numInRow = 5;
+        int count = 0;
+        int rowCount = 5;
         for (int i = 1; i < limit; i++) {
             if (i % 2 != 0) {
                 System.out.printf("%3d", i);
-                cnt++;
+                count++;
             } 
-            if (cnt == 5) {
+            if (count == 5) {
                 System.out.println();
-                cnt = 0;
+                count = 0;
             }
-            if (cnt > 0 & i == limit - 1) {
-                cnt = numInRow - cnt;
-                for (int j = 0; j < cnt; j++) {
+            if (count > 0 & i == limit - 1) {
+                count = rowCount - count;
+                for (int j = 0; j < count; j++) {
                     System.out.printf("%3d", 0);
                 }
             }
@@ -89,78 +93,96 @@ public class CyclesTheme {
             System.out.print(i + " ");
         }
 
-        System.out.println("\n6 РАЗНЫЕ ОПЕРАЦИИ НАД ЧИСЛОМ");
-        int num = 2234321;
-        String strNumber = Integer.toString(num);
+        System.out.println("\n\n6 РАЗНЫЕ ОПЕРАЦИИ НАД ЧИСЛОМ");
+        int originalNum = 1313231;
         int reversedNumber = 0;
         int counter = 0;
-        int tmp = num;
-
-        for (int i = 0; i < strNumber.length(); i++) {
-            int remainder = tmp % 10;
+        int currNum = originalNum;
+        while (currNum > 0) {
+            int remainder = currNum % 10;
             reversedNumber = 10 * reversedNumber + remainder;
             if (remainder == 2) {
                 counter++;
             }
-            tmp /= 10;
+            currNum /= 10;
         }
-
-        String isOdd = (counter % 2 != 0) ? "с нечётным" : "с чётным";
-        String isPalindrome = (reversedNumber == num) ? "полиндром" : "не полиндром";
-        System.out.printf("%d %s %s %s %s %d %s %s %n",
-                    reversedNumber, "-", isPalindrome, isOdd, "(", counter, ")", "количеством двоек");
+        String odd = (counter % 2 != 0) ? "с нечётным" : "с чётным";
+        String palindrome = (reversedNumber == originalNum) ? "палиндром" : "не палиндром";
+        if (counter == 0) {
+            System.out.printf("%d %s %s %s %n",
+                    reversedNumber, "-", palindrome, ", двойки отсутствуют.");
+        } else {
+            System.out.printf("%d %s %s %s %s %d %s %s %n",
+                    reversedNumber, "-", palindrome, odd, "(", counter, ")", "количеством двоек");
+        }
 
         System.out.println("\n 7 ПРОВЕРКА СЧАСТЛИВОГО ЧИСЛА");
-        int isLuckyNumber = 101002;
-        int tmpLuckyNumber = isLuckyNumber;
-        int luckyNumberLength = String.valueOf(isLuckyNumber).length();
+        int luckyNumber = 400041;
+        int tmpLuckyNumber = luckyNumber;
+        int luckyNumberLength = String.valueOf(luckyNumber).length();
         int sumLeftSide = 0;
-        String leftSideStr = "";
+        var leftSideStr = "";
         int sumRightSide = 0;
-        String rigthSideStr = "";
+        var rigthSideStr = "";
 
-        for (int i = 0; i < luckyNumberLength / 2; i++) {
-            int remainder = tmpLuckyNumber % 10;
-            sumRightSide += remainder;
-            rigthSideStr += String.valueOf(remainder);
-            tmpLuckyNumber /= 10;
+        for (int i = 0; i < luckyNumberLength; i++) {
+            if (i < luckyNumberLength / 2) {
+                int remainder = tmpLuckyNumber % 10;
+                sumRightSide += remainder;
+                rigthSideStr += Integer.toString(remainder);
+                tmpLuckyNumber /= 10;
+            } else if (i >= luckyNumberLength / 2) {
+                int remainder = tmpLuckyNumber % 10;
+                sumLeftSide += remainder;
+                leftSideStr += Integer.toString(remainder);
+                tmpLuckyNumber /= 10;
+            }
         }
-
-        for (int i = luckyNumberLength / 2; i < luckyNumberLength; i++) {
-            int remainder = tmpLuckyNumber % 10;
-            sumLeftSide += remainder;
-            leftSideStr += String.valueOf(remainder);
-            tmpLuckyNumber /= 10;
-        }
-
+        var reversedRightSide = new StringBuilder(rigthSideStr).reverse().toString();
+        var reversedLeftSide = new StringBuilder(leftSideStr).reverse().toString();
         String result = (sumLeftSide == sumRightSide) ? "Счастливое число" : "Несчастливое число";
         System.out.printf("%d %s %s %n %s %s %s %d %n %s %s %s %d %n",
-                isLuckyNumber, "-", result, 
-                "Сумма цифр:", rigthSideStr, "=", sumRightSide,
-                "Сумма цифр:", leftSideStr, "=", sumLeftSide);
+                luckyNumber, "-", result, 
+                "Сумма цифр:", reversedRightSide, "=", sumRightSide,
+                "Сумма цифр:", reversedLeftSide, "=", sumLeftSide);
 
         System.out.println("\n8 ПРОСТОЙ ГЕНЕРАТОР ПАРОЛЯ");
-        String password = "";
-        int lengthPassword = 0;
+        StringBuilder password = new StringBuilder();
         Random rnd = new Random();
+        int passwordLength = password.length();
+        String passwordStrength = "";
 
-        // имеет спецсимволы, маленькие и большие буквы > 8 символов
-        Pattern strongPattern = Pattern.compile("[a-z A-Z !@#$%^&*] {8,}"); 
-        Matcher strongMatcher = strongPattern.matcher(password);
-        Pattern midlePattern = Pattern.compile("[ A-Z 0-9 ] {8,}");
-        Matcher midleMatcher = midlePattern.matcher(password);
-
-        while (lengthPassword < rnd.nextInt(8, 10)) {
+        while (passwordLength < rnd.nextInt(5, 15)) {
             char charTmp = (char) rnd.nextInt(33, 122);
-            password += charTmp;
-            lengthPassword++;
+            password.append(charTmp);
+            passwordLength++;
         }
-        if (strongMatcher.matches()) {
-            System.out.printf("%s %s %n %s %s", "Пароль", password, "Надежность:", "Надежный");
-        } else if (midleMatcher.matches()) {
-            System.out.printf("%s %s %n %s %s", "Пароль", password, "Надежность:", "Средний");
+        boolean hasUpperCase = false;
+        boolean hasLowerCase = false;
+        boolean hasDigit = false;
+        boolean hasSpecialChar = false;
+
+        for (char c : password.toString().toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                hasUpperCase = true;
+            } else if (Character.isLowerCase(c)) {
+                hasLowerCase = true;
+            } else if (Character.isDigit(c)) {
+                hasDigit = true;
+            } else if (!Character.isLetterOrDigit(c)) {
+                hasSpecialChar = true;
+            }
+        }
+        if (passwordLength >= 8 && hasUpperCase && hasLowerCase && hasSpecialChar && !hasDigit) {
+            passwordStrength = "Надежный";
+        } else if (passwordLength >= 8 && hasUpperCase && hasDigit && !hasLowerCase && !hasSpecialChar) {
+            passwordStrength = "Средний";
         } else {
-            System.out.printf("%s %s %n %s %s", "Пароль", password, "Надежность:", "Слабый");
+            passwordStrength = "Слабый";
         }
+        System.out.printf("""
+                Пароль: %s
+                Надежность: %s
+                """, password, passwordStrength);
     }
 }
