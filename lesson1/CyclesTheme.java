@@ -8,16 +8,12 @@ public class CyclesTheme {
         System.out.printf("%s %s %s %n", "DECIMAL", "CHARACTER", "DESCRIPTION");
         for (int i = 33; i <= 47; i++) {
             if (i % 2 != 0) {
-                if (i == 47) {
-                    System.out.printf("%4d %8c %16s %n", i, i, Character.getName(i));
-                }
+                System.out.printf("%-11d %-11c %-10s %n", i, i, Character.getName(i));
             } 
         }
         for (int i = 97; i <= 122; i++) {
             if (i % 2 == 0) {
-                if (i >= 98 && i <= 102) {
-                    System.out.printf("%4d %8c %29s %n", i, i, Character.getName(i));
-                }
+                System.out.printf("%-11d %-11c %-10s %n", i, i, Character.getName(i));
             }
         }
 
