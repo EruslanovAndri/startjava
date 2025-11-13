@@ -24,20 +24,15 @@ public class CyclesTheme {
         System.out.println("\n2 ВЫВОД ГЕОМЕТРИЧЕСКИХ ФИГУР");
         int rows = 5;
         for (int i = 0; i < rows; i++) {
-            String str = "";
-            for (int j = 0; j < 10; j++) {
-                str += "-";
-            }
-            str += " ";
+            String str1 = "---------- ";
             for (int j = 0; j < rows - i; j++) {
-                str += "*";
+                str1 += "*";
             }
-            str += " ";
+            str1 += " ";
             for (int j = 0; j < 1 + 2 * i; j++) {
-                str += "^";
+                str1 += "^";
             }
-            System.out.print(str);
-            System.out.println();
+            System.out.print(str1 + "\n");
         }
 
         System.out.println("\n3 ВЫВОД ТАБЛИЦЫ УМНОЖЕНИЯ");
