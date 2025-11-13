@@ -17,9 +17,10 @@ public class GuesNumber {
                 player = rnd.nextInt(startRange, (startRange + endRange) / 2);
             }
         }
-        System.out.printf("%s %n %s %,d %n %s %,d",
-                "Вы победили!",
-                "Hidden number was:", hiddenNumber,
-                "Your number is:", player);
+        System.out.printf("""
+                Вы победили!
+                Hidden number was: %d
+                Your number is: %d
+                """, hiddenNumber, player);
     }
 }
