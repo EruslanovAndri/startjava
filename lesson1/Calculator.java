@@ -6,47 +6,38 @@ public class Calculator {
         System.out.println("Калькулятор");
         System.out.println("Введите первое число: ");
         int num1 = input.nextInt();
-        System.out.println("Введите математичиский оператор: ");
-        char mathSymbol = input.next().charAt(0);
+        System.out.println("Введите математический оператор: ");
+        char mathSing = input.next().charAt(0);
         System.out.println("Введите второе число: ");
         int num2 = input.nextInt();
         String result = "";
 
-        if (mathSymbol == '+') {
-            int tmp = num1 + num2;
-            result = Integer.toString(tmp);
-        } else if (mathSymbol == '-') {
-            int tmp = num1 - num2;
-            result = Integer.toString(tmp);
-        } else if (mathSymbol == '*') {
-            int tmp = num1 * num2;
-            result = Integer.toString(tmp);
-        } else if (mathSymbol == '^') {
+        if (mathSing == '+') {
+            result = Integer.toString(num1 + num2);
+        } else if (mathSing == '-') {
+            result = Integer.toString(num1 - num2);
+        } else if (mathSing == '*') {
+            result = Integer.toString(num1 * num2);
+        } else if (mathSing == '^') {
             int tmp = 1;
             int degreeOfNumber = num2;
-            while (degreeOfNumber > 0) {
-                tmp = tmp * num1;
-                degreeOfNumber--;
+            for (int i = 0; i < degreeOfNumber; i++) {
+                tmp *= num1;
             }
             result = Integer.toString(tmp);
-        } else if (mathSymbol == '/') {
+        } else if (mathSing == '/') {
             if (num2 == 0) {
                 System.out.println("Деление на ноль.");
             } else {
-                double num1Double = num1;
-                double num2Double = num2;
-                double resultDouble = 0.0f;
-                resultDouble = num1Double / num2Double;
-                result = Double.toString(resultDouble); 
+                result = Double.toString((double) num1 / num2);
             }
-        } else if (mathSymbol == '%') {
+        } else if (mathSing == '%') {
             if (num2 == 0) {
                 System.out.println("Деление на ноль."); 
             } else {
-                int tmp = num1 % num2;
-                result = Integer.toString(tmp);
+                result = Integer.toString(num1 % num2);
             }
         }
-        System.out.printf("%d %s %d %s %s", num1, mathSymbol, num2, "=", result);
+        System.out.printf("%d %s %d %s %s", num1, mathSing, num2, "=", result);
     }
 }
