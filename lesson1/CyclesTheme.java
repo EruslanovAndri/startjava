@@ -85,84 +85,83 @@ public class CyclesTheme {
         }
 
         System.out.println("\n\n6 РАЗНЫЕ ОПЕРАЦИИ НАД ЧИСЛОМ");
-        int originalNum = 1313231;
-        int reversedNumber = 0;
+        int originalNum = 1233204;
+        int reversedNum = 0;
         int counter = 0;
         int currNum = originalNum;
         while (currNum > 0) {
             int remainder = currNum % 10;
-            reversedNumber = 10 * reversedNumber + remainder;
+            reversedNum = 10 * reversedNum + remainder;
             if (remainder == 2) {
                 counter++;
             }
             currNum /= 10;
         }
         String odd = (counter % 2 != 0) ? "с нечётным" : "с чётным";
-        String palindrome = (reversedNumber == originalNum) ? "палиндром" : "не палиндром";
+        String palindrome = (reversedNum == originalNum) ? "палиндром" : "не палиндром";
         if (counter == 0) {
-            System.out.printf("%d %s %s %s %n",
-                    reversedNumber, "-", palindrome, ", двойки отсутствуют.");
+            System.out.printf("%d %s %s %d %n",
+                    reversedNum, "-", palindrome, 0);
         } else {
             System.out.printf("%d %s %s %s %s %d %s %s %n",
-                    reversedNumber, "-", palindrome, odd, "(", counter, ")", "количеством двоек");
+                    reversedNum, "-", palindrome, odd, "(", counter, ")", "количеством двоек");
         }
 
         System.out.println("\n 7 ПРОВЕРКА СЧАСТЛИВОГО ЧИСЛА");
-        int luckyNumber = 400041;
-        int tmpLuckyNumber = luckyNumber;
-        int luckyNumberLength = String.valueOf(luckyNumber).length();
-        int sumLeftSide = 0;
-        var leftSideStr = "";
-        int sumRightSide = 0;
-        var rigthSideStr = "";
-
-        for (int i = 0; i < luckyNumberLength; i++) {
-            if (i < luckyNumberLength / 2) {
-                int remainder = tmpLuckyNumber % 10;
-                sumRightSide += remainder;
-                rigthSideStr += Integer.toString(remainder);
-                tmpLuckyNumber /= 10;
-            } else if (i >= luckyNumberLength / 2) {
-                int remainder = tmpLuckyNumber % 10;
-                sumLeftSide += remainder;
-                leftSideStr += Integer.toString(remainder);
-                tmpLuckyNumber /= 10;
-            }
+        int luckyNum = 101002;
+        int halfLuckyNumLen = String.valueOf(luckyNum).length() / 2;
+        int numDivider = 1;
+        while (halfLuckyNumLen > 0) {
+            numDivider *= 10;
+            halfLuckyNumLen--;
         }
-        var reversedRightSide = new StringBuilder(rigthSideStr).reverse().toString();
-        var reversedLeftSide = new StringBuilder(leftSideStr).reverse().toString();
-        String result = (sumLeftSide == sumRightSide) ? "Счастливое число" : "Несчастливое число";
-        System.out.printf("%d %s %s %n %s %s %s %d %n %s %s %s %d %n",
-                luckyNumber, "-", result, 
-                "Сумма цифр:", reversedRightSide, "=", sumRightSide,
-                "Сумма цифр:", reversedLeftSide, "=", sumLeftSide);
+        int leftSideNum = luckyNum / numDivider;
+        int outputLeftNum = leftSideNum;
+        int rightSideNum = luckyNum % numDivider;
+        int outputRightNum = rightSideNum;
+        int leftSum = 0;
+        int rightSum = 0;
+        while (numDivider > 0) {
+            int leftRemainder = leftSideNum % 10;
+            leftSum += leftRemainder;
+            leftSideNum /= 10;
+            int rightRemainder = rightSideNum % 10;
+            rightSum += rightRemainder;
+            rightSideNum /= 10;
+            numDivider--;
+        }
+        int outputLen = String.valueOf(luckyNum).length() / 2;
+        String lucky = (leftSum == rightSum) ? "Счастливое число" : "Несчастливое число";
+        String addZero = (outputLen != String.valueOf(outputRightNum).length()) ? "00" : "";
+        System.out.printf("""
+                %d - %s
+                Сумма цифр: %d = %d
+                Сумма цифр: %s%d = %d
+                """, luckyNum, lucky, outputLeftNum, leftSum, addZero, outputRightNum, rightSum);
 
         System.out.println("\n8 ПРОСТОЙ ГЕНЕРАТОР ПАРОЛЯ");
         StringBuilder password = new StringBuilder();
         Random rnd = new Random();
         int passwordLength = password.length();
         String passwordStrength = "";
-
-        while (passwordLength < rnd.nextInt(5, 15)) {
-            char charTmp = (char) rnd.nextInt(33, 122);
-            password.append(charTmp);
-            passwordLength++;
-        }
         boolean hasUpperCase = false;
         boolean hasLowerCase = false;
         boolean hasDigit = false;
         boolean hasSpecialChar = false;
 
-        for (char c : password.toString().toCharArray()) {
-            if (Character.isUpperCase(c)) {
+        while (passwordLength < rnd.nextInt(5, 15)) {
+            char charTmp = (char) rnd.nextInt(33, 122);
+            if (Character.isUpperCase(charTmp)) {
                 hasUpperCase = true;
-            } else if (Character.isLowerCase(c)) {
+            } else if (Character.isLowerCase(charTmp)) {
                 hasLowerCase = true;
-            } else if (Character.isDigit(c)) {
+            } else if (Character.isDigit(charTmp)) {
                 hasDigit = true;
-            } else if (!Character.isLetterOrDigit(c)) {
+            } else if (!Character.isLetterOrDigit(charTmp)) {
                 hasSpecialChar = true;
             }
+            password.append(charTmp);
+            passwordLength++;
         }
         if (passwordLength >= 8 && hasUpperCase && hasLowerCase && hasSpecialChar && !hasDigit) {
             passwordStrength = "Надежный";
