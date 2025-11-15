@@ -88,13 +88,13 @@ public class IfElseStatementTheme {
 
         System.out.println("\n5 ИНВЕНТАРИЗАЦИЯ");
         int serialNumber = 234;
-        int itemNumber = 218;
+        int itemNumber = 111;
         String resultStr = "";
         boolean isLastDigit = (serialNumber % 10 == itemNumber % 10);
         boolean isMiddleDigit = (serialNumber / 10 % 10 == itemNumber / 10 % 10);
         boolean isFirstDigit = (serialNumber / 100 == itemNumber / 100);
 
-        if (isLastDigit && isMiddleDigit && isFirstDigit) {
+        if (serialNumber == itemNumber) {
             System.out.println("[№" + itemNumber + "]: " + "компьютер на 3-м этаже в кабинете 2");
         } else if (!isLastDigit && !isMiddleDigit && !isFirstDigit) {
             System.out.println("[№" + itemNumber + "]: " + "оборудование не идентифицировано");
