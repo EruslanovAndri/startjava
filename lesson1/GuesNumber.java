@@ -19,8 +19,8 @@ public class GuesNumber {
         }
         System.out.printf("""
                 Вы победили!
-                Hidden number was: %d
-                Your number is: %d
+                Загаданное число: %d
+                Ваше число: %d
                 """, hiddenNumber, player);
     }
 }
