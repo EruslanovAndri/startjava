@@ -1,6 +1,4 @@
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CyclesTheme {
     public static void main(String[] args) {
@@ -8,12 +6,12 @@ public class CyclesTheme {
         System.out.printf("%s %s %s %n", "DECIMAL", "CHARACTER", "DESCRIPTION");
         for (int i = 33; i <= 47; i++) {
             if (i % 2 != 0) {
-                System.out.printf("%-11d %-11c %-10s %n", i, i, Character.getName(i));
+                System.out.printf("%-1s %-9d %-10c %s %n", "", i, i, Character.getName(i));
             } 
         }
         for (int i = 97; i <= 122; i++) {
             if (i % 2 == 0) {
-                System.out.printf("%-11d %-11c %-10s %n", i, i, Character.getName(i));
+                System.out.printf("%-1s %-9d %-10c %s %n", "", i, i, Character.getName(i));
             }
         }
 
@@ -28,7 +26,7 @@ public class CyclesTheme {
             for (int j = 0; j < 1 + 2 * i; j++) {
                 str1 += "^";
             }
-            System.out.print(str1 + "\n");
+            System.out.println(str1);
         }
 
         System.out.println("\n3 ВЫВОД ТАБЛИЦЫ УМНОЖЕНИЯ");
@@ -106,66 +104,53 @@ public class CyclesTheme {
             System.out.printf("%d %s %s %s %s %d %s %s %n",
                     reversedNum, "-", palindrome, odd, "(", counter, ")", "количеством двоек");
         }
-
         System.out.println("\n 7 ПРОВЕРКА СЧАСТЛИВОГО ЧИСЛА");
         int luckyNum = 101002;
-        int halfLuckyNumLen = String.valueOf(luckyNum).length() / 2;
-        int numDivider = 1;
-        while (halfLuckyNumLen > 0) {
-            numDivider *= 10;
-            halfLuckyNumLen--;
+        int leftHalfNum = luckyNum / 1000;
+        int rightHalfNum = luckyNum % 1000;
+        int leftHalfSum = 0;
+        int rightHalfSum = 0;
+
+        while (leftHalfNum > 0) {
+            int remainder = rightHalfNum % 10;
+            rightHalfSum += remainder;
+            rightHalfNum /= 10;
+            remainder = leftHalfNum % 10;
+            leftHalfSum += remainder;
+            leftHalfNum /= 10;
         }
-        int leftSideNum = luckyNum / numDivider;
-        int outputLeftNum = leftSideNum;
-        int rightSideNum = luckyNum % numDivider;
-        int outputRightNum = rightSideNum;
-        int leftSum = 0;
-        int rightSum = 0;
-        while (numDivider > 0) {
-            int leftRemainder = leftSideNum % 10;
-            leftSum += leftRemainder;
-            leftSideNum /= 10;
-            int rightRemainder = rightSideNum % 10;
-            rightSum += rightRemainder;
-            rightSideNum /= 10;
-            numDivider--;
-        }
-        int outputLen = String.valueOf(luckyNum).length() / 2;
-        String lucky = (leftSum == rightSum) ? "Счастливое число" : "Несчастливое число";
-        String addZero = (outputLen != String.valueOf(outputRightNum).length()) ? "00" : "";
+        String lucky = (leftHalfSum == rightHalfSum) ? "Счастливое число" : "Несчастливое число";
         System.out.printf("""
                 %d - %s
                 Сумма цифр: %d = %d
-                Сумма цифр: %s%d = %d
-                """, luckyNum, lucky, outputLeftNum, leftSum, addZero, outputRightNum, rightSum);
+                Сумма цифр: %03d = %d
+                """, luckyNum, lucky, luckyNum / 1000, leftHalfSum, luckyNum % 1000, rightHalfSum);
 
         System.out.println("\n8 ПРОСТОЙ ГЕНЕРАТОР ПАРОЛЯ");
         StringBuilder password = new StringBuilder();
         Random rnd = new Random();
-        int passwordLength = password.length();
-        String passwordStrength = "";
         boolean hasUpperCase = false;
         boolean hasLowerCase = false;
         boolean hasDigit = false;
         boolean hasSpecialChar = false;
 
-        while (passwordLength < rnd.nextInt(5, 15)) {
-            char charTmp = (char) rnd.nextInt(33, 122);
-            if (Character.isUpperCase(charTmp)) {
+        while (password.length() < 8) {
+            char ch = (char) rnd.nextInt(33, 122);
+            if (Character.isUpperCase(ch)) {
                 hasUpperCase = true;
-            } else if (Character.isLowerCase(charTmp)) {
+            } else if (Character.isLowerCase(ch)) {
                 hasLowerCase = true;
-            } else if (Character.isDigit(charTmp)) {
+            } else if (Character.isDigit(ch)) {
                 hasDigit = true;
-            } else if (!Character.isLetterOrDigit(charTmp)) {
+            } else if (!Character.isLetterOrDigit(ch)) {
                 hasSpecialChar = true;
             }
-            password.append(charTmp);
-            passwordLength++;
+            password.append(ch);
         }
-        if (passwordLength >= 8 && hasUpperCase && hasLowerCase && hasSpecialChar && !hasDigit) {
+        String passwordStrength = "";
+        if (password.length() >= 8 && hasUpperCase && hasLowerCase && hasSpecialChar && !hasDigit) {
             passwordStrength = "Надежный";
-        } else if (passwordLength >= 8 && hasUpperCase && hasDigit && !hasLowerCase && !hasSpecialChar) {
+        } else if (password.length() >= 8 && hasUpperCase && hasDigit && !hasLowerCase && !hasSpecialChar) {
             passwordStrength = "Средний";
         } else {
             passwordStrength = "Слабый";
