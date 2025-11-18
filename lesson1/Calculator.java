@@ -19,9 +19,11 @@ public class Calculator {
         } else if (mathSing == '*') {
             result = Integer.toString(num1 * num2);
         } else if (mathSing == '^') {
+            if (num2 == 0) {
+                System.out.println(1);
+            }
             int tmp = 1;
-            int degreeOfNumber = num2;
-            for (int i = 0; i < degreeOfNumber; i++) {
+            for (int i = 0; i < num2; i++) {
                 tmp *= num1;
             }
             result = Integer.toString(tmp);
