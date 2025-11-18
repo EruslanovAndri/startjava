@@ -19,9 +19,6 @@ public class Calculator {
         } else if (mathSing == '*') {
             result = Integer.toString(num1 * num2);
         } else if (mathSing == '^') {
-            if (num2 == 0) {
-                System.out.println(1);
-            }
             int tmp = 1;
             for (int i = 0; i < num2; i++) {
                 tmp *= num1;
