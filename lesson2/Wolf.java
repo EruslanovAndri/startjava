@@ -1,51 +1,71 @@
 public class Wolf {
-    String gender;
-    String nickname;
-    int weight;
-    int age;
-    String furColor;
+    private String gender;
+    private String nickname;
+    private int weight;
+    private int age;
+    private String furColor;
 
-    void go() {
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 8) {
+            throw new IllegalArgumentException("Некорректный возраст");
+        } else {
+            this.age = age;
+        }
+    }
+
+    public String getFurColor() {
+        return furColor;
+    }
+
+    public void setFurColor(String furColor) {
+        this.furColor = furColor;
+    }
+
+    public void go() {
         System.out.println("Волк идет");
     }
 
-    void sit() {
+    public void sit() {
         System.out.println("Волк сидит");
     }
 
-    void run() {
+    public void run() {
         System.out.println("Волк бежит");
     }
 
-    void howl() {
+    public void howl() {
         System.out.println("Волк воет");
     }
 
-    void hunt() {
+    public void hunt() {
         System.out.println("Волк охотиться");
-    }
-}
-
-class WolfTest {
-    public static void main(String[] args) {
-        Wolf wolfOne = new Wolf();
-        wolfOne.gender = "male";
-        wolfOne.nickname = "lex";
-        wolfOne.weight = 45;
-        wolfOne.age = 8;
-
-        System.out.printf("""
-            Gender = %s
-            Nickname = %s
-            Weight = %d
-            Age = %d
-            Fur color = %s
-                """, wolfOne.gender, wolfOne.nickname, wolfOne.weight, wolfOne.age, wolfOne.furColor);
-
-        wolfOne.go();
-        wolfOne.sit();
-        wolfOne.run();
-        wolfOne.howl();
-        wolfOne.hunt();
     }
 }
