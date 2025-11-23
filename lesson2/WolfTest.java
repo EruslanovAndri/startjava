@@ -8,11 +8,11 @@ public class WolfTest {
         wolfOne.setFurColor("Grey");
 
         System.out.printf("""
-            Gender = %s
-            Nickname = %s
-            Weight = %d
-            Age = %d
-            Fur color = %s
+                Gender = %s
+                Nickname = %s
+                Weight = %d
+                Age = %d
+                Fur color = %s
                 """, wolfOne.getGender(), wolfOne.getNickname(),
                 wolfOne.getWeight(), wolfOne.getAge(), wolfOne.getFurColor());
 
