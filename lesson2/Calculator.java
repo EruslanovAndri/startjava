@@ -40,7 +40,7 @@ public class Calculator {
         return number2;
     }
 
-    public void calculations() {
+    public void calculate() {
         Scanner scanner = new Scanner(System.in);
         String question = "yes";
         int calculationResult = 0;
