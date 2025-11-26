@@ -4,6 +4,7 @@ public class Calculator {
     private int number1;
     private int number2;
     private char sing;
+    private int result;
 
     public int setNumber1() {
         Scanner scanner = new Scanner(System.in);
@@ -40,59 +41,16 @@ public class Calculator {
         return number2;
     }
 
-    public void calculate() {
-        Scanner scanner = new Scanner(System.in);
-        String question = "yes";
-        int calculationResult = 0;
-        while (question.equals("yes") || !question.equals("no")) {
-            setNumber1();
-            setSing();
-            setNumber2();
-            switch (getSing()) {
-                case '+':
-                    calculationResult = getNumber1() + getNumber2();
-                    break;
-                case '-':
-                    calculationResult = getNumber1() - getNumber2();
-                    break;
-                case '*':
-                    calculationResult = getNumber1() * getNumber2();
-                    break;
-                case '/':
-                    if (getNumber2() == 0) {
-                        System.out.println("Ошибка: деление на ноль запрещено");
-                    } else {
-                        calculationResult = getNumber1() / getNumber2();
-                    }
-                    break;
-                case '^':
-                    int positiveExponentiation = 1;
-                    int negativeExponentiation = 1;
-                    if (getNumber1() == 0) {
-                        calculationResult = 0;
-                    } else if (getNumber1() != 0 && getNumber2() < 0) {
-                        for (int i = getNumber2(); i < 0; i++) {
-                            negativeExponentiation *= getNumber1();
-                        }
-                        calculationResult = calculationResult / negativeExponentiation;
-                    } else if (getNumber2() == 0) {
-                        calculationResult = 1;
-                    } else {
-                        for (int i = 0; i < getNumber2(); i++) {
-                            positiveExponentiation *= getNumber1();
-                        }
-                        calculationResult = positiveExponentiation;
-                    }
-                    break;
-                case '%':
-                    calculationResult = getNumber1() % getNumber2();
-                    break;
-                default:
-            }
-            System.out.printf("%s %d %s %d %s %d %s", "Введенный пример: ",
-                    getNumber1(), getSing(), getNumber2(), "=", calculationResult, "\n");
-            System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-            question = scanner.next();
-        }
+    public int setResult(int result) {
+        return this.result = result;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void showResult() {
+        System.out.printf("%s %d %s %d %s %d %s", "Введенный пример: ",
+                getNumber1(), getSing(), getNumber2(), "=", getResult(), "\n");
     }
 }
