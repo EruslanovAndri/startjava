@@ -4,53 +4,85 @@ public class Calculator {
     private int number1;
     private int number2;
     private char sing;
-    private int result;
+    private double result;
 
-    public int setNumber1() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите первое число: ");
-        return this.number1 = scanner.nextInt();
+    public int setNumber1(int number1) {
+        return this.number1 = number1;
     }
 
     public int getNumber1() {
         return number1;
     }
 
-    public char setSing() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите знак операции (+, -, *, /, ^, %): ");
-        char sing = scanner.next().charAt(0);
+    public char setSing(char sing) {
         if (sing != '+' && sing != '-' && sing != '*' && sing != '/' && sing != '^' && sing != '%') {
             throw new IllegalArgumentException("Ошибка: операция " + sing + " не поддерживается");
         }
-        this.sing = sing;
-        return this.sing;
+        return this.sing = sing;
     }
 
     public char getSing() {
         return sing;
     }
 
-    public int setNumber2() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите второе число: ");
-        return this.number2 = scanner.nextInt();
+    public int setNumber2(int number2) {
+        return this.number2 = number2;
     }
 
     public int getNumber2() {
         return number2;
     }
 
-    public int setResult(int result) {
+    public double setResult(double result) {
         return this.result = result;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 
-    public void showResult() {
-        System.out.printf("%s %d %s %d %s %d %s", "Введенный пример: ",
-                getNumber1(), getSing(), getNumber2(), "=", getResult(), "\n");
+    public void calculate() {
+        switch (getSing()) {
+            case '+':
+                result = getNumber1() + getNumber2();
+                break;
+            case '-':
+                result = getNumber1() - getNumber2();
+                break;
+            case '*':
+                result = getNumber1() * getNumber2();
+                break;
+            case '/':
+                if (getNumber2() == 0) {
+                    System.out.println("Ошибка: деление на ноль запрещено ");
+                } else {
+                    result = (double) getNumber1() / getNumber2();
+                }
+                break;
+            case '^':
+                int tmp = 1;
+                if (getNumber2() != 0) {
+                    for (int i = 0; i < Math.abs(getNumber2()); i++) {
+                        tmp *= getNumber1();
+                    }
+                    if (getNumber2() > 0) {
+                        result = tmp;
+                    } else {
+                        result = (double) 1 / tmp;
+                        break;
+                    }
+                } else {
+                    result = tmp;
+                }
+                break;
+            case '%':
+                if (getNumber2() == 0) {
+                    System.out.println("Ошибка: деление на ноль запрещено ");
+                } else {
+                    result = (double) getNumber1() % getNumber2();
+                }
+                break;
+            default:
+        }
     }
 }
