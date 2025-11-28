@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Calculator {
     private int number1;
     private int number2;
@@ -33,10 +31,6 @@ public class Calculator {
         return number2;
     }
 
-    public double setResult(double result) {
-        return this.result = result;
-    }
-
     public double getResult() {
         return result;
     }
@@ -65,14 +59,7 @@ public class Calculator {
                     for (int i = 0; i < Math.abs(getNumber2()); i++) {
                         tmp *= getNumber1();
                     }
-                    if (getNumber2() > 0) {
-                        result = tmp;
-                    } else {
-                        result = (double) 1 / tmp;
-                        break;
-                    }
-                } else {
-                    result = tmp;
+                    result = (getNumber2() > 0) ? tmp : (double) 1 / tmp; 
                 }
                 break;
             case '%':
