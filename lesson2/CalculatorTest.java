@@ -14,14 +14,12 @@ public class CalculatorTest {
             System.out.print("Введите второе число: ");
             calc.setNumber2(scanner.nextInt());
             calc.calculate();
-            System.out.printf("%s %d %s %d %s %f %s", "Введенный пример: ",
-                    calc.getNumber1(), calc.getSing(), calc.getNumber2(), "=", calc.getResult(), "\n");
-            System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-            again = scanner.next();
-            while (!"yes".equals(again) && !"no".equals(again)) {
+            System.out.printf("%s %d %s %d %s %f %n", "Введенный пример: ",
+                    calc.getNumber1(), calc.getSing(), calc.getNumber2(), "=", calc.getResult());
+            do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 again = scanner.next();
-            }
+            } while (!"no".equals(again) && !"yes".equals(again)); 
         }
     }
 }
