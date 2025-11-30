@@ -11,8 +11,8 @@ public class Jaeger {
     public Jaeger() {
     }
 
-    public Jaeger(String modelName, String mark, String origin, float weight, float height, int strength,
-            int armor, int speed) {
+    public Jaeger(String modelName, String mark, String origin, float weight,
+            float height, int strength, int armor, int speed) {
         this.modelName = modelName;
         this.mark = mark;
         this.origin = origin;
@@ -85,6 +85,18 @@ public class Jaeger {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    @Override
+    public String toString() {
+        return "Название модели - " + modelName +
+                "\n" + "Марка - " + mark +
+                "\n" + "Происхождение - " + origin +
+                "\n" + "Вес - " + weight + " тонн" +
+                "\n" + "Рост - " + height + " метров" +
+                "\n" + "Сила - " + strength +
+                "\n" + "Броня - " + armor +
+                "\n" + "Скорость - " + speed;
     }
 
     public void useRetractileSword() {
