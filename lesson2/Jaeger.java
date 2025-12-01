@@ -55,23 +55,25 @@ public class Jaeger {
         this.speed = speed;
     }
 
-    @Override
-    public String toString() {
-        return "Название модели - " + modelName +
-                "\n" + "Марка - " + mark +
-                "\n" + "Происхождение - " + origin +
-                "\n" + "Вес - " + weight + " тонн" +
-                "\n" + "Рост - " + height + " метров" +
-                "\n" + "Сила - " + strength +
-                "\n" + "Броня - " + armor +
-                "\n" + "Скорость - " + speed;
-    }
-
     public void useRetractileSword() {
         System.out.println("Меч активирован");
     }
 
     public void move() {
         System.out.println("Двигаюсь");
+    }
+
+    @Override
+    public String toString() {
+        return String.format("""
+                        Название модели - %s
+                        Марка  - %s
+                        Происхождение - %s
+                        Вес - %.3f тонн
+                        Рост - %.1f метров
+                        Сила - %d
+                        Броня - %d
+                        Скорость - %d
+                        """, modelName, mark, origin, weight, height, strength, armor, speed);
     }
 }
