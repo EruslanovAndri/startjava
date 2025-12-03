@@ -66,14 +66,14 @@ public class Jaeger {
     @Override
     public String toString() {
         return String.format("""
-                        Название модели - %s
-                        Марка  - %s
-                        Происхождение - %s
-                        Вес - %.3f тонн
-                        Рост - %.1f метров
-                        Сила - %d
-                        Броня - %d
-                        Скорость - %d
-                        """, modelName, mark, origin, weight, height, strength, armor, speed);
+                Название модели - %s
+                Марка  - %s
+                Происхождение - %s
+                Вес - %.3f тонн
+                Рост - %.1f метров
+                Сила - %d
+                Броня - %d
+                Скорость - %d
+                """, modelName, mark, origin, weight, height, strength, armor, speed);
     }
 }
