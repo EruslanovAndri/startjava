@@ -12,15 +12,17 @@ public class GuessNumber {
     }
 
     public void generateSecretNumber() {
-        this.secretNumber = (int) (Math.random() * 100 + 1);
+        secretNumber = (int) (Math.random() * 100 + 1);
     }
 
     public void start() {
         generateSecretNumber();
-        System.out.println("Игра началась!");
-        System.out.println("Угадай число которое загадал компьютер!" + secretNumber);
+        System.out.printf("""
+                Игра началась!
+                Угадай число которое загадал компьютер! %d
+                """, secretNumber);
         Scanner scanner = new Scanner(System.in);
-        while (secretNumber != playerOne.getNumber() || secretNumber != playerTwo.getNumber()) {
+        while (true) {
             System.out.print("Ход первого игрока " + playerOne.getName() + " - ");
             playerOne.setNumber(scanner.nextInt());
             if (playerOne.getNumber() == secretNumber) {
