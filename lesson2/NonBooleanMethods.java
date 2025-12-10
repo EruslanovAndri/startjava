@@ -1,73 +1,71 @@
 public class NonBooleanMethods {
-    public void findLongestWordInJavaBook() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+    public void findLongestWord() {
+        System.out.println(Methods.getMethodName() +
                 "() -> найти самое длинное слово в предложении из книги по Java");
     }
 
-    public void selectMenuItemOnMacOs() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+    public void selectMenuItem() {
+        System.out.println(Methods.getMethodName() +
                 "() -> выбрать пункт меню в текстовом редакторе на macOS");
     }
 
-    public int calculateEverageGradesInSchool1234() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+    public void calculateEverageGrade() {
+        System.out.println(Methods.getMethodName() +
                 "() -> вычислить среднее значение оценок в школе №1234");
-        return 0;
     }
 
-    public int countUniqueWordsInWarPeaceBook() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+    public void countUniqueWords() {
+        System.out.println(Methods.getMethodName() +
                 "() -> подсчитать количество уникальных слов в 'Война и Мир'");
-        return 0;
     }
 
     public void printErrorMessage() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> вывести сообщение об ошибке");
     }
 
     public void synchronizeDataCloudStorage() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> синхронизировать данные с облачным хранилищем");
     }
 
-    public void restoreDataBackupByDate() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+    public void restoreBackupData() {
+        System.out.println(Methods.getMethodName() +
                 "() -> восстановить данные из резервной копии от 11.03.2024");
     }
 
-    public void assignAriaMp3File() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+    public void pauseDownloadFile() {
+        System.out.println(Methods.getMethodName() +
                 "() -> приостановить загрузку mp3-файла группы 'Ария'");
     }
 
     public void resetToFactoryDefaults() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> сбросить настройки до заводских для пылесоса Mi");
     }
 
     public void writeToExternalStorage() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> записать содержимое в файл по указанному пути на флешку");
     }
 
     public void celsiusToFahrenheit() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> преобразовать температуру из Цельсия в Фаренгейт");
     }
 
     public void printMathExpression() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> ввести математическое выражение с тремя аргументами");
     }
 
     public void findGameWinner() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> выявить победителя среди гонщиков игры 'Need For Speed'");
     }
 
     public void findBookByAuthor() {
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() +
+        System.out.println(Methods.getMethodName() +
                 "() -> найти книгу по имени писателя");
     }
 }
