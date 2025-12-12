@@ -1,40 +1,40 @@
 public class Main {
     public static void main(String[] args) {
-        nonBm();
+        showNonBm();
         System.out.println();
-        bm();
+        showBm();
     }
     
-    public static void nonBm() {
-        NonBooleanMethods nonBm = new NonBooleanMethods();
+    private static void showNonBm() {
         System.out.println("HЕ BOOLEAN-МЕТОДЫ");
+        NonBooleanMethods nonBm = new NonBooleanMethods();
         nonBm.findLongestWord();
         nonBm.selectMenuItem();
         nonBm.calculateEverageGrade();
         nonBm.countUniqueWords();
         nonBm.printErrorMessage();
-        nonBm.synchronizeDataCloudStorage();
-        nonBm.restoreBackupData();
-        nonBm.pauseDownloadFile();
+        nonBm.syncCloudStorage();
+        nonBm.restoreBackup();
+        nonBm.pauseDownload();
         nonBm.resetToFactoryDefaults();
-        nonBm.writeToExternalStorage();
+        nonBm.writeToFile();
         nonBm.celsiusToFahrenheit();
         nonBm.printMathExpression();
         nonBm.findGameWinner();
         nonBm.findBookByAuthor();
     }
 
-    public static void bm() {
-        BooleanMethods bm = new BooleanMethods();
+    private static void showBm() {
         System.out.println("BOOLEAN-МЕТОДЫ");
+        BooleanMethods bm = new BooleanMethods();
         System.out.println(bm.isFinish());
         System.out.println(bm.hasUniqueDigit());
-        System.out.println(bm.isLetterEntered());
+        System.out.println(bm.isLetter());
         System.out.println(bm.hasEqualNumbers());
-        System.out.println(bm.isAttemptsMarioGame());
-        System.out.println(bm.isEmptyStringEntered());
+        System.out.println(bm.isAttempts());
+        System.out.println(bm.isBlank());
         System.out.println(bm.isEvenNumber());
-        System.out.println(bm.isValidSsdPath());
+        System.out.println(bm.isValidPath());
         System.out.println(bm.isExistingFile());
     }
 }

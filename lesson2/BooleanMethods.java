@@ -11,7 +11,7 @@ public class BooleanMethods {
         return false;
     }
 
-    public boolean isLetterEntered() {
+    public boolean isLetter() {
         System.out.print(Methods.getMethodName() +
                 "() -> пользователь ввел букву или что-то другое? ");
         return false;
@@ -23,13 +23,13 @@ public class BooleanMethods {
         return false;
     }
 
-    public boolean isAttemptsMarioGame() {
+    public boolean isAttempts() {
         System.out.print(Methods.getMethodName() +
                 "() -> в игре 'Марио' остались попытки? ");
         return false;
     }
 
-    public boolean isEmptyStringEntered() {
+    public boolean isBlank() {
         System.out.print(Methods.getMethodName() +
                 "() -> пользователь ввёл пустую строку или из одних пробелов? ");
         return false;
@@ -41,7 +41,7 @@ public class BooleanMethods {
         return false;
     }
 
-    public boolean isValidSsdPath() {
+    public boolean isValidPath() {
         System.out.print(Methods.getMethodName() +
                 "() -> путь до файла, который вы ищите на ssd, действительный? ");
         return false;

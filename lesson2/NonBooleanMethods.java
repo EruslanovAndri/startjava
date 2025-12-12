@@ -24,17 +24,17 @@ public class NonBooleanMethods {
                 "() -> вывести сообщение об ошибке");
     }
 
-    public void synchronizeDataCloudStorage() {
+    public void syncCloudStorage() {
         System.out.println(Methods.getMethodName() +
                 "() -> синхронизировать данные с облачным хранилищем");
     }
 
-    public void restoreBackupData() {
+    public void restoreBackup() {
         System.out.println(Methods.getMethodName() +
                 "() -> восстановить данные из резервной копии от 11.03.2024");
     }
 
-    public void pauseDownloadFile() {
+    public void pauseDownload() {
         System.out.println(Methods.getMethodName() +
                 "() -> приостановить загрузку mp3-файла группы 'Ария'");
     }
@@ -44,7 +44,7 @@ public class NonBooleanMethods {
                 "() -> сбросить настройки до заводских для пылесоса Mi");
     }
 
-    public void writeToExternalStorage() {
+    public void writeToFile() {
         System.out.println(Methods.getMethodName() +
                 "() -> записать содержимое в файл по указанному пути на флешку");
     }
