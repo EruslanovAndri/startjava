@@ -1,11 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        showNonBm();
+        runNonBm();
         System.out.println();
-        showBm();
+        runBm();
     }
     
-    private static void showNonBm() {
+    private static void runNonBm() {
         System.out.println("HЕ BOOLEAN-МЕТОДЫ");
         NonBooleanMethods nonBm = new NonBooleanMethods();
         nonBm.findLongestWord();
@@ -24,14 +24,14 @@ public class Main {
         nonBm.findBookByAuthor();
     }
 
-    private static void showBm() {
+    private static void runBm() {
         System.out.println("BOOLEAN-МЕТОДЫ");
         BooleanMethods bm = new BooleanMethods();
         System.out.println(bm.isFinish());
         System.out.println(bm.hasUniqueDigit());
         System.out.println(bm.isLetter());
         System.out.println(bm.hasEqualNumbers());
-        System.out.println(bm.isAttempts());
+        System.out.println(bm.hasAttempt());
         System.out.println(bm.isBlank());
         System.out.println(bm.isEvenNumber());
         System.out.println(bm.isValidPath());

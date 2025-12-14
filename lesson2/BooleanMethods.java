@@ -23,7 +23,7 @@ public class BooleanMethods {
         return false;
     }
 
-    public boolean isAttempts() {
+    public boolean hasAttempt() {
         System.out.print(Methods.getMethodName() +
                 "() -> в игре 'Марио' остались попытки? ");
         return false;
