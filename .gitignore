@@ -1,5 +1,7 @@
 # Compiled class file
 *.class
+
+# Test Classes
 *Test.java
 
 # Log file
@@ -7,8 +9,10 @@
 *books
 # BlueJ files
 *.ctxt
-*utils
-*learnjava/
+
+# Folder
+utils/
+learnjava/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
