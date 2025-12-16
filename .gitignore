@@ -6,13 +6,13 @@
 
 # Log file
 *.log
-*books
 # BlueJ files
 *.ctxt
 
 # Folder
 utils/
 learnjava/
+books/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
