@@ -1,3 +1,4 @@
+package com.startjava.lesson_2_3.method.naming;
 public class BooleanMethods {
     public boolean isFinish() {
         System.out.print(Methods.getMethodName() +
