@@ -1,9 +1,6 @@
 # Compiled class file
 *.class
 
-# Test Classes
-*Test.java
-
 # Log file
 *.log
 *.DS_Store
