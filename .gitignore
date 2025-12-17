@@ -4,6 +4,8 @@
 # Log file
 *.log
 *.DS_Store
+options
+optionsj
 # BlueJ files
 *.ctxt
 
