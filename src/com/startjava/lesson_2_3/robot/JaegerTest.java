@@ -11,11 +11,11 @@ public class JaegerTest {
         gipsyDanger.setStrength(8);
         gipsyDanger.setArmor(6);
         gipsyDanger.setSpeed(7);
-        System.out.println(gipsyDanger.toString());
+        System.out.println(gipsyDanger);
         gipsyDanger.useRetractileSword();
         gipsyDanger.move();
         Jaeger strikerEureka = new Jaeger("Striker Eureka", "Mark-5", "Australia", 1.850f, 76.2f, 10, 9, 10);
-        System.out.println(strikerEureka.toString());
+        System.out.println(strikerEureka);
         strikerEureka.useRetractileSword();
         strikerEureka.move();
     }

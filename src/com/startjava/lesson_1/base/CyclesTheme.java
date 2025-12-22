@@ -149,7 +149,7 @@ public class CyclesTheme {
             }
             password.append(ch);
         }
-        String passwordStrength = "";
+        String passwordStrength;
         if (password.length() >= 8 && hasUpperCase && hasLowerCase && hasSpecialChar && !hasDigit) {
             passwordStrength = "Надежный";
         } else if (password.length() >= 8 && hasUpperCase && hasDigit && !hasLowerCase && !hasSpecialChar) {

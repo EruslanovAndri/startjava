@@ -1,7 +1,6 @@
 package com.startjava.lesson_1.base;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class IfElseStatementTheme {
     public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class IfElseStatementTheme {
         System.out.println("\n2 ПОИСК БОЛЬШЕГО ЧИСЛА ШАГОВ");
         int todaySteps = 500;
         int yesterdaySteps = 3500;
-        double everageSteps = (todaySteps + yesterdaySteps) / 2; 
+        double everageSteps = (todaySteps + yesterdaySteps) / 2;
 
         if (todaySteps > yesterdaySteps) {
             System.out.println("Сегодня шагов больше чем вчера " + todaySteps);
@@ -54,7 +53,7 @@ public class IfElseStatementTheme {
                         " гостей. Можно формировать пары для конкурсов.");
             } else {
                 System.out.println("Записалось " + guestNumber + " гостей. Нужны индивидуальные задания.");
-            } 
+            }
         } else {
             System.out.println("Число гостей не может быть меньше нуля!");
         }
@@ -62,7 +61,7 @@ public class IfElseStatementTheme {
         System.out.println("\n4 ОПРЕДЕЛЕНИЕ ПЕРВОГО СИМВОЛА НИКНЕЙМА");
         System.out.println("Первый вариант: с помощью проверки символа на его вхождение в диапазон кодов");
         String name = "2Maria";
-        char firstChar = name.charAt(0); 
+        char firstChar = name.charAt(0);
         String outputMessage = "";
 
         if (firstChar >= 'a' && firstChar <= 'z') {
@@ -169,7 +168,7 @@ public class IfElseStatementTheme {
             programmingGrade = 5;
         }
 
-        float averageGrade = (historyGrade + (float) programmingGrade) / 2; 
+        float averageGrade = (historyGrade + (float) programmingGrade) / 2;
         float persent = (historyPersent + programmingPersent) / 2;
         System.out.printf("""
                 История: %.1f %%
