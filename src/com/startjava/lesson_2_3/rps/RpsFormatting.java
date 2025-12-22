@@ -48,7 +48,7 @@ public class RpsFormatting {
         return sign;
     }
 
-    private static void showSigns(String sing) throws InterruptedException {
+    private static void showSigns(String sign) throws InterruptedException {
         for (int i = 0; i < 5; i++) {
             System.out.print(ROCK + "\r");
             Thread.sleep(100);
@@ -57,7 +57,7 @@ public class RpsFormatting {
             System.out.print(PAPER + "\r");
             Thread.sleep(100);
         }
-        System.out.println(sing);
+        System.out.println(sign);
     }
 
     private static void determineWinner(String name1, String sign1, String name2, String sign2) {
