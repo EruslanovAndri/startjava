@@ -1,8 +1,8 @@
 package com.startjava.lesson_2_3.rps;
 
+import java.lang.InterruptedException;
 import java.util.Random;
 import java.util.Scanner;
-import java.lang.InterruptedException;
 
 public class RpsFormatting {
     private static final String ROCK = "R";
