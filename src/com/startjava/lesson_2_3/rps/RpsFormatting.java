@@ -8,7 +8,6 @@ public class RpsFormatting {
     private static final String ROCK = "R";
     private static final String SCISSORS = "S";
     private static final String PAPER = "P";
-    private static String sign;
 
     public static void main(String[] args) throws InterruptedException {
         Random r = new Random();
@@ -18,14 +17,12 @@ public class RpsFormatting {
 
         // Ход первого игрока
         int position = generatePosition(name1, r);
-        sign = determineSign(position);
-        String sign1 = sign;
+        String sign1 = determineSign(position);
         showSigns(sign1);
 
         // Ход второго игрока
         position = generatePosition(name2, r);
-        sign = determineSign(position);
-        String sign2 = sign;
+        String sign2 = determineSign(position);
         showSigns(sign2);
         determineWinner(name1, sign1, name2, sign2);
         console.close();
@@ -60,7 +57,7 @@ public class RpsFormatting {
             System.out.print(PAPER + "\r");
             Thread.sleep(100);
         }
-        System.out.println(sign);
+        System.out.println(sing);
     }
 
     private static void determineWinner(String name1, String sign1, String name2, String sign2) {
