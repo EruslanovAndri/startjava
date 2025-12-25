@@ -1,4 +1,4 @@
-package com.startjava.lesson_2_3.rps;
+package com.startjava.lesson_2_3_4.rps;
 
 import java.lang.InterruptedException;
 import java.util.Random;

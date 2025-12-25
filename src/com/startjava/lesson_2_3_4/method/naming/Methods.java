@@ -1,6 +1,4 @@
-package com.startjava.lesson_2_3.method.naming;
-
-import java.lang.reflect.Method;
+package com.startjava.lesson_2_3_4.method.naming;
 
 public class Methods {
     public static String getMethodName() {
