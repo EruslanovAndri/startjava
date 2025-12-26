@@ -5,6 +5,8 @@ public class ReversBankTransactions {
     public static void main(String[] args) {
         int[] transaction1 = new int[0];
         reversBankTransaction(transaction1);
+        int[] transaction2 = null;
+        reversBankTransaction(transaction2);
         int[] transaction3 = new int[] {5};
         reversBankTransaction(transaction3);
         int[] transaction4 = new int[] {6, 8, 9, 1};
@@ -13,7 +15,9 @@ public class ReversBankTransactions {
         reversBankTransaction(transaction5);
     }
     public static void reversBankTransaction(int[] transaction) {
-        if (transaction.length == 0) {
+        if (transaction == null) {
+            System.out.println("null");
+        } else if (transaction.length == 0) {
             System.out.println("Массив нулевой длины");
         } else if (transaction.length == 1) {
             System.out.println("Исходные транзакции: " + Arrays.toString(transaction));
