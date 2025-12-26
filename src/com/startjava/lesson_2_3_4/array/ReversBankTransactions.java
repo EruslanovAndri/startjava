@@ -11,7 +11,7 @@ public class ReversBankTransactions {
             int[] numbers = new int[length];
             createNumbersArray(numbers);
             printNumbersArray(numbers);
-            printReversedNumbersArray(numbers);
+            printReverseNumbersArray(numbers);
         }
     }
     public static int getArrayLength() {
@@ -41,7 +41,7 @@ public class ReversBankTransactions {
             }
         }
     }
-    public static void printReversedNumbersArray(int[] numbers) {
+    public static void printReverseNumbersArray(int[] numbers) {
         System.out.printf("%n %s", "В обратном порядке: [");
         for (int i = numbers.length - 1; i >= 0 ; i--) {
             if (i > 0) {
