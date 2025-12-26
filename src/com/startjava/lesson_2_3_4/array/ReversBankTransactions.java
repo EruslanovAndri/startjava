@@ -5,14 +5,13 @@ public class ReversBankTransactions {
     public static void main(String[] args) {
         int[] transaction1 = new int[0];
         reversBankTransaction(transaction1);
-        int[] transaction2 = null;
+        reversBankTransaction(null);
+        int[] transaction2 = new int[] {5};
         reversBankTransaction(transaction2);
-        int[] transaction3 = new int[] {5};
+        int[] transaction3 = new int[] {6, 8, 9, 1};
         reversBankTransaction(transaction3);
-        int[] transaction4 = new int[] {6, 8, 9, 1};
+        int[] transaction4 = new int[] {13, 8, 5, 3, 2, 1, 1};
         reversBankTransaction(transaction4);
-        int[] transaction5 = new int[] {13, 8, 5, 3, 2, 1, 1};
-        reversBankTransaction(transaction5);
     }
     public static void reversBankTransaction(int[] transaction) {
         if (transaction == null) {
