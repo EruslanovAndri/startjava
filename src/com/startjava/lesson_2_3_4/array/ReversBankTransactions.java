@@ -1,53 +1,32 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.util.Scanner;
-
+import java.util.Arrays;
 public class ReversBankTransactions {
     public static void main(String[] args) {
-        int length = getArrayLength();
-        if (length == 0) {
-            System.out.print("Массив нулевой длины");
+        int[] transaction1 = new int[0];
+        reversBankTransaction(transaction1);
+        int[] transaction3 = new int[] {5};
+        reversBankTransaction(transaction3);
+        int[] transaction4 = new int[] {6, 8, 9, 1};
+        reversBankTransaction(transaction4);
+        int[] transaction5 = new int[] {13, 8, 5, 3, 2, 1, 1};
+        reversBankTransaction(transaction5);
+    }
+    public static void reversBankTransaction(int[] transaction) {
+        if (transaction.length == 0) {
+            System.out.println("Массив нулевой длины");
+        } else if (transaction.length == 1) {
+            System.out.println("Исходные транзакции: " + Arrays.toString(transaction));
+            System.out.println(" В обратном порядке: " + Arrays.toString(transaction));
         } else {
-            int[] numbers = new int[length];
-            createNumbersArray(numbers);
-            printNumbersArray(numbers);
-            printReverseNumbersArray(numbers);
-        }
-    }
-    public static int getArrayLength() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите длину массива: ");
-        return scanner.nextInt();
-    }
-    public static void createNumbersArray(int[] numbers) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите номер транзакции через пробел: ");
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = scanner.nextInt();
-        }
-    }
-    public static void printNumbersArray(int[] numbers) {
-        if (numbers.length == 0) {
-            System.out.print("Исходные транзакции: []");
-            System.out.printf("%n %s", "В обратном порядке: []");
-        } else {
-            System.out.print("Исходные транзакции: [");
-            for (int i = 0; i < numbers.length; i++) {
-                if (i < numbers.length - 1) {
-                    System.out.print(numbers[i] + ",");
+            System.out.println("Исходные транзакции: " + Arrays.toString(transaction));
+            System.out.print(" В обратном порядке: [" );
+            for (int i = transaction.length - 1; i >= 0; i--) {
+                if (i > 0) {
+                    System.out.print(transaction[i] + ", ");
                 } else {
-                    System.out.print(numbers[i] + "]");
+                    System.out.print(transaction[i] + "]\n");
                 }
-            }
-        }
-    }
-    public static void printReverseNumbersArray(int[] numbers) {
-        System.out.printf("%n %s", "В обратном порядке: [");
-        for (int i = numbers.length - 1; i >= 0 ; i--) {
-            if (i > 0) {
-                System.out.print(numbers[i] + ",");
-            } else {
-                System.out.print(numbers[i] + "]");
             }
         }
     }
