@@ -14,7 +14,6 @@ public class ReversBankTransactions {
             printReversedNumbersArray(numbers);
         }
     }
-
     public static int getArrayLength() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите длину массива: ");
