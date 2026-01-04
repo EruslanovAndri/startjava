@@ -1,6 +1,7 @@
 package com.startjava.lesson_2_3_4.array;
 
 import java.util.Arrays;
+
 public class BankTransactionsReverser {
     public static void main(String[] args) {
         int[] transactions1 = new int[0];
