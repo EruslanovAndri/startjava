@@ -19,6 +19,7 @@ public class BankTransactionsReverser {
         printTransactions(transactions4);
         reverseTransactions(transactions4);
     }
+
     private static int[] reverseTransactions(int[] transactions) {
         int[] reversedTransactions = null;
         if (transactions == null) {
@@ -34,6 +35,7 @@ public class BankTransactionsReverser {
 
         return reversedTransactions;
     }
+
     private static void printTransactions(int[] transactions) {
         int[] reverseTransactions = reverseTransactions(transactions);
         if (transactions == null) {
