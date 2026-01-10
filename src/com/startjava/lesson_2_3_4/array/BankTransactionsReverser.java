@@ -39,7 +39,7 @@ public class BankTransactionsReverser {
         return reversedTransactions;
     }
 
-    private static void printTransactions(int[] transactions, int[] reversedTransactions){
+    private static void printTransactions(int[] transactions, int[] reversedTransactions) {
         System.out.println("Исходные транзакции: " + Arrays.toString(transactions));
         System.out.println(" В обратном порядке: " + Arrays.toString(reversedTransactions));
     }
