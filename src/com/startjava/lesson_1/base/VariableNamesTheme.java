@@ -25,7 +25,7 @@ public class VariableNamesTheme {
         int maxNumber = 45;
         System.out.println("Максимальное число: " + maxNumber);
 
-        // Kоличество десятков
+        // Количество десятков
         int tenCount = 10;
         System.out.println("Kоличество десятков: " + tenCount);
 
