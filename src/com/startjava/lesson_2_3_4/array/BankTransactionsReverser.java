@@ -4,9 +4,27 @@ import java.util.Arrays;
 
 public class BankTransactionsReverser {
     public static void main(String[] args) {
-        int[] original = new int[]{21, 13 , 1, 1, 3};
+        int[] original = {};
         int[] reversed = reverse(original);
-        printTransactions(reversed, original);
+        printTransactions(original, reversed);
+
+        reversed = null;
+        printTransactions(null, reversed);
+
+        original = new int[] {5};
+        reversed = reverse(original);
+        printTransactions(original, reversed);
+
+        original = new int[] {6, 8, 9, 1};
+        reversed = reverse(original);
+        printTransactions(original, reversed);
+
+        original = new int[] {13, 8, 5, 3, 2, 1, 1};
+        reversed = reverse(original);
+        printTransactions(original, reversed);
+
+
+
 
     }
 
@@ -24,6 +42,7 @@ public class BankTransactionsReverser {
     private static void printTransactions(int[] transactions, int[] reversed) {
         System.out.printf("""
                 Исходные транзакции: %s
-                 В обратном порядке: %s""", Arrays.toString(transactions), Arrays.toString(reversed));
+                 В обратном порядке: %s
+                """, Arrays.toString(transactions), Arrays.toString(reversed));
     }
 }
