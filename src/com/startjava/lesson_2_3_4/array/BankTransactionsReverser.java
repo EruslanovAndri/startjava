@@ -22,10 +22,6 @@ public class BankTransactionsReverser {
         original = new int[] {13, 8, 5, 3, 2, 1, 1};
         reversed = reverse(original);
         printTransactions(original, reversed);
-
-
-
-
     }
 
     private static int[] reverse(int[] transactions) {
