@@ -27,6 +27,7 @@ public class BankTransactionsReverser {
     private static int[] reverse(int[] transactions) {
         if (transactions == null) return null;
         if (transactions.length == 0) return transactions;
+
         int length = transactions.length;
         int[] reversedTransactions = new int[length];
         for (int transaction : transactions) {
