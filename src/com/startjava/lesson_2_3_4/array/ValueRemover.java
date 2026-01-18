@@ -1,12 +1,27 @@
 package com.startjava.lesson_2_3_4.array;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class ValueRemover {
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.###");
+
     public static void main(String[] args) {
         double[] origin = fillArray();
-        double[] changed = changeArray(origin, 14);
-        print(origin, changed, 1);
+        double[] changed = changeArray(origin, -1);
+        print(origin, changed, -1);
+
+        System.out.println("**************************");
+        changed = changeArray(origin, 15);
+        print(origin, changed, 15);
+
+        System.out.println("**************************");
+        changed = changeArray(origin, 0);
+        print(origin, changed, 0);
+
+        System.out.println("**************************");
+        changed = changeArray(origin, 14);
+        print(origin, changed, 14);
     }
 
     private static double[] fillArray() {
@@ -19,45 +34,51 @@ public class ValueRemover {
     }
 
     private static double[] changeArray(double[] origin, int index) {
-        double[] changed = new double[origin.length];
-        for (int i = 0; i < origin.length; i++) {
-            if (i < index) {
-                changed[i] = origin[i];
-            } else {
-                changed[i] = 0.0;
+        if (index < 0) {
+            System.out.println("Ошибка! Индекс не может быть меньше 0.");
+        } else {
+            double[] changed = new double[origin.length];
+            for (int i = 0; i < origin.length; i++) {
+                if (i < index) {
+                    changed[i] = origin[i];
+                } else {
+                    changed[i] = 0;
+                }
             }
+            return changed;
         }
-        return changed;
+        return null;
     }
 
     private static void print(double[] origin, double[] changed, int index) {
-        System.out.println("Исходный массив: ");
-        for (int i = 0; i < 8; i++) {
-            System.out.print(origin[i] + " ");
-        }
-        System.out.println();
-        for (int i = 8; i < 15; i++) {
-            System.out.print(origin[i] + " ");
-        }
-        System.out.println("\nИзмененный массив: ");
-        for (int i = 0; i < 8; i++) {
-            System.out.print(changed[i] + " ");
-        }
-        System.out.println();
-        for (int i = 8; i < 15; i++) {
-            System.out.print(changed[i] + " ");
-        }
-        try {
-            if (index <= changed.length) {
-                System.out.println("\nЗначение из ячейки по переданному индексу = " + changed[index]);
+        if (index >= 0) {
+            System.out.println("Исходный массив: ");
+            for (int i = 0; i < 8; i++) {
+                String value = DECIMAL_FORMAT.format(origin[i]);
+                System.out.print(value + " ");
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("\nОшибка! Переданный индекс больше чем длина массива.");
-        }
-
-        for (double element : changed) {
-            if (element * 1000 != 0) {
-                System.out.print(element + " ");
+            System.out.println();
+            for (int i = 8; i < 15; i++) {
+                String value = DECIMAL_FORMAT.format(origin[i]);
+                System.out.print(value + " ");
+            }
+            System.out.println("\nИзмененный массив: ");
+            for (int i = 0; i < 8; i++) {
+                String value = DECIMAL_FORMAT.format(changed[i]);
+                System.out.print(value + " ");
+            }
+            System.out.println();
+            for (int i = 8; i < 15; i++) {
+                String value = DECIMAL_FORMAT.format(changed[i]);
+                System.out.print(value + " ");
+            }
+            System.out.println();
+            if (index != origin.length) {
+                String value = DECIMAL_FORMAT.format(origin[index]);
+                System.out.println("Значение из ячейки по переданному индексу = " + value);
+            } else {
+                String value = DECIMAL_FORMAT.format(origin[--index]);
+                System.out.println("Значение из ячейки по переданному индексу = " + value);
             }
         }
     }
