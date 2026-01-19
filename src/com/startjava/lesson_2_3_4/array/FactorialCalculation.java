@@ -1,14 +1,5 @@
 package com.startjava.lesson_2_3_4.array;
 
-/* TODO FactorialCalculation
-showFactorials()
-- if (origin.length == 0) System.out.println();
-какой смысл в такой проверке и таком выводе на консоль?
- С какой дилеммой ты столкнулся, что решил написать такой вывод на консоль?
-
-- число 20 сделай константой. Используй ее везде, где упоминается 20
-*/
-
 public class FactorialCalculation {
     private static final int LIMIT_NUMBER = 20;
 
@@ -35,10 +26,9 @@ public class FactorialCalculation {
     }
 
     private static long[] calculate(int... origin) {
-        long[] factorials = null;
         if (origin == null || origin.length == 0) return null;
 
-        factorials = new long[origin.length];
+        long[] factorials = new long[origin.length];
         for (int i = 0; i < origin.length; i++) {
             long factorial = -1;
             if (origin[i] < 0) {
@@ -59,27 +49,27 @@ public class FactorialCalculation {
     private static void printFactorialsExpressions(long[] factorials, int... origin) {
         if (origin == null) return;
         StringBuilder expression = new StringBuilder();
-        int i = 0;
-        for (int num : origin) {
-            int temp = 1;
-            String tempStr = "";
-            while (temp <= num) {
-                if (num - temp == 0) {
-                    tempStr += temp;
-                    temp++;
-                } else {
-                    tempStr += temp + " * ";
-                    temp++;
+        int index = 0;
+        for (int originNumber : origin) {
+            if (originNumber == 0 || originNumber == 1) {
+                expression.append(originNumber).append("! = 1");
+            } else if (originNumber > 0 && originNumber <= LIMIT_NUMBER) {
+                int tempNumber = 1;
+                expression.append(originNumber).append("! = ");
+                while (tempNumber <= originNumber - 1) {
+                    if (originNumber == 0 || originNumber == 1) {
+                        expression.append(tempNumber);
+                        tempNumber++;
+                    } else {
+                        expression.append(tempNumber).append(" * ");
+                        tempNumber++;
+                    }
                 }
+                expression.append(originNumber).append(" = ").append(factorials[index]);
             }
-            expression.append((num == 0 || num == 1)
-                    ? num + "! = 1" + "\n"
-                    : (num > 0 && num <= LIMIT_NUMBER)
-                    ? num + "! = " + tempStr + " = " + factorials[i] + "\n"
-                    : "");
-            i++;
+            index++;
+            System.out.println(expression);
+            expression.setLength(0);
         }
-        System.out.print(expression);
-        expression.setLength(0);
     }
 }
