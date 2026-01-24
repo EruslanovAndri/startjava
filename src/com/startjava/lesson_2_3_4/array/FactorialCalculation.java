@@ -49,27 +49,18 @@ public class FactorialCalculation {
     private static void printFactorialsExpressions(long[] factorials, int... origin) {
         if (origin == null) return;
         StringBuilder expression = new StringBuilder();
-        int index = 0;
-        for (int originNumber : origin) {
-            if (originNumber == 0 || originNumber == 1) {
-                expression.append(originNumber).append("! = 1");
-            } else if (originNumber > 0 && originNumber <= LIMIT_NUMBER) {
-                int tempNumber = 1;
-                expression.append(originNumber).append("! = ");
-                while (tempNumber <= originNumber - 1) {
-                    if (originNumber == 0 || originNumber == 1) {
-                        expression.append(tempNumber);
-                        tempNumber++;
-                    } else {
-                        expression.append(tempNumber).append(" * ");
-                        tempNumber++;
-                    }
+        for (int i = 0; i < origin.length; i++) {
+            if (origin[i] == 0 || origin[i] == 1) {
+                expression.append(origin[i]).append("! = 1").append("\n");
+            } else if (factorials[i] != -1) {
+                expression.append(origin[i]).append("! = ");
+                for (int j = 1; j < origin[i]; j++) {
+                    expression.append(j).append(" * ");
                 }
-                expression.append(originNumber).append(" = ").append(factorials[index]);
+                expression.append(origin[i]).append(" = ").append(factorials[i]).append("\n");
             }
-            index++;
-            System.out.println(expression);
-            expression.setLength(0);
         }
+        System.out.print(expression);
+        expression.setLength(0);
     }
 }
