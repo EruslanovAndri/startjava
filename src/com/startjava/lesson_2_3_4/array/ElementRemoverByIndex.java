@@ -6,23 +6,19 @@ public class ElementRemoverByIndex {
     public static void main(String[] args) {
         double[] origin = fillArray();
         double[] changed = remove(origin, -1);
-        print(origin, -1);
-        print(changed, -1);
+        print(origin, changed, -1);
 
         origin = fillArray();
         changed = remove(origin, 15);
-        print(origin, 15);
-        print(changed, 15);
+        print(origin, changed, 15);
 
         origin = fillArray();
         changed = remove(origin, 0);
-        print(origin,  0);
-        print(changed, 0);
+        print(origin, changed, 0);
 
         origin = fillArray();
         changed = remove(origin, 14);
-        print(origin, 14);
-        print(changed, 14);
+        print(origin, changed, 14);
     }
 
     private static double[] fillArray() {
@@ -35,38 +31,45 @@ public class ElementRemoverByIndex {
     }
 
     private static double[] remove(double[] origin, int index) {
+        double[] changed = null;
         if (index < 0) {
-            System.out.println("\t Ошибка! Индекс не может быть меньше 0.\n");
+            System.out.println("Ошибка! Индекс не может быть меньше 0.");
+            return null;
+        } else if (index > origin.length - 1) {
+            System.out.println("Ошибка! Индекс больше длины массива.");
+            return null;
         } else {
-            double[] changed = new double[origin.length];
+            double value = origin[index];
+            changed = new double[origin.length];
             for (int i = 0; i < origin.length; i++) {
-                if (i <= index) {
-                    changed[i] = origin[i];
-                } else {
+                if (value < origin[i]) {
                     changed[i] = 0;
+                } else {
+                    changed[i] = origin[i];
                 }
             }
-            return changed;
         }
-        return null;
+        return changed;
     }
 
-    private static void print(double[] array, int index) {
-        if (index >= 0) {
+    private static void print(double[] origin, double[] changed, int index) {
+        if (index >= 0 && index < origin.length) {
+            System.out.println("\nИсходный массив:");
             for (int i = 0; i < 8; i++) {
-                System.out.printf("%10.3f", array[i]);
+                System.out.printf("%6.3f", origin[i]);
             }
             System.out.println();
             for (int i = 8; i < 15; i++) {
-                System.out.printf("%10.3f", array[i]);
+                System.out.printf("%6.3f", origin[i]);
+            }
+            System.out.printf("%n%s%.3f%n%n", " Значение из ячейки по переданному индексу = ", origin[index]);
+            System.out.println("Измененный массив:");
+            for (int i = 0; i < 8; i++) {
+                System.out.printf("%6.3f", changed[i]);
             }
             System.out.println();
-            if (index != array.length) {
-                System.out.printf("%s%7.3f", "\t Значение из ячейки по переданному индексу =", array[index]);
-                System.out.println();
-            } else {
-                System.out.printf("%s%7.3f", "\t Значение из ячейки по переданному индексу =", array[--index]);
-                System.out.println();
+            for (int i = 8; i < 15; i++) {
+                System.out.printf("%6.3f", changed[i]);
             }
             System.out.println();
         }
