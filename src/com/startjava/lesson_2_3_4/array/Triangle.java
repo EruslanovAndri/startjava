@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.util.Arrays;
-
 public class Triangle {
     public static void main(String[] args) {
         char[] charArray = sortSymbols('0', '9', true);
@@ -14,14 +12,14 @@ public class Triangle {
         printTriangle(charArray);
     }
 
-    private static char[] sortSymbols(char leftSide, char rightSide, boolean sortingDirection) {
+    private static char[] sortSymbols(char leftSide, char rightSide, boolean sortDirection) {
         if (leftSide > rightSide) {
             System.out.println("Ошибка: левая граница (" + leftSide + ") > правой (" + rightSide + ")");
             return null;
         }
         char[] sortedCharArray = new char[rightSide - leftSide + 1];
         for (int i = 0; i < sortedCharArray.length; i++) {
-            sortedCharArray[i] = (sortingDirection) ? leftSide++ : rightSide--;
+            sortedCharArray[i] = (sortDirection) ? leftSide++ : rightSide--;
         }
         return sortedCharArray;
     }
