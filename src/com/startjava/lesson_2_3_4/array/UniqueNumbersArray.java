@@ -5,28 +5,23 @@ import java.util.Random;
 
 public class UniqueNumbersArray {
     public static void main(String[] args) {
-        int[] uniqueNumbers = fillArray(-50, -10, 23);
-        int[] sorted = sortArray(uniqueNumbers);
-        printInLimitNumbersRange(sorted, 23);
+        int[] uniqueNumbers = fillSortedUniqueNumbersArray(-50, -10, 23);
+        printInLimitNumbersRange(uniqueNumbers, 23);
 
-        uniqueNumbers = fillArray(10, 50, 10);
-        sorted = sortArray(uniqueNumbers);
-        printInLimitNumbersRange(sorted, 10);
+        uniqueNumbers = fillSortedUniqueNumbersArray(10, 50, 10);
+        printInLimitNumbersRange(uniqueNumbers, 10);
 
-        uniqueNumbers = fillArray(-34, -34, 1);
-        sorted = sortArray(uniqueNumbers);
-        printInLimitNumbersRange(sorted, 1);
+        uniqueNumbers = fillSortedUniqueNumbersArray(-34, -34, 1);
+        printInLimitNumbersRange(uniqueNumbers, 1);
 
-        uniqueNumbers = fillArray(-1, 2, -3);
-        sorted = sortArray(uniqueNumbers);
-        printInLimitNumbersRange(sorted, -3);
+        uniqueNumbers = fillSortedUniqueNumbersArray(-1, 2, -3);
+        printInLimitNumbersRange(uniqueNumbers, -3);
 
-        uniqueNumbers = fillArray(5, -8, 2);
-        sorted = sortArray(uniqueNumbers);
-        printInLimitNumbersRange(sorted, 2);
+        uniqueNumbers = fillSortedUniqueNumbersArray(5, -8, 2);
+        printInLimitNumbersRange(uniqueNumbers, 2);
     }
 
-    private static int[] fillArray(int start, int end, int limitNumbers) {
+    private static int[] fillSortedUniqueNumbersArray(int start, int end, int limitNumbers) {
         if (limitNumbers < 1) {
             System.out.println("Ошибка: количество чисел в строке не должно быть < 1 (" + limitNumbers + ")");
             return null;
@@ -35,7 +30,9 @@ public class UniqueNumbersArray {
             System.out.println("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
             return null;
         }
-        int length = (start < 0 && end < 0) ? (int) (0.75f * (end - start)) : (int) (0.75f * (end - start));
+        int length = (start < 0 && end < 0)
+                ? (int) (0.75f * (Math.abs(start) - Math.abs(end)))
+                : (int) (0.75f * (end - start));
         if (length <= 0) {
             System.out.println("Ошибка: длина массива должна быть > 0 (" + length + ")");
             return null;
@@ -51,31 +48,20 @@ public class UniqueNumbersArray {
                 }
             }
         }
-        return uniqueNumbers;
-    }
-
-    private static int[] sortArray(int[] uniqueNumbers) {
-        if (uniqueNumbers == null) return null;
         Arrays.sort(uniqueNumbers);
         return uniqueNumbers;
     }
 
     private static void printInLimitNumbersRange(int[] sorted, int limitNumbers) {
         if (sorted != null) {
-            if (limitNumbers > sorted.length) {
-                for (int i = 0; i < sorted.length; i++) {
-                    System.out.print(sorted[i] + " ");
+            StringBuilder resultStringBuilder = new StringBuilder();
+            for (int i = 0; i < sorted.length; i++) {
+                resultStringBuilder.append(sorted[i]).append(" ");
+                if ((i + 1) % limitNumbers == 0) {
+                    resultStringBuilder.append("\n");
                 }
-                System.out.println();
-            } else {
-                for (int i = 0; i < sorted.length; i++) {
-                    System.out.print(sorted[i] + " ");
-                    if ((i + 1) % limitNumbers == 0) {
-                        System.out.println();
-                    }
-                }
-                System.out.println();
             }
+            System.out.println(resultStringBuilder);
         }
     }
 }
