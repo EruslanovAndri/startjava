@@ -1,15 +1,15 @@
 package com.startjava.lesson_2_3_4.array;
 
-public class TrianglePrinting {
+public class AsciiTrianglePrinting {
     public static void main(String[] args) {
-        char[] charArray = fillArraySortedChars('0', '9', true);
-        printTriangle(charArray);
+        char[] sortedChars = fillArraySortedChars('0', '9', true);
+        printTriangle(sortedChars);
 
-        charArray = fillArraySortedChars('/', '!', false);
-        printTriangle(charArray);
+        sortedChars = fillArraySortedChars('/', '!', false);
+        printTriangle(sortedChars);
 
-        charArray = fillArraySortedChars('A', 'Z', false);
-        printTriangle(charArray);
+        sortedChars = fillArraySortedChars('A', 'Z', false);
+        printTriangle(sortedChars);
     }
 
     private static char[] fillArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
