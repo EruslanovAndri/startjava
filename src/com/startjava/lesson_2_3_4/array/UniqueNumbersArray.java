@@ -30,9 +30,7 @@ public class UniqueNumbersArray {
             System.out.println("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
             return null;
         }
-        int length = (start < 0 && end < 0)
-                ? (int) (0.75f * (Math.abs(start) - Math.abs(end)))
-                : (int) (0.75f * (end - start));
+        int length = Math.abs(end - start);
         if (length <= 0) {
             System.out.println("Ошибка: длина массива должна быть > 0 (" + length + ")");
             return null;
@@ -56,10 +54,7 @@ public class UniqueNumbersArray {
         if (sorted != null) {
             StringBuilder resultStringBuilder = new StringBuilder();
             for (int i = 0; i < sorted.length; i++) {
-                resultStringBuilder.append(sorted[i]).append(" ");
-                if ((i + 1) % limitNumbers == 0) {
-                    resultStringBuilder.append("\n");
-                }
+                resultStringBuilder.append(" ").append((i + 1) % limitNumbers == 0 ? "\n" : sorted[i]);
             }
             System.out.println(resultStringBuilder);
         }
