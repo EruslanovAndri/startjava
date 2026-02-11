@@ -52,11 +52,11 @@ public class UniqueNumbersArray {
 
     private static void printInLimitNumbersRange(int[] sorted, int limitNumbers) {
         if (sorted != null) {
-            StringBuilder resultStringBuilder = new StringBuilder();
+            StringBuilder sortedNumbers = new StringBuilder();
             for (int i = 0; i < sorted.length; i++) {
-                resultStringBuilder.append(" ").append((i + 1) % limitNumbers == 0 ? "\n" : sorted[i]);
+                sortedNumbers.append(" ").append((i + 1) % limitNumbers == 0 ? "\n" : sorted[i]);
             }
-            System.out.println(resultStringBuilder);
+            System.out.println(sortedNumbers);
         }
     }
 }
