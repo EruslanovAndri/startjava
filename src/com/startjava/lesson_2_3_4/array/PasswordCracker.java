@@ -9,27 +9,38 @@ public class PasswordCracker {
     private static final String RESET = "\033[0m";
     private static final int MIN_LENGTH = 8;
     private static final int ROTATION_LIMIT = 12;
-    public static char[][] passwordBlackList = {
+    private static char[][] passwordBlackList = {
             {'a', 'd', 'm', 'i', 'n'},
             {'q', 'w', 'e', 'r', 't', 'y'},
             {'1', '2', '3', '4', '5', '6'}};
 
     public static void main(String[] args) {
+        System.out.println("1");
         char[] password = {'1', '2', '3', '4', '5', '6'};
-        boolean isStrongPassword = checkPassword(password);
-        printValidateResult(isStrongPassword, password);
+        boolean b = checkPassword(password);
+        printValidateResult(b, password);
 
-        password = generatePassword();
-        isStrongPassword = checkPassword(password);
-        printValidateResult(isStrongPassword, password);
 
-        password = generatePassword();
-        isStrongPassword = checkPassword(password);
-        printValidateResult(isStrongPassword, password);
 
+        System.out.println("2");
         password = generatePassword();
-        isStrongPassword = checkPassword(password);
-        printValidateResult(isStrongPassword, password);
+        System.out.println(Arrays.toString(password));
+        b = checkPassword(password);
+        printValidateResult(b, password);
+
+
+        System.out.println("3");
+        password = generatePassword();
+        System.out.println(Arrays.toString(password));
+        b = checkPassword(password);
+        printValidateResult(b, password);
+
+
+        System.out.println("4");
+        password = generatePassword();
+        System.out.println(Arrays.toString(password));
+        b = checkPassword(password);
+        printValidateResult(b, password);
     }
     private static char[] generatePassword() {
         Random random = new Random();
@@ -42,7 +53,6 @@ public class PasswordCracker {
     }
 
     private static boolean checkPassword(char[] password) {
-        boolean hasChecked = false;
         runSpinner();
         if (password == null) return false;
         for (char[] inputPassword : passwordBlackList) {
@@ -53,20 +63,10 @@ public class PasswordCracker {
                 return false;
             }
         }
-        if (password.length == 0) {
-            System.out.println("Пароль не может быть пустым - " + Arrays.toString(password));
-            return false;
-        }
-        if (password.length < MIN_LENGTH) {
-            System.out.println("Пароль должен быть не менее 8 символов. - " + Arrays.toString(password));
-            return false;
-        }
-
         boolean hasDigits = false;
         boolean hasLowerCaseLetters = false;
         boolean hasUpperCaseLetters = false;
         boolean hasSpecialSymbols = false;
-
         for (char ch : password) {
             if (Character.isDigit(ch)) {
                 hasDigits = true;
@@ -78,34 +78,30 @@ public class PasswordCracker {
                 hasSpecialSymbols = true;
             }
         }
-
-        boolean hasLetters = (hasLowerCaseLetters && hasUpperCaseLetters) ? true : false;
-        if (password.length > MIN_LENGTH && hasDigits &&
-                !hasSpecialSymbols && !hasLetters) {
+        boolean hasLetters = (hasLowerCaseLetters && hasUpperCaseLetters);
+        if (password.length == 0) {
+            System.out.println("Пароль не может быть пустым - " + Arrays.toString(password));
+        } else if (password.length < MIN_LENGTH) {
+            System.out.println("Пароль должен быть не менее 8 символов. - " + Arrays.toString(password));
+        } else if (hasDigits && !hasSpecialSymbols && !hasLetters) {
             System.out.println("Пароль содержит только цифры - " + Arrays.toString(password));
-        } else if (!hasDigits && !hasSpecialSymbols && hasLetters) {
+        } else if (hasLetters && !hasDigits && !hasSpecialSymbols) {
             System.out.println("Пароль содержит только буквы - " + Arrays.toString(password));
         } else if (hasSpecialSymbols && !hasDigits && !hasLetters) {
             System.out.println("Пароль содержит только спец. символы - " + Arrays.toString(password));
         } else if (hasDigits && hasLetters && !hasSpecialSymbols) {
             System.out.println("Пароль не содержит спец. символы - " + Arrays.toString(password));
         } else if (hasDigits && hasSpecialSymbols && !hasLetters) {
-            System.out.println("Пароль не содержит буквы нижнего и верхнего регистров - " +
-                    Arrays.toString(password));
-        } else if (hasDigits && hasSpecialSymbols && hasLetters) {
-            hasChecked = true;
+            System.out.println("Пароль не содержит буквы нижнего и верхнего регистров - " + Arrays.toString(password));
+        } else if (hasDigits && hasLetters && hasSpecialSymbols) {
+            return true;
         }
-        return hasChecked;
+        return false;
     }
 
     private static void printValidateResult(boolean pass, char[] password) {
-        if (pass == true) {
-            System.out.println(ANSI_GREEN + "✓ Password cracked: - " + Arrays.toString(password) +
-                    RESET);
-        } else {
-            System.out.println(ANSI_RED + "✗ Strong password: - " + Arrays.toString(password) +
-                    RESET);
-        }
+        String result = (pass) ? ANSI_GREEN + "✓ Password cracked: - " : ANSI_RED + "x Strong Password: - ";
+        System.out.println(result + Arrays.toString(password) + RESET);
     }
 
     private static void runSpinner() {
