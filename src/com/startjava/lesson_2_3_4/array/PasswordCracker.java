@@ -110,8 +110,8 @@ public class PasswordCracker {
         }
     }
 
-    private static void printValidateResult(boolean passwordStrength, char[] password) {
-        String result = (passwordStrength) ?
+    private static void printValidateResult(boolean isChecked, char[] password) {
+        String result = (isChecked) ?
                 ANSI_GREEN + "✓ Password cracked: - " :
                 ANSI_RED + "x Strong Password: - ";
         System.out.println(result + Arrays.toString(password) + RESET);
