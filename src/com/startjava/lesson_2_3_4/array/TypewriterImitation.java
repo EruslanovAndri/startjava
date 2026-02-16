@@ -43,16 +43,14 @@ public class TypewriterImitation {
             return;
         }
         if (text.equals("")) System.out.println("Ошибка - пустой текст.");
-        String shortestWord = shortAndLongWord[0];
-        String longestWord = shortAndLongWord[1];
         int shortestWordIndex = 0;
         int longestWordIndex = 0;
 
         String[] cleanText = text.replaceAll("[^a-zA-Z0-9а-яА-Я.[++-]\\s]", "").split(" ");
         for (int i = 0; i < cleanText.length; i++) {
-            if (cleanText[i].equals(shortestWord)) {
+            if (cleanText[i].equals(shortAndLongWord[0])) {
                 shortestWordIndex = i;
-            } else if (cleanText[i].equals(longestWord)) {
+            } else if (cleanText[i].equals(shortAndLongWord[1])) {
                 longestWordIndex = i;
             }
         }
