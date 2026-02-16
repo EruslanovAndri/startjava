@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class PasswordCracker {
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_RED = "\u001B[31m"; // Red color
+    private static final String ANSI_GREEN = "\u001B[32m"; // Green color
     private static final String RESET = "\033[0m";
     private static final int MIN_LENGTH = 8;
     private static final int ROTATION_LIMIT = 12;
@@ -16,16 +16,20 @@ public class PasswordCracker {
 
     public static void main(String[] args) {
         char[] password = {'1', '2', '3', '4', '5', '6'};
-        checkPassword(password);
+        boolean isChecked = checkPassword(password);
+        printValidateResult(isChecked, password);
 
         password = generatePassword();
-        checkPassword(password);
+        isChecked = checkPassword(password);
+        printValidateResult(isChecked, password);
 
         password = generatePassword();
-        checkPassword(password);
+        isChecked = checkPassword(password);
+        printValidateResult(isChecked, password);
 
         password = generatePassword();
-        checkPassword(password);
+        isChecked = checkPassword(password);
+        printValidateResult(isChecked, password);
     }
 
     private static char[] generatePassword() {
@@ -38,15 +42,15 @@ public class PasswordCracker {
         return password;
     }
 
-    private static void checkPassword(char[] password) {
+    private static boolean checkPassword(char[] password) {
         runSpinner();
-        if (password == null) return;
+        if (password == null) return false;
         for (char[] inputPassword : passwordBlackList) {
             if (Arrays.equals(inputPassword, password)) {
                 System.out.println("Не используйте пароли из списка популярных: " +
                         Arrays.toString(password));
                 System.out.println("https://nordpass.com/most-common-passwords-list");
-                return;
+                return false;
             }
         }
         boolean hasDigits = false;
@@ -67,53 +71,46 @@ public class PasswordCracker {
         boolean hasLetters = (hasLowerCaseLetters && hasUpperCaseLetters);
         if (password.length == 0) {
             System.out.print("Пароль не может быть пустым: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (password.length < MIN_LENGTH) {
             System.out.print("Пароль должен быть не менее 8 символов: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (hasDigits && !hasSpecialSymbols && !hasLetters) {
             System.out.print("Пароль содержит только цифры: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (hasLetters && !hasDigits && !hasSpecialSymbols) {
             System.out.print("Пароль содержит только буквы: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (hasSpecialSymbols && !hasDigits && !hasLetters) {
             System.out.print("Пароль содержит только спец. символы: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (hasDigits && hasLetters && !hasSpecialSymbols) {
             System.out.print("Пароль не содержит спец. символы: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (hasDigits && hasSpecialSymbols && !hasLetters) {
             System.out.print("Пароль не содержит буквы нижнего и верхнего регистров: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (!hasDigits && hasSpecialSymbols && hasLetters) {
             System.out.print("Пароль не содержит цифр: ");
-            printValidateResult(false, password);
-            return;
+            return false;
         }
         if (hasDigits && hasLetters && hasSpecialSymbols) {
-            printValidateResult(true, password);
+            return true;
         }
+        return false;
     }
 
     private static void printValidateResult(boolean isChecked, char[] password) {
         String result = (isChecked) ?
-                ANSI_GREEN + "✓ Password cracked: - " :
-                ANSI_RED + "x Strong Password: - ";
+                ANSI_RED + "x Strong Password: - " :
+                ANSI_GREEN + "✓ Password cracked: - ";
         System.out.println(result + Arrays.toString(password) + RESET);
     }
 
