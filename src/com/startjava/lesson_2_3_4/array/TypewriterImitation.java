@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.util.Arrays;
-
 public class TypewriterImitation {
     public static void main(String[] args) {
         String[] texts = {
@@ -11,66 +9,67 @@ public class TypewriterImitation {
                         "- Robert Martin",
                 null, ""};
         for (String text : texts) {
-            String[] shortAndLongWord = findShortestLongestWord(text);
-            typeText(text, shortAndLongWord);
+            int[] shortAndLongWord = findShortestLongestWordIndex(text);
+            StringBuilder convertToUpperCase = convertToUpperCase(shortAndLongWord, text);
+            imitateTypewriter(convertToUpperCase);
         }
     }
 
-    private static String[] findShortestLongestWord(String text) {
+    private static int[] findShortestLongestWordIndex(String text) {
         if (text == null) return null;
-        String[] cleanText = text.replaceAll("[^a-zA-z0-9а-яА-я[++]]", " ").split("\\s++");
+        String[] cleanText = text.split(" ");
+        int index = 0;
         String shortestWord = null;
+        int shortWordIndex = 0;
         String longestWord = null;
+        int longWordIndex = 0;
         for (String word : cleanText) {
             word = word.trim();
-            if (!word.isEmpty()) {
+            if (!word.isEmpty() && !word.matches("\\p{Punct}")) {
                 if (shortestWord == null || word.length() < shortestWord.length()) {
                     shortestWord = word;
-                } else {
-                    if (longestWord == null || word.length() > longestWord.length()) {
-                        longestWord = word;
-                    }
+                    shortWordIndex = index;
+                } else if (longestWord == null || word.length() > longestWord.length()) {
+                    longestWord = word;
+                    longWordIndex = index;
                 }
             }
+            index++;
         }
-        String[] shortAndLongWord = {shortestWord, longestWord};
-        return shortAndLongWord;
+        int[] shortAndLongWordIndex = (shortWordIndex > longWordIndex) ?
+                new int[]{longWordIndex, shortWordIndex} :
+                new int[]{shortWordIndex, longWordIndex};
+        return shortAndLongWordIndex;
     }
 
-    private static void typeText(String text, String[] shortAndLongWord) {
+    private static StringBuilder convertToUpperCase(int[] shortAndLongWordIndex, String text) {
+        StringBuilder toUpperCase = new StringBuilder();
         if (text == null) {
-            System.out.println("null");
+            System.out.println(toUpperCase.append("null"));
+            return null;
+        }
+        if (text.equals("")) toUpperCase.append("Пустой текст.");
+        String[] cleanText = text.split(" ");
+        for (int i = 0; i < cleanText.length; i++) {
+            if (i >= shortAndLongWordIndex[0] && i <= shortAndLongWordIndex[1]) {
+                toUpperCase.append(cleanText[i].toUpperCase()).append(" ");
+            } else {
+                toUpperCase.append(cleanText[i]).append(" ");
+            }
+        }
+        return toUpperCase;
+    }
+
+    private static void imitateTypewriter(StringBuilder text) {
+        if (text == null) {
             return;
         }
         if (text.equals("")) System.out.println("Ошибка - пустой текст.");
-        int shortestWordIndex = 0;
-        int longestWordIndex = 0;
 
-        String[] cleanText = text.replaceAll("[^a-zA-Z0-9а-яА-Я.[++-]\\s]", "").split(" ");
-        for (int i = 0; i < cleanText.length; i++) {
-            if (cleanText[i].equals(shortAndLongWord[0])) {
-                shortestWordIndex = i;
-            } else if (cleanText[i].equals(shortAndLongWord[1])) {
-                longestWordIndex = i;
-            }
-        }
-
-        for (int i = 0; i < cleanText.length; i++) {
-            if (shortestWordIndex > longestWordIndex) {
-                if (i > longestWordIndex - 1 && i <= shortestWordIndex) {
-                    System.out.print(cleanText[i].toUpperCase() + " ");
-                } else {
-                    System.out.print(cleanText[i] + " ");
-                }
-            } else {
-                if (i > shortestWordIndex - 1 && i <= longestWordIndex) {
-                    System.out.print(cleanText[i].toUpperCase() + " ");
-                } else {
-                    System.out.print(cleanText[i] + " ");
-                }
-            }
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(text.charAt(i));
             try {
-                Thread.sleep(300);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
