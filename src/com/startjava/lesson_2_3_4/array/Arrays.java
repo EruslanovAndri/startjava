@@ -21,14 +21,16 @@ public class Arrays {
             } else if (origin[i] > LIMIT_NUMBER) {
                 System.out.println("Ошибка: факториал " + origin[i] + "! слишком велик (максимум 20!)");
             } else {
-                factorial = 1;
-                for (int j = 2; j <= origin[i]; j++) {
-                    factorial *= j;
-                }
+                factorial = fact(origin[i]);
             }
             factorials[i] = factorial;
         }
         return factorials;
+    }
+
+    public static long fact(int number) {
+        if (number <= 1) return 1;
+        return number * fact(number - 1);
     }
 
     public static StringBuilder convertToUpperCase(int[] shortAndLongWordIndex, String text) {
