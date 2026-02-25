@@ -25,6 +25,14 @@ public class Console {
         System.out.println();
     }
 
+    public static void print(String originLabel, int[] origin, String reversedLabel, int[] reversed) {
+        System.out.printf("""
+                %s %s
+                 %s %s
+                """, originLabel, java.util.Arrays.toString(origin),
+                reversedLabel, Arrays.toString(reversed));
+    }
+
     public static void printArray(float[] originArray, float[] changedArray, int index) {
         String[] arrayName = {"Исходный массив.", "Измененный массив."};
         float[][] arrays = {originArray, changedArray};
@@ -64,6 +72,16 @@ public class Console {
         expression.setLength(0);
     }
 
+    public static void printInLimitNumbersRange(int[] sorted, int limitNumbers) {
+        if (sorted != null) {
+            StringBuilder sortedNumbers = new StringBuilder();
+            for (int i = 0; i < sorted.length; i++) {
+                sortedNumbers.append(" ").append((i + 1) % limitNumbers == 0 ? "\n" : sorted[i]);
+            }
+            System.out.println(sortedNumbers);
+        }
+    }
+
     public static void printTriangle(char[] inputChars) {
         StringBuilder triangle = new StringBuilder();
         if (inputChars != null) {
@@ -80,28 +98,11 @@ public class Console {
         }
     }
 
-    public static void printTransactions(int[] transactions, int[] reversed) {
-        System.out.printf("""
-                Исходные транзакции: %s
-                 В обратном порядке: %s
-                """, java.util.Arrays.toString(transactions), Arrays.toString(reversed));
-    }
-
-    public static void printValidateResult(boolean isChecked, char[] password) {
+    public static void printValidateResult(String good, String bad, boolean isChecked, char[] password) {
         String result = (isChecked) ?
-                ANSI_RED + "x Strong Password: - " :
-                ANSI_GREEN + "✓ Password cracked: - ";
+                ANSI_RED + good :
+                ANSI_GREEN + bad;
         System.out.println(result + Arrays.toString(password) + RESET);
-    }
-
-    public static void printInLimitNumbersRange(int[] sorted, int limitNumbers) {
-        if (sorted != null) {
-            StringBuilder sortedNumbers = new StringBuilder();
-            for (int i = 0; i < sorted.length; i++) {
-                sortedNumbers.append(" ").append((i + 1) % limitNumbers == 0 ? "\n" : sorted[i]);
-            }
-            System.out.println(sortedNumbers);
-        }
     }
 
     public static void runSpinner() {
