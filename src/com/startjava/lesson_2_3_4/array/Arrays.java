@@ -28,11 +28,6 @@ public class Arrays {
         return factorials;
     }
 
-    public static long fact(int number) {
-        if (number <= 1) return 1;
-        return number * fact(number - 1);
-    }
-
     public static StringBuilder convertToUpperCase(int[] shortAndLongWordIndex, String text) {
         StringBuilder toUpperCase = new StringBuilder();
         if (text == null) {
@@ -49,93 +44,6 @@ public class Arrays {
             }
         }
         return toUpperCase;
-    }
-
-    public static int[] fillSortedUniqueNumbersArray(int start, int end, int limitNumbers) {
-        if (limitNumbers < 1) {
-            System.out.println("Ошибка: количество чисел в строке не должно быть < 1 (" + limitNumbers + ")");
-            return null;
-        }
-        if (start > end) {
-            System.out.println("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
-            return null;
-        }
-        int length = Math.abs(end - start);
-        if (length <= 0) {
-            System.out.println("Ошибка: длина массива должна быть > 0 (" + length + ")");
-            return null;
-        }
-        int[] uniqueNumbers = new int[length];
-        Random randomNumber = new Random();
-        for (int i = 0; i < uniqueNumbers.length; i++) {
-            uniqueNumbers[i] = randomNumber.nextInt(start, end + 1);
-            for (int j = 0; j < i; j++) {
-                if (uniqueNumbers[i] == uniqueNumbers[j]) {
-                    i--;
-                    break;
-                }
-            }
-        }
-        java.util.Arrays.sort(uniqueNumbers);
-        return uniqueNumbers;
-    }
-
-    public static char[] fillArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
-        if (leftSide > rightSide) {
-            System.out.println("Ошибка: левая граница (" + leftSide + ") > правой (" + rightSide + ")");
-            return null;
-        }
-        char[] sorted = new char[rightSide - leftSide + 1];
-        for (int i = 0; i < sorted.length; i++) {
-            sorted[i] = sortDirection ? leftSide++ : rightSide--;
-        }
-        return sorted;
-    }
-
-    public static float[] fillRandomArray() {
-        Random random = new Random();
-        float[] randomArray = new float[15];
-        for (int i = 0; i < randomArray.length; i++) {
-            randomArray[i] = random.nextFloat();
-        }
-        return randomArray;
-    }
-
-    public static int[] findShortestLongestWordIndex(String text) {
-        if (text == null) return null;
-        String[] cleanText = text.split(" ");
-        int index = 0;
-        String shortestWord = null;
-        int shortWordIndex = 0;
-        String longestWord = null;
-        int longWordIndex = 0;
-        for (String word : cleanText) {
-            word = word.trim();
-            if (!word.isEmpty() && !word.matches("\\p{Punct}")) {
-                if (shortestWord == null || word.length() < shortestWord.length()) {
-                    shortestWord = word;
-                    shortWordIndex = index;
-                } else if (longestWord == null || word.length() > longestWord.length()) {
-                    longestWord = word;
-                    longWordIndex = index;
-                }
-            }
-            index++;
-        }
-        int[] shortAndLongWordIndex = (shortWordIndex > longWordIndex) ?
-                new int[]{longWordIndex, shortWordIndex} :
-                new int[]{shortWordIndex, longWordIndex};
-        return shortAndLongWordIndex;
-    }
-
-    public static char[] generatePassword() {
-        Random random = new Random();
-        int length = random.nextInt(6, 13);
-        char[] password = new char[length];
-        for (int i = 0; i < password.length; i++) {
-            password[i] = (char) random.nextInt(33, 123);
-        }
-        return password;
     }
 
     public static boolean checkPassword(char[] password) {
@@ -203,19 +111,99 @@ public class Arrays {
         return false;
     }
 
-    public static int[] reverse(int[] transactions) {
-        if (transactions == null) return null;
-        if (transactions.length == 0) return transactions;
-
-        int length = transactions.length;
-        int[] reversedTransactions = new int[length];
-        for (int transaction : transactions) {
-            reversedTransactions[--length] = transaction;
-        }
-        return reversedTransactions;
+    public static long fact(int number) {
+        if (number <= 1) return 1;
+        return number * fact(number - 1);
     }
 
-    public static float[] remove(float[] originArray, int index) {
+    public static char[] fillArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
+        if (leftSide > rightSide) {
+            System.out.println("Ошибка: левая граница (" + leftSide + ") > правой (" + rightSide + ")");
+            return null;
+        }
+        char[] sorted = new char[rightSide - leftSide + 1];
+        for (int i = 0; i < sorted.length; i++) {
+            sorted[i] = sortDirection ? leftSide++ : rightSide--;
+        }
+        return sorted;
+    }
+
+    public static float[] fillRandomArray(int length) {
+        Random random = new Random();
+        float[] randomArray = new float[length];
+        for (int i = 0; i < randomArray.length; i++) {
+            randomArray[i] = random.nextFloat();
+        }
+        return randomArray;
+    }
+
+    public static int[] fillSortedUniqueNumbersArray(int start, int end, int limitNumbers) {
+        if (limitNumbers < 1) {
+            System.out.println("Ошибка: количество чисел в строке не должно быть < 1 (" + limitNumbers + ")");
+            return null;
+        }
+        if (start > end) {
+            System.out.println("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
+            return null;
+        }
+        int length = Math.abs(end - start);
+        if (length <= 0) {
+            System.out.println("Ошибка: длина массива должна быть > 0 (" + length + ")");
+            return null;
+        }
+        int[] uniqueNumbers = new int[length];
+        Random randomNumber = new Random();
+        for (int i = 0; i < uniqueNumbers.length; i++) {
+            uniqueNumbers[i] = randomNumber.nextInt(start, end + 1);
+            for (int j = 0; j < i; j++) {
+                if (uniqueNumbers[i] == uniqueNumbers[j]) {
+                    i--;
+                    break;
+                }
+            }
+        }
+        java.util.Arrays.sort(uniqueNumbers);
+        return uniqueNumbers;
+    }
+
+    public static int[] findShortestLongestWordIndex(String text) {
+        if (text == null) return null;
+        String[] cleanText = text.split(" ");
+        int index = 0;
+        String shortestWord = null;
+        int shortWordIndex = 0;
+        String longestWord = null;
+        int longWordIndex = 0;
+        for (String word : cleanText) {
+            word = word.trim();
+            if (!word.isEmpty() && !word.matches("\\p{Punct}")) {
+                if (shortestWord == null || word.length() < shortestWord.length()) {
+                    shortestWord = word;
+                    shortWordIndex = index;
+                } else if (longestWord == null || word.length() > longestWord.length()) {
+                    longestWord = word;
+                    longWordIndex = index;
+                }
+            }
+            index++;
+        }
+        int[] shortAndLongWordIndex = (shortWordIndex > longWordIndex) ?
+                new int[]{longWordIndex, shortWordIndex} :
+                new int[]{shortWordIndex, longWordIndex};
+        return shortAndLongWordIndex;
+    }
+
+    public static char[] generateCharArrayInRange() {
+        Random random = new Random();
+        int length = random.nextInt(6, 13);
+        char[] password = new char[length];
+        for (int i = 0; i < password.length; i++) {
+            password[i] = (char) random.nextInt(33, 123);
+        }
+        return password;
+    }
+
+    public static float[] removeBiggerElement(float[] originArray, int index) {
         if (index < 0) {
             System.out.println("Ошибка! Индекс (" + index + ") не может быть меньше 0.");
             return null;
@@ -234,5 +222,17 @@ public class Arrays {
             }
         }
         return changedArray;
+    }
+
+    public static int[] reverse(int[] numbers) {
+        if (numbers == null) return null;
+        if (numbers.length == 0) return numbers;
+
+        int length = numbers.length;
+        int[] reversed = new int[length];
+        for (int number : numbers) {
+            reversed[--length] = number;
+        }
+        return reversed;
     }
 }
