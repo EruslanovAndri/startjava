@@ -25,16 +25,24 @@ public class Console {
         System.out.println();
     }
 
-    public static void print(String originLabel, int[] origin, String reversedLabel, int[] reversed) {
+    public static void print(String msg, int[] array) {
         System.out.printf("""
                 %s %s
-                 %s %s
-                """, originLabel, java.util.Arrays.toString(origin),
-                reversedLabel, Arrays.toString(reversed));
+                """, msg, Arrays.toString(array));
+    }
+
+    public static void printExceptionMessage(String[] message) {
+        for (int i = 0; i < message.length; i++) {
+            System.out.print(message[i] + " ");
+        }
+        System.out.println();
     }
 
     public static void printArray(float[] originArray, float[] changedArray, int index) {
-        String[] arrayName = {"Исходный массив.", "Измененный массив."};
+        String[] arrayName = {
+                "Исходный массив.",
+                "Измененный массив."
+        };
         float[][] arrays = {originArray, changedArray};
         if (index >= 0 && index < originArray.length) {
             for (int i = 0; i < arrayName.length; i++) {
@@ -54,22 +62,21 @@ public class Console {
         }
     }
 
-    public static void printFactorialsExpressions(long[] factorials, int... origin) {
-        if (origin == null) return;
+    public static void printFactorialsExpressions(long[] factorials, int... inputNumbers) {
+        if (inputNumbers == null) return;
         StringBuilder expression = new StringBuilder();
-        for (int i = 0; i < origin.length; i++) {
-            if (origin[i] == 0 || origin[i] == 1) {
-                expression.append(origin[i]).append("! = 1").append("\n");
+        for (int i = 0; i < inputNumbers.length; i++) {
+            if (inputNumbers[i] == 0 || inputNumbers[i] == 1) {
+                expression.append(inputNumbers[i]).append("! = 1").append("\n");
             } else if (factorials[i] != -1) {
-                expression.append(origin[i]).append("! = ");
-                for (int j = 1; j < origin[i]; j++) {
+                expression.append(inputNumbers[i]).append("! = ");
+                for (int j = 1; j < inputNumbers[i]; j++) {
                     expression.append(j).append(" * ");
                 }
-                expression.append(origin[i]).append(" = ").append(factorials[i]).append("\n");
+                expression.append(inputNumbers[i]).append(" = ").append(factorials[i]).append("\n");
             }
         }
         System.out.print(expression);
-        expression.setLength(0);
     }
 
     public static void printInLimitNumbersRange(int[] sorted, int limitNumbers) {
