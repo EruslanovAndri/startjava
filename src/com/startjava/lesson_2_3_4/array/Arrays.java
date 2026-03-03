@@ -18,9 +18,11 @@ public class Arrays {
         for (int i = 0; i < inputNumbers.length; i++) {
             long factorial = -1;
             if (inputNumbers[i] < 0) {
-                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] + "! не определен");
+                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] +
+                        "! не определен");
             } else if (inputNumbers[i] > LIMIT_NUMBER) {
-                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] + " слишком велик (максимум 20!)");
+                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] +
+                        " слишком велик (максимум 20!)");
             } else {
                 factorial = factorial(inputNumbers[i]);
             }
@@ -119,7 +121,8 @@ public class Arrays {
 
     public static char[] fillArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
         if (leftSide > rightSide) {
-            Console.printErrorMessage("Ошибка: левая граница (" + leftSide + ") > правой (" + rightSide + ")");
+            Console.printErrorMessage("Ошибка: левая граница (" + leftSide +
+                    ") > правой (" + rightSide + ")");
             return null;
         }
         char[] sorted = new char[rightSide - leftSide + 1];
@@ -140,7 +143,8 @@ public class Arrays {
 
     public static int[] fillSortedUniqueNumbersArray(int start, int end, int limitNumbers) {
         if (limitNumbers < 1) {
-            Console.printErrorMessage("Ошибка: количество чисел в строке не должно быть < 1 (" + limitNumbers + ")");
+            Console.printErrorMessage("Ошибка: количество чисел в строке не должно быть < 1 (" +
+                    limitNumbers + ")");
             return null;
         }
         if (start > end) {
