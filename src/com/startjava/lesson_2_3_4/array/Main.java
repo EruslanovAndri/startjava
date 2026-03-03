@@ -24,22 +24,24 @@ public class Main {
         for (int[] transactions : inputTransactions) {
             int[] reversed = Arrays.reverse(transactions);
             Console.print("Исходные транзакции:", transactions);
-            Console.print("В обратном порядке:", reversed);
+            Console.print(" В обратном порядке:", reversed);
         }
+        Console.printEmptyString();
     }
 
     private static void calculateFactorial() {
-        int[][] factorialOrigins = {
+        int[][] inputNumbers = {
                 {0},
                 null,
                 {-5},
                 {21, 0, 7},
                 {1, 20, 5, -3}
         };
-        for (int[] origin : factorialOrigins) {
-            long[] factorialResult = Arrays.calculateFactorial(origin);
-            Console.printFactorialsExpressions(factorialResult, origin);
+        for (int[] numbers : inputNumbers) {
+            long[] factorialResult = Arrays.calculateFactorial(numbers);
+            Console.printFactorialsExpressions(factorialResult, numbers);
         }
+        Console.printEmptyString();
     }
 
     private static void deleteElementByIndex() {
@@ -55,6 +57,7 @@ public class Main {
         originRandom = Arrays.fillRandomArray(LENGTH);
         changed = Arrays.removeBiggerElement(originRandom, 14);
         Console.printArray(originRandom, changed, 14);
+        Console.printEmptyString();
     }
 
     private static void fillSortedChars() {
@@ -80,6 +83,7 @@ public class Main {
             Console.printValidateResult("x Strong Password: - ",
                     "✓ Password cracked: - ", isChecked, password[i]);
         }
+        Console.printEmptyString();
     }
 
     private static void fillSortedUniqueNumbers() {
@@ -93,6 +97,7 @@ public class Main {
         Console.printInLimitNumbersRange(uniqueNumbers, -3);
         uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(5, -8, 2);
         Console.printInLimitNumbersRange(uniqueNumbers, 2);
+        Console.printEmptyString();
     }
 
     private static void imitateTypewriter() {

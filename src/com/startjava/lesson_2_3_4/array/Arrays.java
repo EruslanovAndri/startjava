@@ -11,20 +11,18 @@ public class Arrays {
             {'1', '2', '3', '4', '5', '6'}
     };
 
-    public static long[] calculateFactorial(int... origin) {
-        if (origin == null || origin.length == 0) return null;
+    public static long[] calculateFactorial(int... inputNumbers) {
+        if (inputNumbers == null || inputNumbers.length == 0) return null;
 
-        long[] factorials = new long[origin.length];
-        for (int i = 0; i < origin.length; i++) {
+        long[] factorials = new long[inputNumbers.length];
+        for (int i = 0; i < inputNumbers.length; i++) {
             long factorial = -1;
-            if (origin[i] < 0) {
-                Console.printExceptionMessage(new String[]{"Ошибка: факториал ",
-                        Integer.toString(origin[i]), "! не определен"});
-            } else if (origin[i] > LIMIT_NUMBER) {
-                Console.printExceptionMessage(new String[]{"Ошибка: факториал ",
-                        Integer.toString(origin[i]), "! не определен"});
+            if (inputNumbers[i] < 0) {
+                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] + "! не определен");
+            } else if (inputNumbers[i] > LIMIT_NUMBER) {
+                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] + " слишком велик (максимум 20!)");
             } else {
-                factorial = factorial(origin[i]);
+                factorial = factorial(inputNumbers[i]);
             }
             factorials[i] = factorial;
         }
@@ -34,7 +32,7 @@ public class Arrays {
     public static StringBuilder convertToUpperCase(int[] shortAndLongWordIndex, String text) {
         StringBuilder toUpperCase = new StringBuilder();
         if (text == null) {
-            Console.printExceptionMessage(new String[]{"null"});
+            Console.printErrorMessage("null");
             return null;
         }
         if (text.equals("")) toUpperCase.append("Пустой текст.");
@@ -54,9 +52,9 @@ public class Arrays {
         if (password == null) return false;
         for (char[] inputPassword : passwordBlackList) {
             if (java.util.Arrays.equals(inputPassword, password)) {
-                Console.printExceptionMessage(new String[]{"Не используйте пароли из списка популярных: ",
-                        java.util.Arrays.toString(password),
-                        "\nhttps://nordpass.com/most-common-passwords-list"});
+                Console.printErrorMessage("Не используйте пароли из списка популярных: " +
+                        java.util.Arrays.toString(password) +
+                        "\nhttps://nordpass.com/most-common-passwords-list");
                 return false;
             }
         }
@@ -77,36 +75,35 @@ public class Arrays {
         }
         boolean hasLetters = (hasLowerCaseLetters && hasUpperCaseLetters);
         if (password.length == 0) {
-            Console.printExceptionMessage(new String[]{"Пароль не может быть пустым: "});
+            Console.printErrorMessage("Пароль не может быть пустым: ");
             return false;
         }
         if (password.length < MIN_LENGTH) {
-            Console.printExceptionMessage(new String[]{"Пароль должен быть не менее 8 символов: "});
+            Console.printErrorMessage("Пароль должен быть не менее 8 символов: ");
             return false;
         }
         if (hasDigits && !hasSpecialSymbols && !hasLetters) {
-            Console.printExceptionMessage(new String[]{"Пароль содержит только цифры: "});
+            Console.printErrorMessage("Пароль содержит только цифры: ");
             return false;
         }
         if (hasLetters && !hasDigits && !hasSpecialSymbols) {
-            Console.printExceptionMessage(new String[]{"Пароль содержит только буквы: "});
+            Console.printErrorMessage("Пароль содержит только буквы: ");
             return false;
         }
         if (hasSpecialSymbols && !hasDigits && !hasLetters) {
-            Console.printExceptionMessage(new String[]{"Пароль содержит только спец. символы: "});
+            Console.printErrorMessage("Пароль содержит только спец. символы: ");
             return false;
         }
         if (hasDigits && hasLetters && !hasSpecialSymbols) {
-            Console.printExceptionMessage(new String[]{"Пароль не содержит спец. символы: "});
+            Console.printErrorMessage("Пароль не содержит спец. символы: ");
             return false;
         }
         if (hasDigits && hasSpecialSymbols && !hasLetters) {
-            Console.printExceptionMessage(new String[]{
-                    "Пароль не содержит буквы нижнего и верхнего регистров: "});
+            Console.printErrorMessage("Пароль не содержит буквы нижнего и верхнего регистров: ");
             return false;
         }
         if (!hasDigits && hasSpecialSymbols && hasLetters) {
-            Console.printExceptionMessage(new String[]{"Пароль не содержит цифр: "});
+            Console.printErrorMessage("Пароль не содержит цифр: ");
             return false;
         }
         if (hasDigits && hasLetters && hasSpecialSymbols) {
@@ -122,9 +119,7 @@ public class Arrays {
 
     public static char[] fillArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
         if (leftSide > rightSide) {
-            Console.printExceptionMessage(new String[]{
-                    "Ошибка: левая граница (", Character.toString(leftSide),
-                    ") > правой (", Character.toString(rightSide), ")"});
+            Console.printErrorMessage("Ошибка: левая граница (" + leftSide + ") > правой (" + rightSide + ")");
             return null;
         }
         char[] sorted = new char[rightSide - leftSide + 1];
@@ -145,20 +140,16 @@ public class Arrays {
 
     public static int[] fillSortedUniqueNumbersArray(int start, int end, int limitNumbers) {
         if (limitNumbers < 1) {
-            Console.printExceptionMessage(new String[]{
-                    "Ошибка: количество чисел в строке не должно быть < 1 (",
-                    Integer.toString(limitNumbers), ")"});
+            Console.printErrorMessage("Ошибка: количество чисел в строке не должно быть < 1 (" + limitNumbers + ")");
             return null;
         }
         if (start > end) {
-            Console.printExceptionMessage(new String[]{"Ошибка: левая граница (", Integer.toString(start),
-                    ") > правой (", Integer.toString(end), ")"});
+            Console.printErrorMessage("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
             return null;
         }
         int length = Math.abs(end - start);
         if (length <= 0) {
-            Console.printExceptionMessage(new String[]{"Ошибка: длина массива должна быть > 0 (",
-                    Integer.toString(length), ")"});
+            Console.printErrorMessage("Ошибка: длина массива должна быть > 0 (" + length + ")");
             return null;
         }
         int[] uniqueNumbers = new int[length];
@@ -215,13 +206,11 @@ public class Arrays {
 
     public static float[] removeBiggerElement(float[] originArray, int index) {
         if (index < 0) {
-            Console.printExceptionMessage(new String[]{"Ошибка! Индекс (",
-                    Integer.toString(index), ") не может быть меньше 0."});
+            Console.printErrorMessage("Ошибка! Индекс (" + index + ") не может быть меньше 0.");
             return null;
         }
         if (index > originArray.length - 1) {
-            Console.printExceptionMessage(new String[]{"Ошибка! Индекс (",
-                    Integer.toString(index), ") больше длины массива."});
+            Console.printErrorMessage("Ошибка! Индекс (" + index + ") больше длины массива.");
             return null;
         }
 
@@ -238,7 +227,7 @@ public class Arrays {
 
     public static int[] reverse(int[] numbers) {
         if (numbers == null) return null;
-        if (numbers.length == 0) return numbers;
+        if (numbers.length == 0) return null;
 
         int length = numbers.length;
         int[] reversed = new int[length];

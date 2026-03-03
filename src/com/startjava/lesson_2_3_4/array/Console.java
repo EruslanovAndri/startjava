@@ -12,7 +12,7 @@ public class Console {
         if (text == null) {
             return;
         }
-        if (text.equals("")) System.out.println("Ошибка - пустой текст.");
+        if (text.equals("")) System.out.print("Ошибка - пустой текст.");
 
         for (int i = 0; i < text.length(); i++) {
             System.out.print(text.charAt(i));
@@ -26,16 +26,15 @@ public class Console {
     }
 
     public static void print(String msg, int[] array) {
-        System.out.printf("""
-                %s %s
-                """, msg, Arrays.toString(array));
+        System.out.println(msg + Arrays.toString(array));
     }
 
-    public static void printExceptionMessage(String[] message) {
-        for (int i = 0; i < message.length; i++) {
-            System.out.print(message[i] + " ");
-        }
+    public static void printEmptyString() {
         System.out.println();
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 
     public static void printArray(float[] originArray, float[] changedArray, int index) {
