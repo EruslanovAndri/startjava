@@ -11,6 +11,9 @@ public class Arrays {
             {'1', '2', '3', '4', '5', '6'}
     };
 
+    private Arrays() {
+    }
+
     public static long[] calculateFactorial(int... inputNumbers) {
         if (inputNumbers == null || inputNumbers.length == 0) return null;
 
@@ -31,7 +34,7 @@ public class Arrays {
         return factorials;
     }
 
-    public static StringBuilder convertToUpperCase(int[] shortAndLongWordIndex, String text) {
+    public static StringBuilder convertToUpperCaseInRange(int[] shortAndLongWordIndex, String text) {
         StringBuilder toUpperCase = new StringBuilder();
         if (text == null) {
             Console.printErrorMessage("null");

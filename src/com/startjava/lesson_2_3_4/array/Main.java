@@ -109,7 +109,7 @@ public class Main {
                 null, ""};
         for (String text : texts) {
             int[] shortAndLongWord = Arrays.findShortestLongestWordIndex(text);
-            StringBuilder convertToUpperCase = Arrays.convertToUpperCase(shortAndLongWord, text);
+            StringBuilder convertToUpperCase = Arrays.convertToUpperCaseInRange(shortAndLongWord, text);
             Console.imitateTypewriter(convertToUpperCase);
         }
     }

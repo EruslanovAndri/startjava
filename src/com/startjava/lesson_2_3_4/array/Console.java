@@ -8,6 +8,9 @@ public class Console {
     private static final String ANSI_GREEN = "\u001B[32m"; // Green color
     private static final String RESET = "\033[0m";
 
+    private Console() {
+    }
+
     public static void imitateTypewriter(StringBuilder text) {
         if (text == null) {
             return;
