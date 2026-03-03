@@ -233,8 +233,7 @@ public class Arrays {
     }
 
     public static int[] reverse(int[] numbers) {
-        if (numbers == null) return null;
-        if (numbers.length == 0) return null;
+        if (numbers == null || numbers.length == 0) return null;
 
         int length = numbers.length;
         int[] reversed = new int[length];
