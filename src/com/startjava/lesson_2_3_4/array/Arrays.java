@@ -21,11 +21,11 @@ public class Arrays {
         for (int i = 0; i < inputNumbers.length; i++) {
             long factorial = -1;
             if (inputNumbers[i] < 0) {
-                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] +
+                Console.printMessage("Ошибка: факториал " + inputNumbers[i] +
                         "! не определен");
             } else if (inputNumbers[i] > LIMIT_NUMBER) {
-                Console.printErrorMessage("Ошибка: факториал " + inputNumbers[i] +
-                        " слишком велик (максимум 20!)");
+                Console.printMessage("Ошибка: факториал " + inputNumbers[i] +
+                        " слишком велик (максимум " + LIMIT_NUMBER + ")");
             } else {
                 factorial = factorial(inputNumbers[i]);
             }
@@ -34,16 +34,16 @@ public class Arrays {
         return factorials;
     }
 
-    public static StringBuilder convertToUpperCaseInRange(int[] shortAndLongWordIndex, String text) {
+    public static StringBuilder convertToUpperCaseInRange(int[] shortestLongestWordIndex, String text) {
         StringBuilder toUpperCase = new StringBuilder();
         if (text == null) {
-            Console.printErrorMessage("null");
+            Console.printMessage("null");
             return null;
         }
-        if (text.equals("")) toUpperCase.append("Пустой текст.");
+        if (text.isEmpty()) toUpperCase.append("Пустой текст.");
         String[] cleanText = text.split(" ");
         for (int i = 0; i < cleanText.length; i++) {
-            if (i >= shortAndLongWordIndex[0] && i <= shortAndLongWordIndex[1]) {
+            if (i >= shortestLongestWordIndex[0] && i <= shortestLongestWordIndex[1]) {
                 toUpperCase.append(cleanText[i].toUpperCase()).append(" ");
             } else {
                 toUpperCase.append(cleanText[i]).append(" ");
@@ -57,8 +57,8 @@ public class Arrays {
         if (password == null) return false;
         for (char[] inputPassword : passwordBlackList) {
             if (java.util.Arrays.equals(inputPassword, password)) {
-                Console.printErrorMessage("Не используйте пароли из списка популярных: " +
-                        java.util.Arrays.toString(password) +
+                Console.printMessage("Не используйте пароли из списка популярных: " +
+                        String.valueOf(password) +
                         "\nhttps://nordpass.com/most-common-passwords-list");
                 return false;
             }
@@ -80,35 +80,35 @@ public class Arrays {
         }
         boolean hasLetters = (hasLowerCaseLetters && hasUpperCaseLetters);
         if (password.length == 0) {
-            Console.printErrorMessage("Пароль не может быть пустым: ");
+            Console.printMessage("Пароль не может быть пустым: ");
             return false;
         }
         if (password.length < MIN_LENGTH) {
-            Console.printErrorMessage("Пароль должен быть не менее 8 символов: ");
+            Console.printMessage("Пароль должен быть не менее 8 символов: ");
             return false;
         }
         if (hasDigits && !hasSpecialSymbols && !hasLetters) {
-            Console.printErrorMessage("Пароль содержит только цифры: ");
+            Console.printMessage("Пароль содержит только цифры: ");
             return false;
         }
         if (hasLetters && !hasDigits && !hasSpecialSymbols) {
-            Console.printErrorMessage("Пароль содержит только буквы: ");
+            Console.printMessage("Пароль содержит только буквы: ");
             return false;
         }
         if (hasSpecialSymbols && !hasDigits && !hasLetters) {
-            Console.printErrorMessage("Пароль содержит только спец. символы: ");
+            Console.printMessage("Пароль содержит только спец. символы: ");
             return false;
         }
         if (hasDigits && hasLetters && !hasSpecialSymbols) {
-            Console.printErrorMessage("Пароль не содержит спец. символы: ");
+            Console.printMessage("Пароль не содержит спец. символы: ");
             return false;
         }
         if (hasDigits && hasSpecialSymbols && !hasLetters) {
-            Console.printErrorMessage("Пароль не содержит буквы нижнего и верхнего регистров: ");
+            Console.printMessage("Пароль не содержит буквы нижнего и верхнего регистров: ");
             return false;
         }
         if (!hasDigits && hasSpecialSymbols && hasLetters) {
-            Console.printErrorMessage("Пароль не содержит цифр: ");
+            Console.printMessage("Пароль не содержит цифр: ");
             return false;
         }
         if (hasDigits && hasLetters && hasSpecialSymbols) {
@@ -122,41 +122,19 @@ public class Arrays {
         return number * factorial(number - 1);
     }
 
-    public static char[] fillArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
-        if (leftSide > rightSide) {
-            Console.printErrorMessage("Ошибка: левая граница (" + leftSide +
-                    ") > правой (" + rightSide + ")");
-            return null;
-        }
-        char[] sorted = new char[rightSide - leftSide + 1];
-        for (int i = 0; i < sorted.length; i++) {
-            sorted[i] = sortDirection ? leftSide++ : rightSide--;
-        }
-        return sorted;
-    }
-
-    public static float[] fillRandomArray(int length) {
-        Random random = new Random();
-        float[] randomArray = new float[length];
-        for (int i = 0; i < randomArray.length; i++) {
-            randomArray[i] = random.nextFloat();
-        }
-        return randomArray;
-    }
-
     public static int[] fillSortedUniqueNumbersArray(int start, int end, int limitNumbers) {
         if (limitNumbers < 1) {
-            Console.printErrorMessage("Ошибка: количество чисел в строке не должно быть < 1 (" +
+            Console.printMessage("Ошибка: количество чисел в строке не должно быть < 1 (" +
                     limitNumbers + ")");
             return null;
         }
         if (start > end) {
-            Console.printErrorMessage("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
+            Console.printMessage("Ошибка: левая граница (" + start + ") > правой (" + end + ")");
             return null;
         }
         int length = Math.abs(end - start);
         if (length <= 0) {
-            Console.printErrorMessage("Ошибка: длина массива должна быть > 0 (" + length + ")");
+            Console.printMessage("Ошибка: длина массива должна быть > 0 (" + length + ")");
             return null;
         }
         int[] uniqueNumbers = new int[length];
@@ -178,27 +156,27 @@ public class Arrays {
         if (text == null) return null;
         String[] cleanText = text.split(" ");
         int index = 0;
-        String shortestWord = null;
+        String shortestWord = cleanText[0];
         int shortWordIndex = 0;
-        String longestWord = null;
+        String longestWord = cleanText[0];
         int longWordIndex = 0;
         for (String word : cleanText) {
             word = word.trim();
             if (!word.isEmpty() && !word.matches("\\p{Punct}")) {
-                if (shortestWord == null || word.length() < shortestWord.length()) {
+                if (word.length() < shortestWord.length()) {
                     shortestWord = word;
                     shortWordIndex = index;
-                } else if (longestWord == null || word.length() > longestWord.length()) {
+                } else if (word.length() > longestWord.length()) {
                     longestWord = word;
                     longWordIndex = index;
                 }
             }
+
             index++;
         }
-        int[] shortAndLongWordIndex = (shortWordIndex > longWordIndex) ?
-                new int[]{longWordIndex, shortWordIndex} :
-                new int[]{shortWordIndex, longWordIndex};
-        return shortAndLongWordIndex;
+        return (shortWordIndex > longWordIndex)
+                ? new int[]{longWordIndex, shortWordIndex}
+                : new int[]{shortWordIndex, longWordIndex};
     }
 
     public static char[] generateCharArrayInRange() {
@@ -211,25 +189,26 @@ public class Arrays {
         return password;
     }
 
-    public static float[] removeBiggerElement(float[] originArray, int index) {
-        if (index < 0) {
-            Console.printErrorMessage("Ошибка! Индекс (" + index + ") не может быть меньше 0.");
+    public static char[] makeArraySortedChars(char leftSide, char rightSide, boolean sortDirection) {
+        if (leftSide > rightSide) {
+            Console.printMessage("\nОшибка: левая граница (" + leftSide +
+                    ") > правой (" + rightSide + ")");
             return null;
         }
-        if (index > originArray.length - 1) {
-            Console.printErrorMessage("Ошибка! Индекс (" + index + ") больше длины массива.");
-            return null;
+        char[] sorted = new char[rightSide - leftSide + 1];
+        for (int i = 0; i < sorted.length; i++) {
+            sorted[i] = sortDirection ? leftSide++ : rightSide--;
         }
+        return sorted;
+    }
 
-        float valueByIndex = originArray[index];
-        float[] changedArray = new float[originArray.length];
-        System.arraycopy(originArray, 0, changedArray, 0, originArray.length);
-        for (int i = 0; i < originArray.length; i++) {
-            if (originArray[i] > valueByIndex) {
-                changedArray[i] = 0;
-            }
+    public static float[] makeRandomArray(int length) {
+        Random random = new Random();
+        float[] randomArray = new float[length];
+        for (int i = 0; i < randomArray.length; i++) {
+            randomArray[i] = random.nextFloat();
         }
-        return changedArray;
+        return randomArray;
     }
 
     public static int[] reverse(int[] numbers) {
@@ -241,5 +220,26 @@ public class Arrays {
             reversed[--length] = number;
         }
         return reversed;
+    }
+
+    public static float[] zeroOutElementsBeyond(float[] originArray, int index) {
+        if (index < 0) {
+            Console.printMessage("Ошибка! Индекс (" + index + ") не может быть меньше 0.");
+            return null;
+        }
+        if (index > originArray.length - 1) {
+            Console.printMessage("Ошибка! Индекс (" + index + ") больше длины массива.");
+            return null;
+        }
+
+        float valueByIndex = originArray[index];
+        float[] changedArray = originArray.clone();
+
+        for (int i = 0; i < originArray.length; i++) {
+            if (originArray[i] > valueByIndex) {
+                changedArray[i] = 0;
+            }
+        }
+        return changedArray;
     }
 }

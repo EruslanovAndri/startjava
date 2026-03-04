@@ -45,30 +45,41 @@ public class Main {
     }
 
     private static void deleteElementByIndex() {
-        float[] originRandom = Arrays.fillRandomArray(LENGTH);
-        float[] changed = Arrays.removeBiggerElement(originRandom, -1);
-        Console.printArray(originRandom, changed, -1);
-        originRandom = Arrays.fillRandomArray(LENGTH);
-        changed = Arrays.removeBiggerElement(originRandom, 15);
-        Console.printArray(originRandom, changed, 15);
-        originRandom = Arrays.fillRandomArray(LENGTH);
-        changed = Arrays.removeBiggerElement(originRandom, 0);
-        Console.printArray(originRandom, changed, 0);
-        originRandom = Arrays.fillRandomArray(LENGTH);
-        changed = Arrays.removeBiggerElement(originRandom, 14);
-        Console.printArray(originRandom, changed, 14);
+        int[] indexes = {-1, 15, 0, 14};
+        for (int index : indexes) {
+            float[] originRandom = Arrays.makeRandomArray(LENGTH);
+            float[] changed = Arrays.zeroOutElementsBeyond(originRandom, index);
+            Console.printArray("\nИсходный массив:", originRandom,
+                    "\n Значение из ячейки по переданному индексу = ", index);
+            Console.printArray("\nИзмененный массив:", changed,
+                    "\n Значение из ячейки по переданному индексу = ", index);
+        }
         Console.printEmptyString();
     }
 
     private static void fillSortedChars() {
         char[][] sortedChars = {
-                Arrays.fillArraySortedChars('0', '9', true),
-                Arrays.fillArraySortedChars('/', '!', false),
-                Arrays.fillArraySortedChars('A', 'Z', false)
+                Arrays.makeArraySortedChars('0', '9', true),
+                Arrays.makeArraySortedChars('/', '!', false),
+                Arrays.makeArraySortedChars('A', 'J', false)
         };
         for (char[] array : sortedChars) {
             Console.printTriangle(array);
         }
+    }
+
+    private static void fillSortedUniqueNumbers() {
+        int[] uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(-30, -10, 23);
+        Console.printInLimitNumbersRange(uniqueNumbers, 23);
+        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(10, 50, 10);
+        Console.printInLimitNumbersRange(uniqueNumbers, 10);
+        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(-34, -34, 1);
+        Console.printInLimitNumbersRange(uniqueNumbers, 1);
+        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(-1, 2, -3);
+        Console.printInLimitNumbersRange(uniqueNumbers, -3);
+        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(5, -8, 2);
+        Console.printInLimitNumbersRange(uniqueNumbers, 2);
+        Console.printEmptyString();
     }
 
     private static void checkPasswordStrength() {
@@ -83,20 +94,6 @@ public class Main {
             Console.printValidateResult("x Strong Password: - ",
                     "✓ Password cracked: - ", isChecked, password[i]);
         }
-        Console.printEmptyString();
-    }
-
-    private static void fillSortedUniqueNumbers() {
-        int[] uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(-50, -10, 23);
-        Console.printInLimitNumbersRange(uniqueNumbers, 23);
-        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(10, 50, 10);
-        Console.printInLimitNumbersRange(uniqueNumbers, 10);
-        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(-34, -34, 1);
-        Console.printInLimitNumbersRange(uniqueNumbers, 1);
-        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(-1, 2, -3);
-        Console.printInLimitNumbersRange(uniqueNumbers, -3);
-        uniqueNumbers = Arrays.fillSortedUniqueNumbersArray(5, -8, 2);
-        Console.printInLimitNumbersRange(uniqueNumbers, 2);
         Console.printEmptyString();
     }
 

@@ -36,31 +36,24 @@ public class Console {
         System.out.println();
     }
 
-    public static void printErrorMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
-    public static void printArray(float[] originArray, float[] changedArray, int index) {
-        String[] arrayName = {
-                "Исходный массив.",
-                "Измененный массив."
-        };
-        float[][] arrays = {originArray, changedArray};
-        if (index >= 0 && index < originArray.length) {
-            for (int i = 0; i < arrayName.length; i++) {
-                System.out.println("\n" + arrayName[i]);
-                for (int j = 0; j < 8; j++) {
-                    System.out.printf("%6.3f", arrays[i][j]);
-                }
-                System.out.println();
-                for (int j = 8; j < 15; j++) {
-                    System.out.printf("%6.3f", arrays[i][j]);
-                }
-                if (i == 0) {
-                    System.out.printf("%n%s%4.3f%n", "Переданный индекс = ", arrays[i][index]);
+    public static void printArray(String message, float[] array, String indexMessage, int index) {
+        if (array == null) return;
+        if (index >= 0 && index < array.length) {
+            System.out.println(message);
+            for (int i = 0; i < array.length; i++) {
+                if (i < 8) {
+                    System.out.printf("%6.3f", array[i]);
+                } else if (i == 8) {
+                    System.out.printf("%n%6.3f", array[i]);
+                } else {
+                    System.out.printf("%6.3f", array[i]);
                 }
             }
-            System.out.println();
+            System.out.printf("%s%6.3f", indexMessage, array[index]);
         }
     }
 
@@ -111,7 +104,7 @@ public class Console {
         String result = (isChecked) ?
                 ANSI_RED + good :
                 ANSI_GREEN + bad;
-        System.out.println(result + Arrays.toString(password) + RESET);
+        System.out.println(result + String.valueOf(password) + RESET);
     }
 
     public static void runSpinner() {
