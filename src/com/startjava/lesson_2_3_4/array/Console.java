@@ -28,8 +28,8 @@ public class Console {
         System.out.println();
     }
 
-    public static void print(String msg, int[] array) {
-        System.out.println(msg + Arrays.toString(array));
+    public static void print(String message, int[] array) {
+        System.out.println(message + Arrays.toString(array));
     }
 
     public static void printEmptyString() {
