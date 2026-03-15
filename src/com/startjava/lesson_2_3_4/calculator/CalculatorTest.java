@@ -20,7 +20,7 @@ public class CalculatorTest {
                     calc.getNumber1(), calc.getSing(), calc.getNumber2(), "=", calc.getResult());
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-                again = scanner.next();
+                again = scanner.next().toLowerCase();
             } while (!"no".equals(again) && !"yes".equals(again)); 
         }
     }
