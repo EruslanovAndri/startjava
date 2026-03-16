@@ -7,18 +7,14 @@ public class HangmanGameMain {
         HangmanGame game = new HangmanGame();
         String again = "yes";
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        while (!"no".equals(again)) {
             if ("yes".equals(again)) {
                 game.start();
                 System.out.print("Хотите продолжить игру [yes/no]? ");
-                again = scanner.next().toLowerCase();
-            } else if ("no".equals(again)) {
-                break;
-            } else if (!"yes".equals(again) && !"no".equals(again)) {
-                System.out.println("Ответ должен быть только yes или no! ");
-                System.out.print("Хотите продолжить игру [yes/no]? ");
-                again = scanner.next().toLowerCase();
+            } else {
+                System.out.print("Введите только yes или no - ");
             }
+            again = scanner.next().toLowerCase();
         }
     }
 }
