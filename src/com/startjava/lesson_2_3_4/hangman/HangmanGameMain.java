@@ -16,5 +16,6 @@ public class HangmanGameMain {
             }
             again = scanner.next().toLowerCase();
         }
+        System.out.println("Конец игры!");
     }
 }
