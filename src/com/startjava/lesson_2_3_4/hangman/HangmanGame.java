@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HangmanGame {
-    private static String[] gallows = {
+    private String[] gallows = {
             "______",
             "|    |",
             "|    @",
@@ -12,50 +12,54 @@ public class HangmanGame {
             "|   / \\",
             "| GAME OVER!"
     };
-    private static Scanner scanner = new Scanner(System.in);
-    private static int currentAttempts;
-    private static int attemptsLeft;
-    private static int totalSteps;
-    private static StringBuilder wrongLetters = new StringBuilder();
-    private static StringBuilder usedLetters = new StringBuilder();
+    private Scanner scanner = new Scanner(System.in);
+    private int currentAttempts;
+    private int attemptsLeft;
+    private int totalSteps;
+    private String secretWord;
+    private StringBuilder wrongLetters = new StringBuilder();
+    private StringBuilder usedLetters = new StringBuilder();
+    private StringBuilder maskOfHiddenWord = new StringBuilder();
 
     public void start() {
-        String secretWord = getWordToGuess();
-        StringBuilder hiddenWord = maskWord(secretWord);
-        printStartMessage(hiddenWord);
+        secretWord = getWordToGuess();
+        maskOfHiddenWord = maskWord(secretWord);
+        printStartMessage(maskOfHiddenWord);
 
         while (attemptsLeft < gallows.length) {
             char letter = inputLetter();
             currentAttempts++;
             findLetterInWord(secretWord, letter);
-            replaceAsteriskToLetter(secretWord, letter, hiddenWord);
-            printGallows();
+            replaceAsteriskToLetter(secretWord, letter, maskOfHiddenWord);
             printGameInfo();
-            if (isWin(secretWord, hiddenWord)) {
+            printGallows();
+            if (isWin(secretWord, maskOfHiddenWord)) {
                 break;
-            } else if (hasAttempts(secretWord)) {
+            }
+            if (!hasAttempts(secretWord)) {
                 break;
             }
         }
         resetCounters();
     }
 
-    private static String getWordToGuess() {
-        String[] words = {"ребёнок", "шалаш", "земля", "рыба", "мир", "Хлопушка"};
+    private String getWordToGuess() {
+        String[] words = {"ребёнок", "шалаш", "земля", "рыба", "мир", "Хлопушка", "чайник", "хлеб"};
         Random random = new Random();
         int index = random.nextInt(words.length);
         return words[index].toLowerCase();
     }
 
-    private static StringBuilder maskWord(String word) {
-        return new StringBuilder("*".repeat(word.length()));
+    private StringBuilder maskWord(String secretWord) {
+        return new StringBuilder("*".repeat(secretWord.length()));
     }
 
-    private static void printStartMessage(StringBuilder hiddenWord) {
-        System.out.println("Игра началась!\nУгадайте слово загаданное компьютером (" + hiddenWord + ")");
+    private void printStartMessage(StringBuilder maskOfHiddenWord) {
+        System.out.println("Игра началась!" +
+                "\nУгадайте слово загаданное компьютером (" + maskOfHiddenWord + ")");
     }
 
-    private static char inputLetter() {
+    private char inputLetter() {
         while (true) {
             System.out.print("Введите букву от а-я: ");
             char letter = scanner.next().toLowerCase().charAt(0);
@@ -69,8 +73,8 @@ public class HangmanGame {
         }
     }
 
-    private static void findLetterInWord(String word, char letter) {
-        if (word.contains(Character.toString(letter))) {
+    private void findLetterInWord(String secretWord, char letter) {
+        if (secretWord.contains(Character.toString(letter))) {
             System.out.print("Буква (" + letter + ") есть в слове ");
             decreaseTotalSteps();
         } else {
@@ -81,46 +85,47 @@ public class HangmanGame {
         }
     }
 
-    private static void replaceAsteriskToLetter(String originWord, char letter, StringBuilder targetWord) {
-        for (int i = 0; i < originWord.length(); i++) {
-            if (originWord.charAt(i) == letter) {
-                targetWord.replace(i, i + 1, Character.toString(letter).toUpperCase());
+    private void replaceAsteriskToLetter(String secretWord, char letter, StringBuilder maskOfHiddenWord) {
+        for (int i = 0; i < secretWord.length(); i++) {
+            if (secretWord.charAt(i) == letter) {
+                maskOfHiddenWord.setCharAt(i, Character.toUpperCase(letter));
             }
         }
-        System.out.println("(" + targetWord + ")");
     }
 
-    private static void printGallows() {
+    private void printGallows() {
         for (int i = 0; i < totalSteps; i++) {
             System.out.println(gallows[i]);
         }
     }
 
-    private static void printGameInfo() {
+    private void printGameInfo() {
         System.out.printf("""
-                    Текущее кол-во попыток - %d
-                    Ошибочные буквы - %s%n
-                    """, currentAttempts, wrongLetters);
+                (%s)
+                Текущее кол-во попыток - %d
+                Ошибочные буквы - %s
+                """, maskOfHiddenWord, currentAttempts, wrongLetters);
     }
 
-    private static boolean isWin(String word, StringBuilder hideWord) {
-        if (word.equals(hideWord.toString().toLowerCase())) {
-            System.out.println("Вы угадали слово (" + word.toUpperCase() +
+    private boolean isWin(String secretWord, StringBuilder maskOfHiddenWord) {
+        if (secretWord.equals(maskOfHiddenWord.toString().toLowerCase())) {
+            System.out.println("Вы угадали слово (" + secretWord.toUpperCase() +
                     ") за (" + currentAttempts + ") попыток.\n");
             return true;
         }
         return false;
     }
 
-    private static boolean hasAttempts(String word) {
+    private boolean hasAttempts(String secretWord) {
         if (attemptsLeft == gallows.length) {
-            System.out.println("Вы не угадали слово (" + word.toUpperCase() + ")\n");
-            return true;
+            System.out.println("Попытки закончились! Вы не угадали слово (" +
+                    secretWord.toUpperCase() + ")\n");
+            return false;
         }
-        return false;
+        return true;
     }
 
-    private static void resetCounters() {
+    private void resetCounters() {
         currentAttempts = 0;
         totalSteps = 0;
         attemptsLeft = 0;
@@ -136,7 +141,7 @@ public class HangmanGame {
         return false;
     }
 
-    private static void decreaseTotalSteps() {
+    private void decreaseTotalSteps() {
         if (totalSteps != 0) totalSteps--;
     }
 }
