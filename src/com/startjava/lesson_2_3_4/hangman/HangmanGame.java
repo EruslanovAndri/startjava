@@ -19,24 +19,21 @@ public class HangmanGame {
     private String secretWord;
     private StringBuilder wrongLetters = new StringBuilder();
     private StringBuilder usedLetters = new StringBuilder();
-    private StringBuilder maskOfHiddenWord = new StringBuilder();
+    private StringBuilder maskOfSecretWord = new StringBuilder();
 
     public void start() {
         secretWord = getWordToGuess();
-        maskOfHiddenWord = maskWord(secretWord);
-        printStartMessage(maskOfHiddenWord);
+        maskOfSecretWord = maskWord(secretWord);
+        printStartMessage(maskOfSecretWord);
 
         while (attemptsLeft < gallows.length) {
             char letter = inputLetter();
             currentAttempts++;
             findLetterInWord(secretWord, letter);
-            replaceAsteriskToLetter(secretWord, letter, maskOfHiddenWord);
+            replaceAsteriskToLetter(secretWord, letter, maskOfSecretWord);
             printGameInfo();
             printGallows();
-            if (isWin(secretWord, maskOfHiddenWord)) {
-                break;
-            }
-            if (!hasAttempts(secretWord)) {
+            if (isWin(secretWord, maskOfSecretWord) || !hasAttempts(secretWord)) {
                 break;
             }
         }
@@ -104,7 +101,7 @@ public class HangmanGame {
                 (%s)
                 Текущее кол-во попыток - %d
                 Ошибочные буквы - %s
-                """, maskOfHiddenWord, currentAttempts, wrongLetters);
+                """, maskOfSecretWord, currentAttempts, wrongLetters);
     }
 
     private boolean isWin(String secretWord, StringBuilder maskOfHiddenWord) {
