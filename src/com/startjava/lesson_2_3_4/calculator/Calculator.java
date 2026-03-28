@@ -1,77 +1,65 @@
 package com.startjava.lesson_2_3_4.calculator;
 
+import java.util.Scanner;
+
 public class Calculator {
+    private final int length = 3;
     private int number1;
+    private String sing;
     private int number2;
-    private char sing;
     private double result;
 
-    public int getNumber1() {
-        return number1;
-    }
-
-    public int setNumber1(int number1) {
-        return this.number1 = number1;
-    }
-
-    public int getNumber2() {
-        return number2;
-    }
-
-    public int setNumber2(int number2) {
-        return this.number2 = number2;
-    }
-
-    public char getSing() {
-        return sing;
-    }
-
-    public char setSing(char sing) {
-        if (sing != '+' && sing != '-' && sing != '*' && sing != '/' && sing != '^' && sing != '%') {
-            throw new IllegalArgumentException("Ошибка: операция " + sing + " не поддерживается");
+    public String[] getExpression() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
+        String input = scanner.nextLine().toLowerCase().trim();
+        String[] expression = null;
+        if (input.length() > length) {
+            expression = input.trim().replaceAll("\s+", " ").split(" ");
         }
-        return this.sing = sing;
+        return expression;
     }
 
-    public double getResult() {
+    public double calculate(String[] expression) {
+        number1 = Integer.parseInt(expression[0]);
+        sing = expression[1];
+        number2 = Integer.parseInt(expression[2]);
+        if (number2 == 0 && (sing.equals("/") || sing.equals("%"))) {
+            System.out.println("Деление на ноль.");
+            return result = Double.NaN;
+        }
+        switch (sing) {
+            case "+":
+                result = (double) number1 + number2;
+                break;
+            case "-":
+                result = (double) number1 - number2;
+                break;
+            case "*":
+                result = (double) number1 * number2;
+                break;
+            case "/":
+                result = (double) number1 / number2;
+                break;
+            case "^":
+                result = Math.pow(number1, number2);
+                break;
+            case "%":
+                result = Math.floorMod(number1, number2);
+                break;
+            default:
+        }
         return result;
     }
 
-    public void calculate() {
-        switch (sing) {
-            case '+':
-                result = number1 + number2;
-                break;
-            case '-':
-                result = number1 - number2;
-                break;
-            case '*':
-                result = number1 * number2;
-                break;
-            case '/':
-                if (number2 == 0) {
-                    System.out.println("Ошибка: деление на ноль запрещено ");
-                } else {
-                    result = (double) number1 / number2;
-                }
-                break;
-            case '^':
-                int tmp = 1;
-                if (number2 != 0) {
-                    for (int i = 0; i < Math.abs(number2); i++) {
-                        tmp *= number1;
-                    }
-                    result = (number2 > 0) ? tmp : (double) 1 / tmp; 
-                }
-                break;
-            case '%':
-                if (number2 == 0) {
-                    System.out.println("Ошибка: деление на ноль запрещено ");
-                } else {
-                    result = (double) number1 % number2;
-                }
-                break;
-            default:
+    public void printResult() {
+        java.text.DecimalFormat df = new java.text.DecimalFormat("#.###");
+        if (!Double.isNaN(result)) {
+            if (result % 1 == 0) {
+                System.out.printf("%d %s %d %s %d %n", number1, sing, number2, "=", (int) result);
+            } else {
+                System.out.printf("%d %s %d %s %s %n", number1, sing, number2, "=", df.format(result));
+            }
         }
     }
 }
