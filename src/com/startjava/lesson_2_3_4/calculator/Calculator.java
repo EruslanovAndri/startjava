@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3_4.calculator;
 import java.util.Scanner;
 
 public class Calculator {
-    private final int length = 3;
+    private static final int LENGTH = 3;
     private int number1;
     private String sing;
     private int number2;
@@ -14,7 +14,7 @@ public class Calculator {
         System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
         String input = scanner.nextLine().toLowerCase().trim();
         String[] expression = null;
-        if (input.length() > length) {
+        if (input.length() > LENGTH) {
             expression = input.trim().replaceAll("\s+", " ").split(" ");
         }
         return expression;
