@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-import java.util.Scanner;
-
 public class Calculator {
     private static final int LENGTH = 3;
     private int number1;
@@ -9,57 +7,30 @@ public class Calculator {
     private int number2;
     private double result;
 
-    public String[] getExpression() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
-        String input = scanner.nextLine().toLowerCase().trim();
-        String[] expression = null;
-        if (input.length() > LENGTH) {
-            expression = input.trim().replaceAll("\s+", " ").split(" ");
-        }
-        return expression;
-    }
-
-    public double calculate(String[] expression) {
+    public double calculate(String input) {
+        String[] expression = input.split(" ");
         number1 = Integer.parseInt(expression[0]);
         sing = expression[1];
         number2 = Integer.parseInt(expression[2]);
         if (number2 == 0 && (sing.equals("/") || sing.equals("%"))) {
-            System.out.println("Деление на ноль.");
+            System.out.println("Деление на ноль запрещено.");
             return result = Double.NaN;
         }
         switch (sing) {
             case "+":
-                result = (double) number1 + number2;
-                break;
+                return result = (double) number1 + number2;
             case "-":
-                result = (double) number1 - number2;
-                break;
+                return result = (double) number1 - number2;
             case "*":
-                result = (double) number1 * number2;
-                break;
+                return result = (double) number1 * number2;
             case "/":
-                result = (double) number1 / number2;
-                break;
+                return result = (double) number1 / number2;
             case "^":
-                result = Math.pow(number1, number2);
-                break;
+                return result = Math.pow(number1, number2);
             case "%":
-                result = Math.floorMod(number1, number2);
-                break;
+                return result = Math.floorMod(number1, number2);
             default:
         }
         return result;
-    }
-
-    public void printResult() {
-        java.text.DecimalFormat df = new java.text.DecimalFormat("#.###");
-        if (!Double.isNaN(result)) {
-            if (result % 1 == 0) {
-                System.out.printf("%d %s %d %s %d %n", number1, sing, number2, "=", (int) result);
-            } else {
-                System.out.printf("%d %s %d %s %s %n", number1, sing, number2, "=", df.format(result));
-            }
-        }
     }
 }
