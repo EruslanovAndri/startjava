@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class CalculatorTest {
-    public static void main(String[] args) throws MyException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Calculator calc = new Calculator();
         String again = "yes";
@@ -12,11 +12,9 @@ public class CalculatorTest {
         while (!"no".equals(again)) {
             if ("yes".equals(again)) {
                 System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
-                String input = scanner.nextLine();
+                String input = scanner.nextLine().replaceAll("\\s+", " ").trim();
                 double result = calc.calculate(input);
-                if (result != 0) {
-                    printResult(result, input);
-                }
+                printResult(result, input);
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             } else {
                 System.out.print("Введите корректный ответ [yes/no]: ");
@@ -29,7 +27,7 @@ public class CalculatorTest {
     private static void printResult(double result, String input) {
         DecimalFormat df = new DecimalFormat("#.###");
         String cleanInput = input.replaceAll("\\s+", " ").trim();
-        if (!Double.isNaN(result)) {
+        if (result != 0) {
             if (result % 1 == 0) {
                 System.out.printf("%s %s %d %n", cleanInput, "=", (int) result);
             } else {
