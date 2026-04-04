@@ -11,10 +11,9 @@ public class CalculatorTest {
 
         while (!"no".equals(again)) {
             if ("yes".equals(again)) {
-                System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
-                String input = scanner.nextLine().replaceAll("\\s+", " ").trim();
-                double result = calc.calculate(input);
-                printResult(result, input);
+                String expression = getExpression();
+                double result = calc.calculate(expression);
+                printResult(result, expression);
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             } else {
                 System.out.print("Введите корректный ответ [yes/no]: ");
@@ -24,15 +23,17 @@ public class CalculatorTest {
         System.out.println("Калькулятор закрыт.");
     }
 
-    private static void printResult(double result, String input) {
+    private static void printResult(double result, String expression) {
         DecimalFormat df = new DecimalFormat("#.###");
-        String cleanInput = input.replaceAll("\\s+", " ").trim();
         if (result != 0) {
-            if (result % 1 == 0) {
-                System.out.printf("%s %s %d %n", cleanInput, "=", (int) result);
-            } else {
-                System.out.printf("%s %s %s %n", cleanInput, "=", df.format(result));
-            }
+            System.out.printf("%s %s %s %n", expression, "=", df.format(result));
         }
+    }
+
+    private static String getExpression() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
+        String expression = scanner.nextLine().replaceAll("\\s+", " ").trim();
+        return expression;
     }
 }
