@@ -8,11 +8,10 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         Calculator calc = new Calculator();
         String again = "yes";
-
         while (!"no".equals(again)) {
             if ("yes".equals(again)) {
-                String expression = getExpression();
-                double result = calc.calculate(expression);
+                String expression = inputExpression();
+                Double result = calc.calculate(expression);
                 printResult(result, expression);
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             } else {
@@ -23,17 +22,16 @@ public class CalculatorTest {
         System.out.println("Калькулятор закрыт.");
     }
 
-    private static void printResult(double result, String expression) {
-        DecimalFormat df = new DecimalFormat("#.###");
-        if (result != 0) {
-            System.out.printf("%s %s %s %n", expression, "=", df.format(result));
-        }
-    }
-
-    private static String getExpression() {
+    private static String inputExpression() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
-        String expression = scanner.nextLine().replaceAll("\\s+", " ").trim();
-        return expression;
+        return scanner.nextLine().trim().replaceAll("\\s+", " ");
+    }
+
+    private static void printResult(Double result, String expression) {
+        DecimalFormat df = new DecimalFormat("#.###");
+        if (result != null) {
+            System.out.printf("%s %s %s %n", expression, "=", df.format(result));
+        }
     }
 }
