@@ -15,7 +15,7 @@ public class CalculatorTest {
                     printResult(result, expression);
                 }
                 Calculator.resetExceptionMessage();
-                System.out.print("Хотите продолжить вычисления? [yes/no]: ");
+                System.out.print("\nХотите продолжить вычисления? [yes/no]: ");
             } else {
                 System.out.print("Введите корректный ответ [yes/no]: ");
             }

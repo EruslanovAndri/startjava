@@ -36,13 +36,13 @@ public class Calculator {
                         "' не поддерживается." + "\nДопустимые операции - [+-/*^%]");
             };
         } catch (ArrayIndexOutOfBoundsException | ArithmeticException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             exceptionMessage = e.getMessage();
         } catch (NumberFormatException e) {
-            System.out.println("Необходимо ввести только цифры");
+            System.err.println("Необходимо ввести только цифры");
             exceptionMessage = e.getMessage();
         } catch (InvalidSingException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             exceptionMessage = e.getMessage();
         }
         return result;
