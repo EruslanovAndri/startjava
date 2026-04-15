@@ -4,15 +4,6 @@ import java.util.Arrays;
 
 public class Calculator {
     private static final int MAX_LENGTH = 3;
-    private static String exceptionMessage;
-
-    public static String getExceptionMessage() {
-        return exceptionMessage;
-    }
-
-    public static String resetExceptionMessage() {
-        return exceptionMessage = null;
-    }
 
     public static double calculate(String expression) {
         String[] args = expression.split(" ");
@@ -23,7 +14,7 @@ public class Calculator {
             String sing = args[1];
             int number2 = Integer.parseInt(args[2]);
             if (number2 == 0 && sing.equals("/") || sing.equals("%")) {
-                throw new ArithmeticException("Деление на ноль запрещено.");
+                throw new ArithmeticException();
             }
             result = switch (sing) {
                 case "+" -> number1 + number2;
@@ -32,26 +23,25 @@ public class Calculator {
                 case "^" -> Math.pow(number1, number2);
                 case "/" -> (double) number1 / number2;
                 case "%" -> Math.floorMod(number1, number2);
-                default -> throw new InvalidSingException("Ошибка: операция '" + sing +
-                        "' не поддерживается." + "\nДопустимые операции - [+-/*^%]");
+                default -> throw new InvalidSingException();
             };
-        } catch (ArrayIndexOutOfBoundsException | ArithmeticException e) {
-            System.err.println(e.getMessage());
-            exceptionMessage = e.getMessage();
+        } catch (ArithmeticException e) {
+            throw new ArithmeticException("Деление на ноль запрещено.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ArrayIndexOutOfBoundsException("Введённое выражение '" + Arrays.toString(args) +
+                    "' не соответствует необходимому формату.\nПрограмма ожидает: 2 + 2");
         } catch (NumberFormatException e) {
-            System.err.println("Необходимо ввести только цифры");
-            exceptionMessage = e.getMessage();
+            throw new NumberFormatException("Необходимо ввести только цифры");
         } catch (InvalidSingException e) {
-            System.err.println(e.getMessage());
-            exceptionMessage = e.getMessage();
+            throw new InvalidSingException("Ошибка: операция '" + args[1] +
+                    "' не поддерживается.\nДопустимые операции - [+-/*^%]");
         }
         return result;
     }
 
     private static void validateExpressionLength(String[] args) {
         if (args.length != MAX_LENGTH) {
-            throw new ArrayIndexOutOfBoundsException("Введённое выражение '" + Arrays.toString(args) +
-                    "' не соответствует необходимому формату.\nПрограмма ожидает: 2 + 2");
+            throw new ArrayIndexOutOfBoundsException();
         }
     }
 }
