@@ -14,7 +14,7 @@ public class CalculatorTest {
                     double result = Calculator.calculate(expression);
                     printResult(result, expression);
                 } catch (RuntimeException e) {
-                    System.out.print(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
                 System.out.print("\nХотите продолжить вычисления? [yes/no]: ");
             } else {
