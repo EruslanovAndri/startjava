@@ -9,12 +9,13 @@ public class CalculatorTest {
         String again = "yes";
         while (!"no".equals(again)) {
             if ("yes".equals(again)) {
-                String expression = inputExpression();
-                double result = Calculator.calculate(expression);
-                if (Calculator.getExceptionMessage() == null) {
+                try {
+                    String expression = inputExpression();
+                    double result = Calculator.calculate(expression);
                     printResult(result, expression);
+                } catch (RuntimeException e) {
+                    System.out.print(e.getMessage());
                 }
-                Calculator.resetExceptionMessage();
                 System.out.print("\nХотите продолжить вычисления? [yes/no]: ");
             } else {
                 System.out.print("Введите корректный ответ [yes/no]: ");
@@ -32,6 +33,6 @@ public class CalculatorTest {
 
     private static void printResult(double result, String expression) {
         DecimalFormat df = new DecimalFormat("#.###");
-        System.out.printf("%s %s %s %n", expression, "=", df.format(result));
+        System.out.printf("%s %s %s", expression, "=", df.format(result));
     }
 }
