@@ -8,16 +8,16 @@ public class Player {
     private int number;
     private int[] playerNumber = new int[10];
 
+    public int[] getPlayerNumber() {
+        return this.playerNumber;
+    }
+
     public Player(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getNumber() {
@@ -30,11 +30,16 @@ public class Player {
         while (true) {
             System.out.print("Число вводит " + name + " - ");
             number = scanner.nextInt();
-            if (number >= 1 && number <= 100) {
-                this.number = number;
-                break;
-            } else {
-                System.out.println("Число должно входить в отрезок [1, 100].\n Попробуйте еще раз:");
+            try {
+                if (number >= 1 && number <= 100) {
+                    this.number = number;
+                    break;
+                } else {
+                    throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
+                            "\nПопробуйте еще раз:");
+                }
+            } catch (NumberOutOfRangeException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

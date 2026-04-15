@@ -1,5 +1,7 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Arrays;
+
 public class GuessNumber {
     private static final int MAX_ATTEMPT = 10;
     private Player playerOne;
@@ -51,13 +53,9 @@ public class GuessNumber {
             }
             attempt++;
         }
-        if (winner == 1) {
-            playerOne.showInputNumber(attempt);
-            playerTwo.showInputNumber(attempt - 1);
-        } else {
-            playerOne.showInputNumber(attempt - 1);
-            playerTwo.showInputNumber(attempt);
-        }
+        showGameResult(attempt);
+        cleanInputNumber(playerOne, attempt);
+        cleanInputNumber(playerTwo, attempt);
     }
 
     private void compareNumber(Player player) {
@@ -67,4 +65,20 @@ public class GuessNumber {
         System.out.println(compareResult);
     }
 
+    private void showGameResult(int attempt) {
+        if (winner == 1) {
+            playerOne.showInputNumber(attempt);
+            playerTwo.showInputNumber(attempt - 1);
+        } else if (winner == 2) {
+            playerOne.showInputNumber(attempt - 1);
+            playerTwo.showInputNumber(attempt);
+        } else {
+            playerOne.showInputNumber(attempt);
+            playerTwo.showInputNumber(attempt);
+        }
+    }
+
+    public void cleanInputNumber(Player player, int attempt) {
+        Arrays.fill(player.getPlayerNumber(), 0, attempt, 0);
+    }
 }
