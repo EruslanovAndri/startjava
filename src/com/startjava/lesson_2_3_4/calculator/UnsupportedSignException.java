@@ -1,11 +1,7 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-
-
-public class InvalidSingException extends RuntimeException {
-    public InvalidSingException() {
-    }
-    public InvalidSingException(String message) {
+public class UnsupportedSignException extends RuntimeException {
+    public UnsupportedSignException(String message) {
         super(message);
     }
 }

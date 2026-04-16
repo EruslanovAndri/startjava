@@ -4,8 +4,9 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class CalculatorTest {
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         String again = "yes";
         while (!"no".equals(again)) {
             if ("yes".equals(again)) {
@@ -26,7 +27,6 @@ public class CalculatorTest {
     }
 
     private static String inputExpression() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Введите выражение из трех аргументов, например, 2 ^ 10: ");
         return scanner.nextLine().trim().replaceAll("\\s+", " ");
     }

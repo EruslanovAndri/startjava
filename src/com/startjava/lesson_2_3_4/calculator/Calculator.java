@@ -11,37 +11,31 @@ public class Calculator {
         try {
             validateExpressionLength(args);
             int number1 = Integer.parseInt(args[0]);
-            String sing = args[1];
+            String sign = args[1];
             int number2 = Integer.parseInt(args[2]);
-            if (number2 == 0 && sing.equals("/") || sing.equals("%")) {
-                throw new ArithmeticException();
+            if (number2 == 0 && (sign.equals("/") || sign.equals("%"))) {
+                throw new ArithmeticException("Деление на ноль запрещено.");
             }
-            result = switch (sing) {
+            result = switch (sign) {
                 case "+" -> number1 + number2;
                 case "-" -> number1 - number2;
                 case "*" -> number1 * number2;
                 case "^" -> Math.pow(number1, number2);
                 case "/" -> (double) number1 / number2;
                 case "%" -> Math.floorMod(number1, number2);
-                default -> throw new InvalidSingException();
+                default -> throw new UnsupportedSignException("Ошибка: операция '" + sign +
+                        "' не поддерживается.\nДопустимые операции - [+-/*^%]");
             };
-        } catch (ArithmeticException e) {
-            throw new ArithmeticException("Деление на ноль запрещено.");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException("Введённое выражение '" + Arrays.toString(args) +
-                    "' не соответствует необходимому формату.\nПрограмма ожидает: 2 + 2");
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Необходимо ввести только цифры");
-        } catch (InvalidSingException e) {
-            throw new InvalidSingException("Ошибка: операция '" + args[1] +
-                    "' не поддерживается.\nДопустимые операции - [+-/*^%]");
         }
         return result;
     }
 
     private static void validateExpressionLength(String[] args) {
         if (args.length != MAX_LENGTH) {
-            throw new ArrayIndexOutOfBoundsException();
+            throw new IncorrectExpressionException("Введённое выражение '" + Arrays.toString(args) +
+                    "' не соответствует необходимому формату.\nПрограмма ожидает: 2 + 2");
         }
     }
 }
