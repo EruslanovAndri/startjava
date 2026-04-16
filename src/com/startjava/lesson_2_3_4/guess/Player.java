@@ -50,7 +50,7 @@ public class Player {
 
     public void showInputNumber(int attempt) {
         int[] inputNumber = Arrays.copyOf(playerNumber, attempt);
-        System.out.print("Игрок с именем " + getName() + " ввел - ");
+        System.out.print("Игрок с именем " + name + " ввел - ");
         for (int i = 0; i < inputNumber.length; i++) {
             System.out.print(inputNumber[i] + " ");
         }

@@ -22,9 +22,9 @@ public class GuessNumber {
         int attempt = 1;
         generateSecretNumber();
         System.out.printf("""
-                Игра началась! У каждого игрока по 10 попыток.
-                Угадай число которое загадал компьютер! %d
-                """, secretNumber);
+                Игра началась! У каждого игрока по %d попыток.
+                Угадай число которое загадал компьютер!
+                """, MAX_ATTEMPT);
         while (true) {
             System.out.println("Попытка номер " + attempt);
             playerOne.setNumber();
