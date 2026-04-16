@@ -8,10 +8,6 @@ public class Player {
     private int number;
     private int[] playerNumber = new int[10];
 
-    public int[] getPlayerNumber() {
-        return this.playerNumber;
-    }
-
     public Player(String name) {
         this.name = name;
     }
@@ -22,6 +18,10 @@ public class Player {
 
     public int getNumber() {
         return number;
+    }
+
+    public int[] getPlayerNumber() {
+        return this.playerNumber;
     }
 
     public void setNumber() {
