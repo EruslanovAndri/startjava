@@ -14,10 +14,6 @@ public class GuessNumber {
         this.playerTwo = playerTwo;
     }
 
-    public void generateSecretNumber() {
-        secretNumber = (int) (Math.random() * 100 + 1);
-    }
-
     public void start() {
         int attempt = 1;
         generateSecretNumber();
@@ -58,6 +54,10 @@ public class GuessNumber {
         cleanInputNumber(playerTwo, attempt);
     }
 
+    private void generateSecretNumber() {
+        secretNumber = (int) (Math.random() * 100 + 1);
+    }
+
     private void compareNumber(Player player) {
         String compareResult = (player.getNumber() > secretNumber) ?
                 "Введенное число больше секретного числа." :
@@ -78,7 +78,7 @@ public class GuessNumber {
         }
     }
 
-    public void cleanInputNumber(Player player, int attempt) {
+    private void cleanInputNumber(Player player, int attempt) {
         Arrays.fill(player.getPlayerNumber(), 0, attempt, 0);
     }
 }
