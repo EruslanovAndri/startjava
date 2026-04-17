@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Player {
     private String name;
     private int number;
-    private int[] playerNumber = new int[10];
+    private int[] inputNumber = new int[10];
 
     public Player(String name) {
         this.name = name;
@@ -18,10 +18,6 @@ public class Player {
 
     public int getNumber() {
         return number;
-    }
-
-    public int[] getPlayerNumber() {
-        return this.playerNumber;
     }
 
     public void setNumber() {
@@ -45,15 +41,19 @@ public class Player {
     }
 
     public void addNumber(int attempt) {
-        playerNumber[attempt - 1] = getNumber();
+        inputNumber[attempt - 1] = getNumber();
     }
 
     public void showInputNumber(int attempt) {
-        int[] inputNumber = Arrays.copyOf(playerNumber, attempt);
+        int[] inputNumber = Arrays.copyOf(this.inputNumber, attempt);
         System.out.print("Игрок с именем " + name + " ввел - ");
         for (int num : inputNumber) {
             System.out.print(num + " ");
         }
         System.out.println();
+    }
+
+    public void cleanInputNumber(int attempt) {
+        Arrays.fill(inputNumber, 0, attempt, 0);
     }
 }

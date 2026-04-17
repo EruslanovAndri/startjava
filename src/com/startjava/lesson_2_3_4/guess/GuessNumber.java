@@ -23,8 +23,7 @@ public class GuessNumber {
                 """, MAX_ATTEMPT);
         while (true) {
             System.out.println("Попытка номер " + attempt);
-            playerOne.setNumber();
-            playerOne.addNumber(attempt);
+            makeGuess(playerOne, attempt);
             compareNumber(playerOne);
             if (playerOne.getNumber() == secretNumber) {
                 System.out.println(playerOne.getName() + " Угадал число (" + secretNumber +
@@ -33,8 +32,7 @@ public class GuessNumber {
                 break;
             }
 
-            playerTwo.setNumber();
-            playerTwo.addNumber(attempt);
+            makeGuess(playerTwo, attempt);
             compareNumber(playerTwo);
             if (playerTwo.getNumber() == secretNumber) {
                 System.out.println(playerTwo.getName() + " Угадал число (" + secretNumber +
@@ -50,12 +48,17 @@ public class GuessNumber {
             attempt++;
         }
         showGameResult(attempt);
-        cleanInputNumber(playerOne, attempt);
-        cleanInputNumber(playerTwo, attempt);
+        playerOne.cleanInputNumber(attempt);
+        playerTwo.cleanInputNumber(attempt);
     }
 
     private void generateSecretNumber() {
         secretNumber = (int) (Math.random() * 100 + 1);
+    }
+
+    private void makeGuess(Player player, int attempt) {
+        player.setNumber();
+        player.addNumber(attempt);
     }
 
     private void compareNumber(Player player) {
@@ -76,9 +79,5 @@ public class GuessNumber {
             playerOne.showInputNumber(attempt);
             playerTwo.showInputNumber(attempt);
         }
-    }
-
-    private void cleanInputNumber(Player player, int attempt) {
-        Arrays.fill(player.getPlayerNumber(), 0, attempt, 0);
     }
 }
