@@ -1,12 +1,11 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Player {
     private String name;
-    private int number;
-    private int[] inputNumber = new int[10];
+    private int[] inputNumber = new int[5];
+    private int attempt;
 
     public Player(String name) {
         this.name = name;
@@ -16,44 +15,36 @@ public class Player {
         return name;
     }
 
-    public int getNumber() {
-        return number;
+    public int getAttempt() {
+        return attempt;
     }
 
-    public void setNumber() {
-        Scanner scanner = new Scanner(System.in);
-        int number;
-        while (true) {
-            System.out.print("Число вводит " + name + " - ");
-            number = scanner.nextInt();
-            try {
-                if (number >= 1 && number <= 100) {
-                    this.number = number;
-                    break;
-                } else {
-                    throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
-                            "\nПопробуйте еще раз:");
-                }
-            } catch (NumberOutOfRangeException e) {
-                System.out.println(e.getMessage());
-            }
+    public void setAttempt(int attempt) {
+        this.attempt = attempt;
+    }
+
+    public void addAttempt() {
+        attempt++;
+    }
+
+    public void addNumber(int number) {
+        if (number < 1 || number > 100) {
+            throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
+                    "\nПопробуйте еще раз:");
+        } else {
+            inputNumber[attempt - 1] = number;
         }
     }
 
-    public void addNumber(int attempt) {
-        inputNumber[attempt - 1] = getNumber();
+    public int getInputNumber() {
+        return inputNumber[attempt - 1];
     }
 
-    public void showInputNumber(int attempt) {
-        int[] inputNumber = Arrays.copyOf(this.inputNumber, attempt);
-        System.out.print("Игрок с именем " + name + " ввел - ");
-        for (int num : inputNumber) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+    public int[] inputNumber() {
+        return Arrays.copyOf(inputNumber, attempt);
     }
 
-    public void cleanInputNumber(int attempt) {
+    public void cleanInputNumber() {
         Arrays.fill(inputNumber, 0, attempt, 0);
     }
 }
