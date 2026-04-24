@@ -41,10 +41,6 @@ public class GuessNumber {
         }
         showInputNumber(playerOne);
         showInputNumber(playerTwo);
-        playerOne.cleanInputNumber();
-        playerTwo.cleanInputNumber();
-        playerOne.setAttempt(0);
-        playerTwo.setAttempt(0);
     }
 
     private void generateSecretNumber() {
@@ -67,21 +63,6 @@ public class GuessNumber {
         }
     }
 
-    private void compareNumber(Player player) {
-        String compareResult = (player.getInputNumber() > secretNumber) ?
-                "Введенное число больше секретного числа." :
-                "Введенное число меньше секретного числа.";
-        System.out.println(compareResult);
-    }
-
-    private void showInputNumber(Player player) {
-        System.out.print("Игрок " + player.getName() + " ввел - ");
-        for (int num : player.inputNumber()) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
-    }
-
     private boolean isGuessed(Player player) {
         if (player.getInputNumber() == secretNumber) {
             System.out.println(player.getName() + " Угадал число (" + secretNumber +
@@ -91,11 +72,28 @@ public class GuessNumber {
         return false;
     }
 
+    private void compareNumber(Player player) {
+        String compareResult = (player.getInputNumber() > secretNumber) ?
+                "Введенное число больше секретного числа." :
+                "Введенное число меньше секретного числа.";
+        System.out.println(compareResult);
+    }
+
     private boolean hasAttempt(Player player) {
         if (player.getAttempt() == MAX_ATTEMPT) {
             System.out.println("У " + player.getName() + " закончились попытки.");
             return true;
         }
         return false;
+    }
+
+    private void showInputNumber(Player player) {
+        System.out.print("Игрок " + player.getName() + " ввел - ");
+        for (int num : player.inputNumber()) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        player.cleanInputNumber();
+        player.setAttempt(0);
     }
 }
