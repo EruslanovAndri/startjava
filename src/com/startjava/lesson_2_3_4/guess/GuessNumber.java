@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumber {
-    private static final int MAX_ATTEMPT = 5;
+    private static final int MAX_ATTEMPT = 10;
     private Player playerOne;
     private Player playerTwo;
     private int secretNumber;
