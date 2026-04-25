@@ -9,7 +9,7 @@ public class Calculator {
     public static double calculate(String expression) {
         String[] args = expression.split(" ");
         int number1;
-        String sign = args[1];;
+        String sign = args[1];
         int number2;
         throwIfInvalidExpressionLength(args);
         try {
