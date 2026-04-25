@@ -19,32 +19,26 @@ public class Player {
         return attempt;
     }
 
-    public void setAttempt(int attempt) {
-        this.attempt = attempt;
-    }
-
-    public void addAttempt() {
-        attempt++;
-    }
-
     public void addNumber(int number) {
         if (number < 1 || number > 100) {
             throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
                     "\nПопробуйте еще раз:");
         } else {
+            attempt++;
             inputNumber[attempt - 1] = number;
         }
     }
 
-    public int getInputNumber() {
+    public int getLastNumber() {
         return inputNumber[attempt - 1];
     }
 
-    public int[] inputNumber() {
+    public int[] getInputNumber() {
         return Arrays.copyOf(inputNumber, attempt);
     }
 
-    public void cleanInputNumber() {
+    public void clear() {
         Arrays.fill(inputNumber, 0, attempt, 0);
+        attempt = 0;
     }
 }
