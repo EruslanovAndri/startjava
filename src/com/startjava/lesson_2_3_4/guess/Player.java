@@ -3,8 +3,8 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
-    private static final int START_RAGE = 1;
-    private static final int END_RAGE = 100;
+    private static final int START_RANGE = 1;
+    private static final int END_RANGE = 100;
     private static final int ONE = 1;
     private String name;
     private int[] inputNumber = new int[10];
@@ -23,7 +23,7 @@ public class Player {
     }
 
     public void addNumber(int number) {
-        if (number < START_RAGE || number > END_RAGE) {
+        if (number < START_RANGE || number > END_RANGE) {
             throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
                     "\nПопробуйте еще раз:");
         } else {
