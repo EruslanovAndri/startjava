@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class Player {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 100;
-    private static final int ONE = 1;
+    private static final int CAPACITY = 10;
     private String name;
-    private int[] inputNumber = new int[10];
+    private int[] inputNumber = new int[CAPACITY];
     private int attempt;
 
     public Player(String name) {
@@ -27,16 +27,16 @@ public class Player {
             throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
                     "\nПопробуйте еще раз:");
         } else {
-            attempt++;
-            inputNumber[attempt - ONE] = number;
+            inputNumber[attempt] = number;
         }
+        attempt++;
     }
 
     public int getLastNumber() {
-        return inputNumber[attempt - ONE];
+        return inputNumber[attempt - 1];
     }
 
-    public int[] getInputNumber() {
+    public int[] getInputNumbers() {
         return Arrays.copyOf(inputNumber, attempt);
     }
 
