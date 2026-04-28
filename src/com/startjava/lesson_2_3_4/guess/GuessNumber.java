@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class GuessNumber {
     private static final int MAX_ATTEMPT = 10;
+    private static Scanner scanner = new Scanner(System.in);
     private Player playerOne;
     private Player playerTwo;
     private int secretNumber;
-    private static Scanner scanner = new Scanner(System.in);
 
     public GuessNumber(Player playerOne, Player playerTwo) {
         this.playerOne = playerOne;
@@ -18,7 +18,7 @@ public class GuessNumber {
     }
 
     public void start() {
-        printRulesGame();
+        printGameRules();
         while (true) {
             makeGuess(playerOne);
             if (isGuessed(playerOne)) {
@@ -30,15 +30,17 @@ public class GuessNumber {
                 break;
             }
 
-            if (hasAttempt(playerOne) && hasAttempt(playerTwo)) {
+            if (!hasAttempt(playerOne) && !hasAttempt(playerTwo)) {
                 break;
             }
         }
-        showInputNumber(playerOne);
-        showInputNumber(playerTwo);
+        showInputNumbers(playerOne);
+        showInputNumbers(playerTwo);
+        playerOne.clear();
+        playerTwo.clear();
     }
 
-    private void printRulesGame() {
+    private void printGameRules() {
         System.out.printf("""
                 Игра началась! 
                 Угадай число которое загадал компьютер!
@@ -76,17 +78,16 @@ public class GuessNumber {
     private boolean hasAttempt(Player player) {
         if (player.getAttempt() == MAX_ATTEMPT) {
             System.out.println("У " + player.getName() + " закончились попытки.");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
-    private void showInputNumber(Player player) {
+    private void showInputNumbers(Player player) {
         System.out.print("Игрок " + player.getName() + " ввел - ");
-        for (int number : player.getInputNumber()) {
+        for (int number : player.getInputNumbers()) {
             System.out.print(number + " ");
         }
         System.out.println();
-        player.clear();
     }
 }
