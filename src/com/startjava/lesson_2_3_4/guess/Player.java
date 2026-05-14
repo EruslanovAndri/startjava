@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class Player {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 100;
-    private static final int CAPACITY = 10;
+    public static final int MAX_ATTEMPT = 10;
     private String name;
-    private int[] inputNumber = new int[CAPACITY];
+    private int[] inputNumber = new int[MAX_ATTEMPT];
     private int attempt;
 
     public Player(String name) {
@@ -25,10 +25,9 @@ public class Player {
     public void addNumber(int number) {
         if (number < START_RANGE || number > END_RANGE) {
             throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
-                    "\nПопробуйте еще раз:");
-        } else {
-            inputNumber[attempt] = number;
+                    "\nПопробуйте еще раз " + name);
         }
+        inputNumber[attempt] = number;
         attempt++;
     }
 
