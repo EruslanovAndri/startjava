@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumber {
-    private static final int MAX_ATTEMPT = 10;
     private static Scanner scanner = new Scanner(System.in);
     private Player playerOne;
     private Player playerTwo;
@@ -20,13 +19,9 @@ public class GuessNumber {
     public void start() {
         printGameRules();
         while (true) {
-            makeGuess(playerOne);
-            if (isGuessed(playerOne)) {
+            if (makeGuess(playerOne)) {
                 break;
-            }
-
-            makeGuess(playerTwo);
-            if (isGuessed(playerTwo)) {
+            } else if (makeGuess(playerTwo)) {
                 break;
             }
 
@@ -34,8 +29,8 @@ public class GuessNumber {
                 break;
             }
         }
-        showInputNumbers(playerOne);
-        showInputNumbers(playerTwo);
+        printInputNumbers(playerOne);
+        printInputNumbers(playerTwo);
         playerOne.clear();
         playerTwo.clear();
     }
@@ -45,10 +40,10 @@ public class GuessNumber {
                 Игра началась! 
                 Угадай число которое загадал компьютер!
                 У каждого игрока по %d попыток.
-                """, MAX_ATTEMPT);
+                """, Player.MAX_ATTEMPT);
     }
 
-    private static void makeGuess(Player player) {
+    private boolean makeGuess(Player player) {
         System.out.print("Попытка № " + player.getAttempt() +
                 "\nЧисло вводит " + player.getName() + " - ");
         while (true) {
@@ -60,6 +55,7 @@ public class GuessNumber {
                 System.out.println(e.getMessage());
             }
         }
+        return isGuessed(player);
     }
 
     private boolean isGuessed(Player player) {
@@ -76,14 +72,14 @@ public class GuessNumber {
     }
 
     private boolean hasAttempt(Player player) {
-        if (player.getAttempt() == MAX_ATTEMPT) {
+        if (player.getAttempt() == Player.MAX_ATTEMPT) {
             System.out.println("У " + player.getName() + " закончились попытки.");
             return false;
         }
         return true;
     }
 
-    private void showInputNumbers(Player player) {
+    private void printInputNumbers(Player player) {
         System.out.print("Игрок " + player.getName() + " ввел - ");
         for (int number : player.getInputNumbers()) {
             System.out.print(number + " ");
