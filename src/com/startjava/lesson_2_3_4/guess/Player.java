@@ -1,11 +1,12 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Player {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 100;
-    public static final int MAX_ATTEMPT = 10;
+    public static final int MAX_ATTEMPT = 5;
     private String name;
     private int[] inputNumber = new int[MAX_ATTEMPT];
     private int attempt;

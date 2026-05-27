@@ -4,35 +4,52 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumber {
+    private static int maxRounds = 3;
     private static Scanner scanner = new Scanner(System.in);
-    private Player playerOne;
-    private Player playerTwo;
+    private static int currentStepCounter;
+    private static int roundCounter;
+    private Player[] players;
     private int secretNumber;
 
-    public GuessNumber(Player playerOne, Player playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+    public GuessNumber(Player[] players) {
+        this.players = players;
         Random random = new Random();
         secretNumber = random.nextInt(1, 101);
     }
 
-    public void start() {
-        printGameRules();
-        while (true) {
-            if (makeGuess(playerOne)) {
-                break;
-            } else if (makeGuess(playerTwo)) {
-                break;
-            }
+    public static int getMaxRounds() {
+        return GuessNumber.maxRounds;
+    }
 
-            if (!hasAttempt(playerOne) && !hasAttempt(playerTwo)) {
-                break;
+    public static int getRoundCounter() {
+        return GuessNumber.roundCounter;
+    }
+
+    public void start(Player[] players) {
+        roundCounter++;
+        if (roundCounter == 1) {
+            printGameRules();
+        }
+        boolean guessed = true;
+        while (guessed) {
+            for (Player player : players) {
+                if (makeGuess(player)) {
+                    guessed = false;
+                    break;
+                }
+                if (!hasAttempt(player)) {
+                    currentStepCounter++;
+                    if (currentStepCounter == players.length) {
+                        break;
+                    }
+                    guessed = false;
+                }
             }
         }
-        printInputNumbers(playerOne);
-        printInputNumbers(playerTwo);
-        playerOne.clear();
-        playerTwo.clear();
+        for (Player player : players) {
+            printInputNumbers(player);
+            player.clear();
+        }
     }
 
     private void printGameRules() {
@@ -40,7 +57,8 @@ public class GuessNumber {
                 Игра началась! 
                 Угадай число которое загадал компьютер!
                 У каждого игрока по %d попыток.
-                """, Player.MAX_ATTEMPT);
+                Победить будет определен по итогам %d-х раундов.
+                """, Player.MAX_ATTEMPT, maxRounds);
     }
 
     private boolean makeGuess(Player player) {
@@ -60,8 +78,10 @@ public class GuessNumber {
 
     private boolean isGuessed(Player player) {
         if (player.getLastNumber() == secretNumber) {
-            System.out.println(player.getName() + " Угадал число (" + secretNumber +
-                    ") c " + player.getAttempt() + "-й попытки.");
+            System.out.printf("""
+                   В раунде %d победил %s
+                   он угадал число (%d) c %s-й попытки.
+                    """, roundCounter, player.getName(), secretNumber, player.getAttempt());
             return true;
         }
         String compareResult = (player.getLastNumber() > secretNumber) ?
@@ -74,13 +94,17 @@ public class GuessNumber {
     private boolean hasAttempt(Player player) {
         if (player.getAttempt() == Player.MAX_ATTEMPT) {
             System.out.println("У " + player.getName() + " закончились попытки.");
+            if (currentStepCounter == Player.MAX_ATTEMPT) {
+                System.out.println(currentStepCounter);
+                System.out.printf("В %d раунде никто не угадал число.\n", roundCounter);
+            }
             return false;
         }
         return true;
     }
 
     private void printInputNumbers(Player player) {
-        System.out.print("Игрок " + player.getName() + " ввел - ");
+        System.out.print("\tИгрок " + player.getName() + " ввел - ");
         for (int number : player.getInputNumbers()) {
             System.out.print(number + " ");
         }
