@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Player {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 100;
-    public static final int MAX_ATTEMPT = 1;
+    public static final int MAX_ATTEMPT = 10;
     private String name;
     private int[] enteredNumbers;
     private int attempt;

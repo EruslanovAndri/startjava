@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,34 +11,34 @@ public class GuessNumber {
     private static int currentRound;
     private static int round;
     private Player[] players;
-    private int[] scores = {0, 0, 0};
+    private int[] scores;
     private int secretNumber;
 
     public GuessNumber() {
         players = createPlayers();
-        Random random = new Random();
-        secretNumber = random.nextInt(1, 101);
+        scores = new int[players.length];
     }
 
     public void start() {
         printGameRules();
         for (round = 1; round <= MAX_ROUNDS; round++) {
+            Random random = new Random();
+            secretNumber = random.nextInt(1, 101);
             for (currentRound = 1; currentRound <= Player.MAX_ATTEMPT; currentRound++) {
-                System.out.println("Number = " + secretNumber);
                 for (int i = 0; i < players.length; i++) {
                     if (makeGuess(players[i])) {
-                        printInputNumbers(players);
-                        round++;
+                        scores[i] += 1;
                         for (Player player : players) {
+                            printPlayerNumbers(player);
                             player.clear();
-                            currentRound = 0;
                         }
+                        currentRound = 10;
                         break;
                     }
 
                     if (!hasAttempt(players[i]) && i == players.length - 1) {
-                        printInputNumbers(players);
                         for (Player player : players) {
+                            printPlayerNumbers(player);
                             player.clear();
                         }
                         break;
@@ -45,6 +46,7 @@ public class GuessNumber {
                 }
             }
         }
+        showWinner(scores);
     }
 
     private static Player[] createPlayers() {
@@ -123,20 +125,22 @@ public class GuessNumber {
     }
 
     private boolean hasAttempt(Player player) {
-        if (currentRound == Player.MAX_ATTEMPT) {
+        if (player.getAttempt() == Player.MAX_ATTEMPT) {
             System.out.println("У " + player.getName() + " закончились попытки.");
             return false;
         }
         return true;
     }
 
-    private void printInputNumbers(Player[] players) {
-        for (Player player : players) {
-            System.out.print("\tИгрок " + player.getName() + " ввел - ");
-            for (int number : player.getEnteredNumbers()) {
-                System.out.print(number + " ");
-            }
-            System.out.println();
+    private void printPlayerNumbers(Player player) {
+        System.out.print("\tИгрок " + player.getName() + " ввел - ");
+        for (int number : player.getEnteredNumbers()) {
+            System.out.print(number + " ");
         }
+        System.out.println();
+    }
+
+    private void showWinner(int[] scores) {
+        System.out.println(Arrays.toString(scores));
     }
 }

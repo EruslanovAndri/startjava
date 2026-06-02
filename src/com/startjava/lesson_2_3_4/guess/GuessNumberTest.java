@@ -9,8 +9,8 @@ public class GuessNumberTest {
         String again = "yes";
         GuessNumber game = new GuessNumber();
         while (!"no".equals(again)) {
-            game.start();
             if ("yes".equals(again)) {
+                game.start();
                 System.out.print("Хотите продолжить игру? [yes/no]: ");
             } else {
                 System.out.print("Введите корректный ответ [yes/no]: ");
