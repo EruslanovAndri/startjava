@@ -9,6 +9,7 @@ public class Player {
     private String name;
     private int[] enteredNumbers;
     private int attempt;
+    private int score;
 
     public Player(String name) {
         this.name = name;
@@ -23,10 +24,18 @@ public class Player {
         return attempt;
     }
 
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setScore(final int score) {
+        this.score = score;
+    }
+
     public void addNumber(int number) {
         if (number < START_RANGE || number > END_RANGE) {
-            throw new NumberOutOfRangeException("Число должно входить в отрезок [1, 100]." +
-                    "\nПопробуйте еще раз " + name);
+            throw new NumberOutOfRangeException("Число должно входить в отрезок [" +
+                    START_RANGE + ", " + END_RANGE + "]." + "\nПопробуйте еще раз " + name);
         }
         enteredNumbers[attempt] = number;
         attempt++;
@@ -43,5 +52,9 @@ public class Player {
     public void clear() {
         Arrays.fill(enteredNumbers, 0, attempt, 0);
         attempt = 0;
+    }
+
+    public void addScore() {
+        score += 1;
     }
 }

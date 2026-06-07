@@ -7,7 +7,8 @@ public class GuessNumberTest {
 
     public static void main(String[] args) {
         String again = "yes";
-        GuessNumber game = new GuessNumber();
+        Player[] players = new Player[3];
+        GuessNumber game = new GuessNumber(players);
         while (!"no".equals(again)) {
             if ("yes".equals(again)) {
                 game.start();
