@@ -7,22 +7,22 @@ public class GuessNumber {
     private static final int ROTATION_LIMIT = 50;
     private static final int MAX_ROUNDS = 3;
     private static final int MAX_PLAYERS = 3;
+    private static final int START_RANGE = 1;
+    private static final int END_RANGE = 101;
     private static Scanner scanner = new Scanner(System.in);
     private Player[] players;
     private int secretNumber;
 
     public GuessNumber(Player[] players) {
-        this.players = createPlayers();
+        this.players = createShuffledPlayers();
     }
 
     public void start() {
         printGameRules();
-        int round;
-        int currentAttempt;
-        for (round = 1; round <= MAX_ROUNDS; round++) {
+        for (int round = 1; round <= MAX_ROUNDS; round++) {
             Random random = new Random();
-            secretNumber = random.nextInt(1, 101);
-            for (currentAttempt = 1; currentAttempt <= Player.MAX_ATTEMPT; currentAttempt++) {
+            secretNumber = random.nextInt(START_RANGE, END_RANGE);
+            for (int currentAttempt = 1; currentAttempt <= Player.MAX_ATTEMPT; currentAttempt++) {
                 for (Player player : players) {
                     if (makeGuess(player, round, currentAttempt)) {
                         player.addScore();
@@ -32,12 +32,12 @@ public class GuessNumber {
                     if (!hasAttempt(player));
                 }
             }
-            getPlayerInformation(players);
+            printPlayerNumbers(players);
         }
         printGameResult(players);
     }
 
-    private static Player[] createPlayers() {
+    private static Player[] createShuffledPlayers() {
         Player[] players = new Player[MAX_PLAYERS];
         for (int i = 0; i < MAX_PLAYERS; i++) {
             System.out.print("Введите имя " + (i + 1) + " игрока - ");
@@ -82,9 +82,11 @@ public class GuessNumber {
                 """, Player.MAX_ATTEMPT, MAX_ROUNDS);
     }
 
-    private boolean makeGuess(Player player, int round, int currentRound) {
-        System.out.print("Раунд № " + round + "\n  Попытка № " + currentRound +
-                "\nЧисло вводит " + player.getName() + " - ");
+    private boolean makeGuess(Player player, int round, int currentAttempt) {
+        System.out.printf("""
+                Раунд № %d
+                Попытка № %d
+                Число вводит %s - \t""", round, currentAttempt, player.getName());
         while (true) {
             int number = scanner.nextInt();
             try {
@@ -118,7 +120,7 @@ public class GuessNumber {
         return true;
     }
 
-    private void getPlayerInformation(Player[] players) {
+    private void printPlayerNumbers(Player[] players) {
         for (Player player : players) {
             showPlayerNumbers(player);
             player.clear();

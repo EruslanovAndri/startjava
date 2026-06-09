@@ -1,11 +1,13 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Player {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 100;
     public static final int MAX_ATTEMPT = 10;
+    private static Scanner scanner = new Scanner(System.in);
     private String name;
     private int[] enteredNumbers;
     private int attempt;
@@ -55,6 +57,6 @@ public class Player {
     }
 
     public void addScore() {
-        score += 1;
+        score++;
     }
 }
