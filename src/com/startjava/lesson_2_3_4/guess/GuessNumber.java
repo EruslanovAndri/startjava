@@ -14,10 +14,12 @@ public class GuessNumber {
     private int secretNumber;
 
     public GuessNumber(Player[] players) {
-        this.players = createShuffledPlayers();
+        this.players = players;
     }
 
     public void start() {
+        runSpinner();
+        shufflePlayers(players);
         printGameRules();
         for (int round = 1; round <= MAX_ROUNDS; round++) {
             Random random = new Random();
@@ -35,17 +37,6 @@ public class GuessNumber {
             printPlayerNumbers(players);
         }
         printGameResult(players);
-    }
-
-    private static Player[] createShuffledPlayers() {
-        Player[] players = new Player[MAX_PLAYERS];
-        for (int i = 0; i < MAX_PLAYERS; i++) {
-            System.out.print("Введите имя " + (i + 1) + " игрока - ");
-            players[i] = new Player(scanner.nextLine());
-        }
-        runSpinner();
-        shufflePlayers(players);
-        return players;
     }
 
     private static void runSpinner() {

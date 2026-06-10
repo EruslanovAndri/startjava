@@ -13,8 +13,9 @@ public class Player {
     private int attempt;
     private int score;
 
-    public Player(String name) {
-        this.name = name;
+    public Player() {
+        System.out.print("Введите имя игрока - ");
+        name = scanner.nextLine();
         enteredNumbers = new int[MAX_ATTEMPT];
     }
 
