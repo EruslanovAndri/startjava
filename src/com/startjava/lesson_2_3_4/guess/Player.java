@@ -4,18 +4,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Player {
-    private static final int START_RANGE = 1;
-    private static final int END_RANGE = 100;
+    public static final int START_RANGE = 1;
+    public static final int END_RANGE = 100;
     public static final int MAX_ATTEMPT = 10;
-    private static Scanner scanner = new Scanner(System.in);
     private String name;
     private int[] enteredNumbers;
     private int attempt;
     private int score;
 
-    public Player() {
-        System.out.print("Введите имя игрока - ");
-        name = scanner.nextLine();
+    public Player(String name) {
+        this.name = name;
         enteredNumbers = new int[MAX_ATTEMPT];
     }
 
@@ -28,11 +26,11 @@ public class Player {
     }
 
     public int getScore() {
-        return this.score;
+        return score;
     }
 
-    public void setScore(final int score) {
-        this.score = score;
+    public void clearScore() {
+        score = 0;
     }
 
     public void addNumber(int number) {

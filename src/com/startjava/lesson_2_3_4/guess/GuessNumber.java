@@ -6,9 +6,6 @@ import java.util.Scanner;
 public class GuessNumber {
     private static final int ROTATION_LIMIT = 50;
     private static final int MAX_ROUNDS = 3;
-    private static final int MAX_PLAYERS = 3;
-    private static final int START_RANGE = 1;
-    private static final int END_RANGE = 101;
     private static Scanner scanner = new Scanner(System.in);
     private Player[] players;
     private int secretNumber;
@@ -21,9 +18,9 @@ public class GuessNumber {
         runSpinner();
         shufflePlayers(players);
         printGameRules();
+        Random random = new Random();
         for (int round = 1; round <= MAX_ROUNDS; round++) {
-            Random random = new Random();
-            secretNumber = random.nextInt(START_RANGE, END_RANGE);
+            secretNumber = random.nextInt(Player.START_RANGE, Player.END_RANGE + 1);
             for (int currentAttempt = 1; currentAttempt <= Player.MAX_ATTEMPT; currentAttempt++) {
                 for (Player player : players) {
                     if (makeGuess(player, round, currentAttempt)) {
@@ -145,7 +142,7 @@ public class GuessNumber {
             System.out.println("Никто не угадал секретное число.");
         }
         for (Player player : players) {
-            player.setScore(0);
+            player.clearScore();
         }
     }
 
