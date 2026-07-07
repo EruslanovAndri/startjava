@@ -27,7 +27,6 @@ public class BookcaseHandler {
 //        }
         showMenu();
         MenuCommand command = MenuCommand.fromId(getUserCommand());
-        System.out.println("Switch case " + command.getId() + command.getDescription());
         switch (command) {
             case ONE -> {
                 try {
@@ -45,8 +44,8 @@ public class BookcaseHandler {
                     checkFreeSpace();
                     System.out.print("Введите название искомой книги - ");
                     String title = scanner.nextLine();
-                    book = bookcase.findBookByTitle(title);
-                    System.out.println("Книга найдена " + book.toString());
+                    Book[] findBook = bookcase.findBookByTitle(title);
+                    showFindBook(findBook);
                 } catch (ZeroQuantityException | ArrayIndexOutOfBoundsException e) {
                     System.out.println(e.getMessage());
                 }
@@ -185,5 +184,14 @@ public class BookcaseHandler {
             pressedEnter();
         }
         return true;
+    }
+
+    public void showFindBook(Book[] b) {
+        System.out.println("Найдено книг ");
+        for (int i = 0; i < b.length; i++) {
+            if (b[i] != null) {
+                System.out.println(b[i].toString());
+            }
+        }
     }
 }

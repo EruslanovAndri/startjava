@@ -25,19 +25,19 @@ public class Bookcase {
         }
     }
 
-    // Нужно доработать поиск более одной книги и их вывод!!!
-
-    public Book findBookByTitle(String title) {
+    public Book[] findBookByTitle(String title) {
         int index = -1;
+        Book[] findBook = new Book[bookCounter];
         for (int i = 0; i < bookCounter; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
+                findBook[i] = books[i];
                 index = i;
             }
         }
         if (index == -1) {
             throw new ArrayIndexOutOfBoundsException("Книги с таким названием нет на полке.");
         }
-        return books[index];
+        return findBook;
     }
 
     public int removeBookByTitle(String title) {
