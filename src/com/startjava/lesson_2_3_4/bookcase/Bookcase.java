@@ -1,9 +1,8 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
-import java.util.Arrays;
-
 public class Bookcase {
     private static final int MAX_BOOK_QUANTITY = 10;
+    private static final int MAX_INDENT = 6;
     private static int bookCounter;
     private Book[] books;
 
@@ -20,14 +19,13 @@ public class Bookcase {
     }
 
     public void addBook(Book book) {
-        if (bookCounter == MAX_BOOK_QUANTITY) {
-            throw new StackOverflowError("На полке закончилось свободное место.");
-        }
         if (bookCounter < MAX_BOOK_QUANTITY) {
             books[bookCounter] = book;
             bookCounter++;
         }
     }
+
+    // Нужно доработать поиск более одной книги и их вывод!!!
 
     public Book findBookByTitle(String title) {
         int index = -1;
@@ -42,29 +40,28 @@ public class Bookcase {
         return books[index];
     }
 
-    public void removeBookByTitle(String title) {
-        int bookIndex = 0;
-        for (int i = 0; i < bookCounter; i++) {
+    public int removeBookByTitle(String title) {
+        int i = 0;
+        int counter = 0;
+        while (i < bookCounter) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
-                bookIndex = i;
+                System.arraycopy(books, i + 1, books, i, books.length - i - 1);
+                counter++;
                 bookCounter--;
-            }
-        }
-        Book[] booksCopy = Arrays.copyOf(books, books.length - 1);
-        for (int i = 0, j = 0; i < books.length; i++) {
-            if (i == bookIndex) {
-                continue;
             } else {
-                booksCopy[j++] = books[i];
+                i++;
             }
         }
-        books = Arrays.copyOf(booksCopy, MAX_BOOK_QUANTITY);
+        if (counter == 0) {
+            throw new NotFoundBookTitle("Такой книги нет на полке.");
+        }
+        return counter;
     }
 
     public void getAllBooks() {
         for (int i = 0; i < bookCounter; i++) {
             System.out.println(books[i]);
-            System.out.println("-".repeat(30));
+            System.out.println("|" + "-".repeat(getMaxBookLengthName() + MAX_INDENT) + "|");
         }
     }
 
@@ -78,5 +75,18 @@ public class Bookcase {
     public void close(String message) {
         System.out.println(message);
         System.exit(0);
+    }
+
+    private int getMaxBookLengthName() {
+        int maxLength = books[0].getAuthor().length() + books[0].getTitle().length() +
+                books[0].getYear().toString().length();
+        for (int i = 0; i < bookCounter; i++) {
+            if (maxLength < books[i].getAuthor().length() + books[i].getTitle().length() +
+                    books[i].getYear().toString().length()) {
+                maxLength = books[i].getAuthor().length() + books[i].getTitle().length() +
+                        books[i].getYear().toString().length();
+            }
+        }
+        return maxLength;
     }
 }

@@ -4,7 +4,7 @@ import java.time.Year;
 
 public class Book {
     private static final int MIN_YEAR = 1800;
-    public String author;
+    private String author;
     private String title;
     private Year year;
 
@@ -12,6 +12,14 @@ public class Book {
         this.author = validateNonNullAndBlank(author, "Фамилия автора");
         this.title = validateNonNullAndBlank(title, "Название книги");
         this.year = validateYear(year);
+    }
+
+    public String getAuthor() {
+        return this.author;
+    }
+
+    public Year getYear() {
+        return this.year;
     }
 
     public String getTitle() {

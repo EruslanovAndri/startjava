@@ -4,6 +4,8 @@ import java.time.Year;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.startjava.lesson_2_3_4.bookcase.MenuCommand.FIVE;
+
 public class BookcaseHandler {
     private static final int START_MENU_RANGE = 1;
     private static final int END_MENU_RANGE = 5;
@@ -19,21 +21,26 @@ public class BookcaseHandler {
     }
 
     public void run() {
-        if (begin) {
-            typeWelcomeMessage();
-            begin = false;
-        }
+//        if (begin) {
+//            typeWelcomeMessage();
+//            begin = false;
+//        }
         showMenu();
-        int command = getUserCommand();
+        MenuCommand command = MenuCommand.fromId(getUserCommand());
+        System.out.println("Switch case " + command.getId() + command.getDescription());
         switch (command) {
-            case 1 -> {
+            case ONE -> {
                 try {
-                    bookcase.addBook(addDescription());
+                    if (bookcase.getBookCounter() != bookcase.getMaxBookQuantity()) {
+                        bookcase.addBook(addDescription());
+                    } else {
+                        throw new StackOverflowError("На полке закончилось свободное место.");
+                    }
                 } catch (Exception | StackOverflowError e) {
                     System.out.println(e.getMessage());
                 }
             }
-            case 2 -> {
+            case TWO -> {
                 try {
                     checkFreeSpace();
                     System.out.print("Введите название искомой книги - ");
@@ -44,22 +51,21 @@ public class BookcaseHandler {
                     System.out.println(e.getMessage());
                 }
             }
-            case 3 -> {
+            case THREE -> {
                 try {
                     checkFreeSpace();
                     System.out.print("Введите название книги для удаления - ");
                     String title = scanner.nextLine();
-                    bookcase.removeBookByTitle(title);
+                    int counter = bookcase.removeBookByTitle(title);
                     System.out.println("Книга с названием " + title + " удалена");
-                } catch (ZeroQuantityException e) {
+                    System.out.println("Удалено книг: " + counter);
+                } catch (ZeroQuantityException | NotFoundBookTitle e) {
                     System.out.println(e.getMessage());
                 }
             }
-            case 4 -> bookcase.clearBookcase();
-            case 5 -> bookcase.close("Программа закрыта.");
-            default -> {
-                return;
-            }
+            case FOUR -> bookcase.clearBookcase();
+            case FIVE -> bookcase.close("Программа закрыта.");
+            default -> scanner.nextLine();
         }
         if (pressedEnter()) {
             System.out.printf("""
@@ -72,7 +78,7 @@ public class BookcaseHandler {
     }
 
     private void typeWelcomeMessage() {
-        String welcomeMessage = "Программа <<Книжная полка>> приветствует вас!";
+        String welcomeMessage = "Программа <<Книжная полка>> приветствует вас!\n";
         for (int i = 0; i < welcomeMessage.length(); i++) {
             System.out.print(welcomeMessage.charAt(i));
             try {
@@ -86,23 +92,32 @@ public class BookcaseHandler {
     private void showMenu() {
         if (bookcase.getBookCounter() == 0) {
             System.out.printf("""
-                    \nМеню программы.
-                    1. Добавить книгу.
-                    2. Найти и выдать книгу по названию.
-                    3. Удалить книгу по названию.
-                    4. Очистить шкаф.
-                    5. Закрыть программу
-                    Шкаф пуст. Вы можете добавить в него первую книгу.
-                    """);
+                    %d: %s
+                    %d: %s 
+                    """,MenuCommand.ONE.getId(), MenuCommand.ONE.getDescription(),
+                    MenuCommand.TWO.getId(), FIVE.getDescription());
+        } else if (bookcase.getBookCounter() > 0 && bookcase.getBookCounter() < bookcase.getMaxBookQuantity()) {
+            System.out.printf("""
+                    %d: %s
+                    %d: %s 
+                    %d: %s 
+                    %d: %s 
+                    %d: %s
+                    """, MenuCommand.ONE.getId(), MenuCommand.ONE.getDescription(),
+                    MenuCommand.TWO.getId(), MenuCommand.TWO.getDescription(),
+                    MenuCommand.THREE.getId(), MenuCommand.THREE.getDescription(),
+                    MenuCommand.FOUR.getId(), MenuCommand.FOUR.getDescription(),
+                    FIVE.getId(), FIVE.getDescription());
         } else {
             System.out.printf("""
-                    \nМеню программы.
-                    1. Добавить книгу.
-                    2. Найти и выдать книгу по названию.
-                    3. Удалить книгу по названию.
-                    4. Очистить шкаф.
-                    5. Закрыть программу.
-                    """);
+                    %d: %s
+                    %d: %s 
+                    %d: %s 
+                    %d: %s 
+                    """, MenuCommand.ONE.getId(), MenuCommand.TWO.getDescription(),
+                    MenuCommand.TWO.getId(), MenuCommand.THREE.getDescription(),
+                    MenuCommand.THREE.getId(), MenuCommand.FOUR.getDescription(),
+                    MenuCommand.FOUR.getId(), FIVE.getDescription());
         }
     }
 
@@ -129,6 +144,11 @@ public class BookcaseHandler {
                 System.out.println(e.getMessage());
             }
             scanner.nextLine();
+            if (bookcase.getBookCounter() == bookcase.getMaxBookQuantity()) {
+                command++;
+            } else if (bookcase.getBookCounter() == 0 && command == 2) {
+                command += 3;
+            }
         }
         return command;
     }
