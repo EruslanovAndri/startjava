@@ -1,5 +1,8 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
+import com.startjava.lesson_2_3_4.bookcase.exception.NoMoreSpaceException;
+import com.startjava.lesson_2_3_4.bookcase.exception.NotFoundBookTitle;
+
 public class Bookcase {
     private static final int MAX_BOOK_QUANTITY = 10;
     private static final int MAX_INDENT = 6;
@@ -22,6 +25,8 @@ public class Bookcase {
         if (bookCounter < MAX_BOOK_QUANTITY) {
             books[bookCounter] = book;
             bookCounter++;
+        } else {
+            throw new NoMoreSpaceException("На полке закончилось свободное место.");
         }
     }
 

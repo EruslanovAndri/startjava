@@ -1,10 +1,13 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
+import com.startjava.lesson_2_3_4.bookcase.exception.InvalidYearException;
+import com.startjava.lesson_2_3_4.bookcase.exception.NoMoreSpaceException;
+import com.startjava.lesson_2_3_4.bookcase.exception.NotFoundBookTitle;
+import com.startjava.lesson_2_3_4.bookcase.exception.NotFoundMenuCommandException;
+import com.startjava.lesson_2_3_4.bookcase.exception.ZeroQuantityException;
 import java.time.Year;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import static com.startjava.lesson_2_3_4.bookcase.MenuCommand.FIVE;
 
 public class BookcaseHandler {
     private static final int START_MENU_RANGE = 1;
@@ -21,21 +24,17 @@ public class BookcaseHandler {
     }
 
     public void run() {
-//        if (begin) {
-//            typeWelcomeMessage();
-//            begin = false;
-//        }
+        if (begin) {
+            typeWelcomeMessage();
+            begin = false;
+        }
         showMenu();
         MenuCommand command = MenuCommand.fromId(getUserCommand());
         switch (command) {
             case ONE -> {
                 try {
-                    if (bookcase.getBookCounter() != bookcase.getMaxBookQuantity()) {
-                        bookcase.addBook(addDescription());
-                    } else {
-                        throw new StackOverflowError("На полке закончилось свободное место.");
-                    }
-                } catch (Exception | StackOverflowError e) {
+                    bookcase.addBook(addDescription());
+                } catch (NoMoreSpaceException | IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -93,9 +92,10 @@ public class BookcaseHandler {
             System.out.printf("""
                     %d: %s
                     %d: %s 
-                    """,MenuCommand.ONE.getId(), MenuCommand.ONE.getDescription(),
-                    MenuCommand.TWO.getId(), FIVE.getDescription());
-        } else if (bookcase.getBookCounter() > 0 && bookcase.getBookCounter() < bookcase.getMaxBookQuantity()) {
+                    """, MenuCommand.ONE.getId(), MenuCommand.ONE.getDescription(),
+                    MenuCommand.TWO.getId(), MenuCommand.FIVE.getDescription());
+        } else if (bookcase.getBookCounter() > 0 &&
+                bookcase.getBookCounter() < bookcase.getMaxBookQuantity()) {
             System.out.printf("""
                     %d: %s
                     %d: %s 
@@ -106,7 +106,7 @@ public class BookcaseHandler {
                     MenuCommand.TWO.getId(), MenuCommand.TWO.getDescription(),
                     MenuCommand.THREE.getId(), MenuCommand.THREE.getDescription(),
                     MenuCommand.FOUR.getId(), MenuCommand.FOUR.getDescription(),
-                    FIVE.getId(), FIVE.getDescription());
+                    MenuCommand.FIVE.getId(), MenuCommand.FIVE.getDescription());
         } else {
             System.out.printf("""
                     %d: %s
@@ -116,7 +116,7 @@ public class BookcaseHandler {
                     """, MenuCommand.ONE.getId(), MenuCommand.TWO.getDescription(),
                     MenuCommand.TWO.getId(), MenuCommand.THREE.getDescription(),
                     MenuCommand.THREE.getId(), MenuCommand.FOUR.getDescription(),
-                    MenuCommand.FOUR.getId(), FIVE.getDescription());
+                    MenuCommand.FOUR.getId(), MenuCommand.FIVE.getDescription());
         }
     }
 
