@@ -1,56 +1,58 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
-import com.startjava.lesson_2_3_4.bookcase.exception.NoMoreSpaceException;
-import com.startjava.lesson_2_3_4.bookcase.exception.NotFoundBookTitle;
+import com.startjava.lesson_2_3_4.bookcase.exception.BookNotExistException;
+import com.startjava.lesson_2_3_4.bookcase.exception.BookcaseOverflowException;
+import java.util.Arrays;
 
 public class Bookcase {
-    private static final int MAX_BOOK_QUANTITY = 10;
+    public static final int CAPACITY = 10;
     private static final int MAX_INDENT = 6;
     private static int bookCounter;
     private Book[] books;
+    private int counter;
 
     public Bookcase() {
-        books = new Book[MAX_BOOK_QUANTITY];
-    }
-
-    public int getMaxBookQuantity() {
-        return MAX_BOOK_QUANTITY;
+        books = new Book[CAPACITY];
     }
 
     public int getBookCounter() {
         return bookCounter;
     }
 
-    public void addBook(Book book) {
-        if (bookCounter < MAX_BOOK_QUANTITY) {
-            books[bookCounter] = book;
-            bookCounter++;
-        } else {
-            throw new NoMoreSpaceException("На полке закончилось свободное место.");
-        }
+    public int getCounter() {
+        return counter;
     }
 
-    public Book[] findBookByTitle(String title) {
-        int index = -1;
+    public void setCounter() {
+        counter = 0;
+    }
+
+    public void addBook(Book book) {
+        if (bookCounter == CAPACITY) {
+            throw new BookcaseOverflowException("В шкафу закончилось свободное место.");
+        }
+        books[bookCounter] = book;
+        bookCounter++;
+    }
+
+    public Book[] foundBooks(String title) {
         Book[] findBook = new Book[bookCounter];
         for (int i = 0; i < bookCounter; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 findBook[i] = books[i];
-                index = i;
+                counter++;
+            } else {
+                throw new BookNotExistException("Такой книги нет на полке.");
             }
-        }
-        if (index == -1) {
-            throw new ArrayIndexOutOfBoundsException("Книги с таким названием нет на полке.");
         }
         return findBook;
     }
 
     public int removeBookByTitle(String title) {
         int i = 0;
-        int counter = 0;
         while (i < bookCounter) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
-                System.arraycopy(books, i + 1, books, i, books.length - i - 1);
+                System.arraycopy(books, i + 1, books, i, bookCounter - i - 1);
                 counter++;
                 bookCounter--;
             } else {
@@ -58,7 +60,7 @@ public class Bookcase {
             }
         }
         if (counter == 0) {
-            throw new NotFoundBookTitle("Такой книги нет на полке.");
+            throw new BookNotExistException("Такой книги нет на полке.");
         }
         return counter;
     }
@@ -71,25 +73,18 @@ public class Bookcase {
     }
 
     public void clearBookcase() {
-        for (int i = 0; i < bookCounter; i++) {
-            books[i] = null;
-        }
+        Arrays.fill(books, 0, bookCounter, null);
         bookCounter = 0;
-    }
-
-    public void close(String message) {
-        System.out.println(message);
-        System.exit(0);
     }
 
     private int getMaxBookLengthName() {
         int maxLength = books[0].getAuthor().length() + books[0].getTitle().length() +
-                books[0].getYear().toString().length();
+                books[0].getReleaseYear().toString().length();
         for (int i = 0; i < bookCounter; i++) {
             if (maxLength < books[i].getAuthor().length() + books[i].getTitle().length() +
-                    books[i].getYear().toString().length()) {
+                    books[i].getReleaseYear().toString().length()) {
                 maxLength = books[i].getAuthor().length() + books[i].getTitle().length() +
-                        books[i].getYear().toString().length();
+                        books[i].getReleaseYear().toString().length();
             }
         }
         return maxLength;
