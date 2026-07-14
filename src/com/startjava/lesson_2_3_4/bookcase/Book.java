@@ -7,12 +7,12 @@ public class Book {
     private static final int MIN_YEAR = 1800;
     private String author;
     private String title;
-    private Year releaseYear;
+    private Year publishedYear;
 
-    public Book(String author, String title, Year releaseYear) {
+    public Book(String author, String title, Year publishedYear) {
         this.author = validateNonNullAndBlank(author, "Фамилия автора");
         this.title = validateNonNullAndBlank(title, "Название книги");
-        this.releaseYear = validateYear(releaseYear);
+        this.publishedYear = validateYear(publishedYear);
     }
 
     private String validateNonNullAndBlank(String value, String classField) {
@@ -23,12 +23,12 @@ public class Book {
         return value;
     }
 
-    private Year validateYear(Year year) {
-        if (year.isBefore(Year.of(MIN_YEAR)) || year.isAfter(Year.now())) {
+    private Year validateYear(Year publishedYear) {
+        if (publishedYear.isBefore(Year.of(MIN_YEAR)) || publishedYear.isAfter(Year.now())) {
             throw new IllegalArgumentException("Ошибка: Год издания должен быть между " +
                     Year.of(MIN_YEAR) + " и " + Year.now());
         }
-        return year;
+        return publishedYear;
     }
 
     public String getAuthor() {
@@ -39,12 +39,12 @@ public class Book {
         return title;
     }
 
-    public Year getReleaseYear() {
-        return releaseYear;
+    public Year getPublishedYear() {
+        return publishedYear;
     }
 
     @Override
     public String toString() {
-        return String.format("| %s, %s, %s |", author, title, releaseYear);
+        return String.format("| %s, %s, %s |", author, title, publishedYear);
     }
 }

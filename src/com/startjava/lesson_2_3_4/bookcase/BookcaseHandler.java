@@ -180,12 +180,12 @@ public class BookcaseHandler {
 
     private int getMaxBookLengthName(Book[] books) {
         int maxLength = books[0].getAuthor().length() + books[0].getTitle().length() +
-                books[0].getReleaseYear().toString().length();
+                books[0].getPublishedYear().toString().length();
         for (int i = 0; i < bookcase.getBookCounter(); i++) {
             if (maxLength < books[i].getAuthor().length() + books[i].getTitle().length() +
-                    books[i].getReleaseYear().toString().length()) {
+                    books[i].getPublishedYear().toString().length()) {
                 maxLength = books[i].getAuthor().length() + books[i].getTitle().length() +
-                        books[i].getReleaseYear().toString().length();
+                        books[i].getPublishedYear().toString().length();
             }
         }
         return maxLength;
