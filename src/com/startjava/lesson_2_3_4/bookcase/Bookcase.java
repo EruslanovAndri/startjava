@@ -45,7 +45,7 @@ public class Bookcase {
         return findBook;
     }
 
-    public int removeBookByTitle(String title) {
+    public int removeBook(String title) {
         int i = 0;
         counter = 0;
         while (i < bookCounter) {

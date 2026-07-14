@@ -41,7 +41,7 @@ public class BookcaseHandler {
                 case THREE -> {
                     System.out.print("Введите название книги для удаления - ");
                     String title = scanner.nextLine();
-                    bookcase.removeBookByTitle(title);
+                    bookcase.removeBook(title);
                     System.out.println("Удалено книг: " + bookcase.getCounter());
                 }
                 case FOUR -> bookcase.clearBookcase();
