@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
-import com.startjava.lesson_2_3_4.bookcase.exception.MenuCommandException;
-
 public enum MenuCommand {
     ONE(1, "Добавить книгу"),
     TWO(2, "Найти и выдать книгу по названию."),

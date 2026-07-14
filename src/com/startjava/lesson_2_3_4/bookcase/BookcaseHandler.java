@@ -2,7 +2,6 @@ package com.startjava.lesson_2_3_4.bookcase;
 
 import com.startjava.lesson_2_3_4.bookcase.exception.BookNotExistException;
 import com.startjava.lesson_2_3_4.bookcase.exception.BookcaseOverflowException;
-
 import java.time.Year;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -38,14 +37,12 @@ public class BookcaseHandler {
                     Book[] foundBook = bookcase.foundBooks(title);
                     System.out.println("Найдено книг " + bookcase.getCounter());
                     showFoundBook(foundBook);
-                    bookcase.setCounter(0);
                 }
                 case THREE -> {
                     System.out.print("Введите название книги для удаления - ");
                     String title = scanner.nextLine();
                     bookcase.removeBookByTitle(title);
                     System.out.println("Удалено книг: " + bookcase.getCounter());
-                    bookcase.setCounter(0);
                 }
                 case FOUR -> bookcase.clearBookcase();
                 case FIVE -> System.exit(0);
@@ -149,14 +146,13 @@ public class BookcaseHandler {
     private Book addDescription() {
         System.out.println("Добавление новой книги");
         while (true) {
+            System.out.print("Фамилия автора - ");
+            String author = scanner.nextLine();
+            System.out.print("Название книги - ");
+            String title = scanner.nextLine();
             try {
-                System.out.print("Фамилия автора - ");
-                String author = scanner.nextLine();
-                System.out.print("Название книги - ");
-                String title = scanner.nextLine();
-                Year year;
                 System.out.print("Год издания - ");
-                year = Year.of(scanner.nextInt());
+                Year year = Year.of(scanner.nextInt());
                 scanner.nextLine();
                 return new Book(author, title, year);
             } catch (IllegalArgumentException e) {
@@ -174,7 +170,7 @@ public class BookcaseHandler {
         return true;
     }
 
-    public void showFoundBook(Book[] books) {
+    private void showFoundBook(Book[] books) {
         for (int i = 0; i < books.length; i++) {
             if (books[i] != null) {
                 System.out.println(books[i].toString());

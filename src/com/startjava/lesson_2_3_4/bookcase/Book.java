@@ -35,12 +35,12 @@ public class Book {
         return author;
     }
 
-    public Year getReleaseYear() {
-        return releaseYear;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public Year getReleaseYear() {
+        return releaseYear;
     }
 
     @Override

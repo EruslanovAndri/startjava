@@ -22,10 +22,6 @@ public class Bookcase {
         return counter;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
-
     public void addBook(Book book) {
         if (bookCounter == CAPACITY) {
             throw new BookcaseOverflowException("В шкафу закончилось свободное место.");
@@ -36,6 +32,7 @@ public class Bookcase {
 
     public Book[] foundBooks(String title) {
         Book[] findBook = new Book[bookCounter];
+        counter = 0;
         for (int i = 0; i < bookCounter; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 findBook[i] = books[i];
@@ -50,6 +47,7 @@ public class Bookcase {
 
     public int removeBookByTitle(String title) {
         int i = 0;
+        counter = 0;
         while (i < bookCounter) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
                 System.arraycopy(books, i + 1, books, i, bookCounter - i - 1);
