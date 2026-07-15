@@ -56,11 +56,7 @@ public class BookcaseHandler {
                  BookNotExistException e) {
             System.out.println(e.getMessage());
         }
-        Book[] availableBooks = bookcase.getAllBooks();
-        for (Book book : availableBooks) {
-            System.out.println(book.toString());
-            System.out.println("|" + "-".repeat(getMaxBookLengthName(availableBooks) + MAX_INDENT) + "|");
-        }
+        printBookcase();
     }
 
     private void typeWelcomeMessage() {
@@ -165,6 +161,15 @@ public class BookcaseHandler {
             pressedEnter();
         }
         return true;
+    }
+
+    private void printBookcase() {
+        Book[] books = bookcase.getAllBooks();
+        for (Book book : books) {
+            System.out.println(book.toString());
+            System.out.println("|" + "-".repeat(getMaxBookLengthName(books) + MAX_INDENT) + "|");
+        }
+
     }
 
     private void showFoundBook(Book[] books) {
