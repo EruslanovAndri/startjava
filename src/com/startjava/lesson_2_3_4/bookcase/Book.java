@@ -15,10 +15,10 @@ public class Book {
         this.publishedYear = validateYear(publishedYear);
     }
 
-    private String validateNonNullAndBlank(String value, String classField) {
-        Objects.requireNonNull(value, classField + " не может быть null! ");
+    private String validateNonNullAndBlank(String value, String inputString) {
+        Objects.requireNonNull(value, inputString + " не может быть null! ");
         if (value.trim().isBlank()) {
-            throw new IllegalArgumentException(classField + " не может быть пустой!");
+            throw new IllegalArgumentException(inputString + " не может быть пустой!");
         }
         return value;
     }

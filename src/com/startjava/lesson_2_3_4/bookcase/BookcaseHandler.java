@@ -34,14 +34,14 @@ public class BookcaseHandler {
                 case TWO -> {
                     System.out.print("Введите название искомой книги - ");
                     String title = scanner.nextLine();
-                    Book[] foundBook = bookcase.foundBooks(title);
+                    Book[] foundBook = bookcase.foundBooksByTitle(title);
                     System.out.println("Найдено книг " + bookcase.getCounter());
                     showFoundBook(foundBook);
                 }
                 case THREE -> {
                     System.out.print("Введите название книги для удаления - ");
                     String title = scanner.nextLine();
-                    bookcase.removeBook(title);
+                    bookcase.removeBookByTitle(title);
                     System.out.println("Удалено книг: " + bookcase.getCounter());
                 }
                 case FOUR -> bookcase.clearBookcase();
