@@ -11,20 +11,17 @@ public class BookcaseHandler {
     private static final int END_MENU_RANGE = 5;
     private static final int SPEED = 50;
     private static final int MAX_INDENT = 6;
-    private static boolean begin;
     private Scanner scanner;
     private Bookcase bookcase;
 
     public BookcaseHandler() {
         bookcase = new Bookcase();
         scanner = new Scanner(System.in);
-        begin = true;
     }
 
     public void run() {
-        if (begin) {
+        if (bookcase.getBookCounter() == 0) {
             typeWelcomeMessage();
-            begin = false;
         }
         showMenu();
         MenuCommand command = MenuCommand.fromId(getUserCommand());
