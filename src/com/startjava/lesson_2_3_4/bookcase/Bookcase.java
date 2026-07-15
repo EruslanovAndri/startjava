@@ -30,7 +30,7 @@ public class Bookcase {
         bookCounter++;
     }
 
-    public Book[] foundBooks(String title) {
+    public Book[] foundBooksByTitle(String title) {
         Book[] findBook = new Book[bookCounter];
         counter = 0;
         for (int i = 0; i < bookCounter; i++) {
@@ -45,7 +45,7 @@ public class Bookcase {
         return findBook;
     }
 
-    public int removeBook(String title) {
+    public int removeBookByTitle(String title) {
         int i = 0;
         counter = 0;
         while (i < bookCounter) {
@@ -64,13 +64,8 @@ public class Bookcase {
     }
 
     public Book[] getAllBooks() {
-        Book[] tmp = new Book[bookCounter];
-        for (int i = 0; i < bookCounter; i++) {
-            if (books[i] != null) {
-                tmp[i] = books[i];
-            }
-        }
-        return tmp;
+        Book[] books = Arrays.copyOf(this.books, bookCounter);
+        return books;
     }
 
     public void clearBookcase() {
