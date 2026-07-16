@@ -20,29 +20,29 @@ public class BookcaseHandler {
     }
 
     public void run() {
-        if (bookcase.getBookCounter() == 0) {
-            typeWelcomeMessage();
-        }
-        showMenu();
-        MenuCommand command = MenuCommand.fromId(getUserCommand());
+//        if (bookcase.getBookCounter() == 0) {
+//            typeWelcomeMessage();
+//        }
+        printMenu();
+        Menu inputCommand = Menu.chooseOption(inputCommand());
         try {
-            switch (command) {
-                case ONE -> bookcase.addBook(addDescription());
-                case TWO -> {
+            switch (inputCommand) {
+                case ADD -> bookcase.addBook(addDescription());
+                case FIND -> {
                     System.out.print("Введите название искомой книги - ");
                     String title = scanner.nextLine();
                     Book[] foundBook = bookcase.foundBooksByTitle(title);
                     System.out.println("Найдено книг " + bookcase.getCounter());
                     showFoundBook(foundBook);
                 }
-                case THREE -> {
+                case REMOVE -> {
                     System.out.print("Введите название книги для удаления - ");
                     String title = scanner.nextLine();
                     bookcase.removeBookByTitle(title);
                     System.out.println("Удалено книг: " + bookcase.getCounter());
                 }
-                case FOUR -> bookcase.clearBookcase();
-                case FIVE -> System.exit(0);
+                case CLEAR -> bookcase.clearBookcase();
+                case CLOSE -> System.exit(0);
                 default -> scanner.nextLine();
             }
             if (pressedEnter()) {
@@ -71,40 +71,15 @@ public class BookcaseHandler {
         }
     }
 
-    private void showMenu() {
-        if (bookcase.getBookCounter() == 0) {
-            System.out.printf("""
-                    %d: %s
-                    %d: %s
-                    """, MenuCommand.ONE.getId(), MenuCommand.ONE.getDescription(),
-                    MenuCommand.TWO.getId(), MenuCommand.FIVE.getDescription());
-        } else if (bookcase.getBookCounter() > 0 &&
-                bookcase.getBookCounter() < bookcase.CAPACITY) {
-            System.out.printf("""
-                    %d: %s
-                    %d: %s
-                    %d: %s
-                    %d: %s
-                    %d: %s
-                    """, MenuCommand.ONE.getId(), MenuCommand.ONE.getDescription(),
-                    MenuCommand.TWO.getId(), MenuCommand.TWO.getDescription(),
-                    MenuCommand.THREE.getId(), MenuCommand.THREE.getDescription(),
-                    MenuCommand.FOUR.getId(), MenuCommand.FOUR.getDescription(),
-                    MenuCommand.FIVE.getId(), MenuCommand.FIVE.getDescription());
-        } else {
-            System.out.printf("""
-                    %d: %s
-                    %d: %s
-                    %d: %s
-                    %d: %s
-                    """, MenuCommand.ONE.getId(), MenuCommand.TWO.getDescription(),
-                    MenuCommand.TWO.getId(), MenuCommand.THREE.getDescription(),
-                    MenuCommand.THREE.getId(), MenuCommand.FOUR.getDescription(),
-                    MenuCommand.FOUR.getId(), MenuCommand.FIVE.getDescription());
+    private void printMenu() {
+        int ordinalNumber = 1;
+        for (Menu menu : Menu.createMenu(bookcase.getBookCounter(),
+                bookcase.CAPACITY)) {
+            System.out.println(ordinalNumber++  + ": " + menu.getDescription());
         }
     }
 
-    private int getUserCommand() {
+    private int inputCommand() {
         int command = 0;
         boolean accepted = true;
         while (accepted) {
