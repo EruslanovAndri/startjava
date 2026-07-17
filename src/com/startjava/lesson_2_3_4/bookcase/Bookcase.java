@@ -9,6 +9,7 @@ public class Bookcase {
     private static int bookCounter;
     private Book[] books;
     private int counter;
+    private int maxBookcaseLength;
 
     public Bookcase() {
         books = new Book[CAPACITY];
@@ -71,5 +72,18 @@ public class Bookcase {
     public void clearBookcase() {
         Arrays.fill(books, 0, bookCounter, null);
         bookCounter = 0;
+    }
+
+    public int findMaxBookcaseLength(Book[] books) {
+        maxBookcaseLength = books[0].getAuthor().length() + books[0].getTitle().length() +
+                books[0].getPublishedYear().toString().length();
+        for (int i = 0; i < bookCounter; i++) {
+            if (maxBookcaseLength < books[i].getAuthor().length() + books[i].getTitle().length() +
+                    books[i].getPublishedYear().toString().length()) {
+                maxBookcaseLength = books[i].getAuthor().length() + books[i].getTitle().length() +
+                        books[i].getPublishedYear().toString().length();
+            }
+        }
+        return maxBookcaseLength;
     }
 }

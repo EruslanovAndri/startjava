@@ -2,13 +2,12 @@ package com.startjava.lesson_2_3_4.bookcase;
 
 import com.startjava.lesson_2_3_4.bookcase.exception.BookNotExistException;
 import com.startjava.lesson_2_3_4.bookcase.exception.BookcaseOverflowException;
+import com.startjava.lesson_2_3_4.bookcase.exception.MenuException;
 import java.time.Year;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BookcaseHandler {
-    private static final int START_MENU_RANGE = 1;
-    private static final int END_MENU_RANGE = 5;
     private static final int SPEED = 50;
     private static final int MAX_INDENT = 6;
     private Scanner scanner;
@@ -20,40 +19,14 @@ public class BookcaseHandler {
     }
 
     public void run() {
-//        if (bookcase.getBookCounter() == 0) {
-//            typeWelcomeMessage();
-//        }
+        typeWelcomeMessage();
         printMenu();
-        Menu inputCommand = Menu.chooseOption(inputCommand());
+        Menu menuItem = inputCommand();
         try {
-            switch (inputCommand) {
-                case ADD -> bookcase.addBook(addDescription());
-                case FIND -> {
-                    System.out.print("Введите название искомой книги - ");
-                    String title = scanner.nextLine();
-                    Book[] foundBook = bookcase.foundBooksByTitle(title);
-                    System.out.println("Найдено книг " + bookcase.getCounter());
-                    showFoundBook(foundBook);
-                }
-                case REMOVE -> {
-                    System.out.print("Введите название книги для удаления - ");
-                    String title = scanner.nextLine();
-                    bookcase.removeBookByTitle(title);
-                    System.out.println("Удалено книг: " + bookcase.getCounter());
-                }
-                case CLEAR -> bookcase.clearBookcase();
-                case CLOSE -> System.exit(0);
-                default -> scanner.nextLine();
-            }
-            if (pressedEnter()) {
-                System.out.printf("""
-                            В шкафу %d книг, свободных мест %d
-                            """,
-                        bookcase.getBookCounter(),
-                        bookcase.CAPACITY - bookcase.getBookCounter());
-            }
-        } catch (IllegalArgumentException | BookcaseOverflowException |
-                 BookNotExistException e) {
+            scanner.nextLine();
+            performSwitchCaseOperation(menuItem);
+            pressedEnter();
+        } catch (IllegalArgumentException | BookcaseOverflowException | BookNotExistException e) {
             System.out.println(e.getMessage());
         }
         printBookcase();
@@ -75,40 +48,61 @@ public class BookcaseHandler {
         int ordinalNumber = 1;
         for (Menu menu : Menu.createMenu(bookcase.getBookCounter(),
                 bookcase.CAPACITY)) {
-            System.out.println(ordinalNumber++  + ": " + menu.getDescription());
+            System.out.println(ordinalNumber++ + ". " + menu.getDescription());
         }
     }
 
-    private int inputCommand() {
-        int command = 0;
-        boolean accepted = true;
-        while (accepted) {
+    private Menu inputCommand() {
+        while (true) {
             try {
                 System.out.print("Введите команду - ");
-                if (scanner.hasNextInt()) {
-                    command = scanner.nextInt();
-                } else {
+                if (!scanner.hasNextInt()) {
                     throw new InputMismatchException("Ошибка: Необходимо ввести целое число.");
                 }
-
-                if (command >= START_MENU_RANGE && command <= END_MENU_RANGE) {
-                    accepted = false;
-                } else {
-                    throw new IndexOutOfBoundsException("Ошибка: Неверное значение меню (" +
-                            command + ") " +
-                            "Допустимые значения " + START_MENU_RANGE + " - " + END_MENU_RANGE);
-                }
-            } catch (InputMismatchException | IndexOutOfBoundsException e) {
+                Menu menu = Menu.chooseOption(scanner.nextInt());
+                return menu;
+            } catch (InputMismatchException | MenuException e) {
                 System.out.println(e.getMessage());
             }
             scanner.nextLine();
-            if (bookcase.getBookCounter() == bookcase.CAPACITY) {
-                command++;
-            } else if (bookcase.getBookCounter() == 0 && command == 2) {
-                command += 3;
-            }
         }
-        return command;
+    }
+
+    private void performSwitchCaseOperation(Menu menuItem) {
+        switch (menuItem) {
+            case ADD -> bookcase.addBook(addDescription());
+            case FIND -> findBook();
+            case REMOVE -> removeBook();
+            case CLEAR -> bookcase.clearBookcase();
+            case CLOSE -> System.exit(0);
+            default -> System.out.println("Default");
+        }
+    }
+
+    private void pressedEnter() {
+        System.out.print("Для продолжения работы нажмите <Enter>");
+        String enter = scanner.nextLine();
+        if (!enter.isEmpty()) {
+            pressedEnter();
+        } else {
+            updateBookcaseInformation();
+        }
+    }
+
+    private void updateBookcaseInformation() {
+        System.out.printf("""
+                            В шкафу %d книг, свободных мест %d
+                            """,
+                bookcase.getBookCounter(),
+                bookcase.CAPACITY - bookcase.getBookCounter());
+    }
+
+    private void printBookcase() {
+        Book[] books = bookcase.getAllBooks();
+        for (Book book : books) {
+            System.out.println(book.toString());
+            System.out.println("|" + "-".repeat(bookcase.findMaxBookcaseLength(books) + MAX_INDENT) + "|");
+        }
     }
 
     private Book addDescription() {
@@ -129,22 +123,12 @@ public class BookcaseHandler {
         }
     }
 
-    private boolean pressedEnter() {
-        System.out.print("Для продолжения работы нажмите <Enter>");
-        String enter = scanner.nextLine();
-        if (!enter.isEmpty()) {
-            pressedEnter();
-        }
-        return true;
-    }
-
-    private void printBookcase() {
-        Book[] books = bookcase.getAllBooks();
-        for (Book book : books) {
-            System.out.println(book.toString());
-            System.out.println("|" + "-".repeat(getMaxBookLengthName(books) + MAX_INDENT) + "|");
-        }
-
+    private void findBook() {
+        System.out.print("Введите название искомой книги - ");
+        String title = scanner.nextLine();
+        Book[] foundBook = bookcase.foundBooksByTitle(title);
+        System.out.println("Найдено книг " + bookcase.getCounter());
+        showFoundBook(foundBook);
     }
 
     private void showFoundBook(Book[] books) {
@@ -155,16 +139,10 @@ public class BookcaseHandler {
         }
     }
 
-    private int getMaxBookLengthName(Book[] books) {
-        int maxLength = books[0].getAuthor().length() + books[0].getTitle().length() +
-                books[0].getPublishedYear().toString().length();
-        for (int i = 0; i < bookcase.getBookCounter(); i++) {
-            if (maxLength < books[i].getAuthor().length() + books[i].getTitle().length() +
-                    books[i].getPublishedYear().toString().length()) {
-                maxLength = books[i].getAuthor().length() + books[i].getTitle().length() +
-                        books[i].getPublishedYear().toString().length();
-            }
-        }
-        return maxLength;
+    private void removeBook() {
+        System.out.print("Введите название книги для удаления - ");
+        String title = scanner.nextLine();
+        bookcase.removeBookByTitle(title);
+        System.out.println("Удалено книг: " + bookcase.getCounter());
     }
 }

@@ -1,14 +1,15 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
+import com.startjava.lesson_2_3_4.bookcase.exception.MenuException;
 import java.util.ArrayList;
 import java.util.List;
 
 public enum Menu {
-    ADD("Добавить книгу"),
+    ADD("Добавить книгу."),
     FIND("Найти и выдать книгу по названию."),
     REMOVE("Удалить книгу по названию."),
     CLEAR("Очистить шкаф."),
-    CLOSE("Закрыть программу");
+    CLOSE("Закрыть программу.");
 
     private final String description;
 
@@ -21,31 +22,38 @@ public enum Menu {
     }
 
     public static List<Menu> createMenu(int bookCount, int maxCapacity) {
-        List<Menu> options = new ArrayList<>();
+        List<Menu> menuItems = new ArrayList<>();
         if (bookCount == 0) {
-            options.add(ADD);
-            options.add(CLOSE);
+            menuItems.add(ADD);
+            menuItems.add(CLOSE);
         } else if (bookCount > 0 && bookCount < maxCapacity) {
-            options.add(ADD);
-            options.add(FIND);
-            options.add(REMOVE);
-            options.add(CLEAR);
-            options.add(CLOSE);
+            menuItems.add(ADD);
+            menuItems.add(FIND);
+            menuItems.add(REMOVE);
+            menuItems.add(CLEAR);
+            menuItems.add(CLOSE);
         } else {
-            options.add(FIND);
-            options.add(REMOVE);
-            options.add(CLEAR);
-            options.add(CLOSE);
+            menuItems.add(FIND);
+            menuItems.add(REMOVE);
+            menuItems.add(CLEAR);
+            menuItems.add(CLOSE);
         }
-        return options;
+        return menuItems;
     }
 
     public static Menu chooseOption(int inputCommand) {
-        for (Menu action : values()) {
-            if (action.ordinal() == (inputCommand - 1)) {
-                return action;
+        if (inputCommand >= 1 && inputCommand <= values().length) {
+            for (Menu value : values()) {
+                if (value.ordinal() == (inputCommand - 1)) {
+                    return value;
+                }
             }
+        } else {
+            throw new MenuException("Ошибка: Неверное значение меню (" +
+                    inputCommand + ")" + " Допустимые значения " + (ADD.ordinal() + 1) +
+                    " - " + (CLOSE.ordinal() + 1));
         }
+
         return null;
     }
 }
