@@ -1,10 +1,8 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
 import com.startjava.lesson_2_3_4.bookcase.exception.MenuException;
-import java.util.ArrayList;
-import java.util.List;
 
-public enum Menu {
+public enum MenuItem {
     ADD("Добавить книгу."),
     FIND("Найти и выдать книгу по названию."),
     REMOVE("Удалить книгу по названию."),
@@ -13,7 +11,7 @@ public enum Menu {
 
     private final String description;
 
-    Menu(String description) {
+    MenuItem(String description) {
         this.description = description;
     }
 
@@ -21,37 +19,27 @@ public enum Menu {
         return description;
     }
 
-    public static List<Menu> createMenu(int bookCount, int maxCapacity) {
-        List<Menu> menuItems = new ArrayList<>();
+    public static MenuItem[] createMenu(int bookCount, int maxCapacity) {
         if (bookCount == 0) {
-            menuItems.add(ADD);
-            menuItems.add(CLOSE);
+            return new MenuItem[]{ADD, CLOSE};
         } else if (bookCount > 0 && bookCount < maxCapacity) {
-            menuItems.add(ADD);
-            menuItems.add(FIND);
-            menuItems.add(REMOVE);
-            menuItems.add(CLEAR);
-            menuItems.add(CLOSE);
+            return new MenuItem[]{ADD, FIND, REMOVE, CLEAR, CLOSE};
         } else {
-            menuItems.add(FIND);
-            menuItems.add(REMOVE);
-            menuItems.add(CLEAR);
-            menuItems.add(CLOSE);
+            return new MenuItem[]{ FIND, REMOVE, CLEAR, CLOSE};
         }
-        return menuItems;
     }
 
-    public static Menu chooseOption(int inputCommand) {
+    public static MenuItem chooseOption(int inputCommand) {
         if (inputCommand >= 1 && inputCommand <= values().length) {
-            for (Menu value : values()) {
+            for (MenuItem value : values()) {
                 if (value.ordinal() == (inputCommand - 1)) {
                     return value;
                 }
             }
         } else {
             throw new MenuException("Ошибка: Неверное значение меню (" +
-                    inputCommand + ")" + " Допустимые значения " + (ADD.ordinal() + 1) +
-                    " - " + (CLOSE.ordinal() + 1));
+                    inputCommand + ")" + " Допустимые значения " + (1) +
+                    " - " + (inputCommand));
         }
 
         return null;
