@@ -1,6 +1,6 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
-import com.startjava.lesson_2_3_4.bookcase.exception.IndexOfBoundsMenuException;
+import com.startjava.lesson_2_3_4.bookcase.exception.IndexOutOfBoundsMenuException;
 
 public enum Menu {
     ADD("Добавить книгу."),
@@ -31,12 +31,11 @@ public enum Menu {
 
     public static Menu chooseOption(int inputCommand, int bookCount, int maxCapacity) {
         Menu[] menu = createMenu(bookCount, maxCapacity);
-        if (inputCommand >= 1 && inputCommand <= menu.length) {
-            return menu[inputCommand - 1];
-        } else {
-            throw new IndexOfBoundsMenuException("Ошибка: Неверное значение меню (" +
+        if (inputCommand < 1 || inputCommand > menu.length) {
+            throw new IndexOutOfBoundsMenuException("Ошибка: Неверное значение меню (" +
                     inputCommand + ")" + " Допустимые значения " + (1) +
                     " - " + (menu.length));
         }
+        return menu[inputCommand - 1];
     }
 }
