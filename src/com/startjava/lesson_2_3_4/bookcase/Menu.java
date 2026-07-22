@@ -1,8 +1,8 @@
 package com.startjava.lesson_2_3_4.bookcase;
 
-import com.startjava.lesson_2_3_4.bookcase.exception.MenuException;
+import com.startjava.lesson_2_3_4.bookcase.exception.IndexOfBoundsMenuException;
 
-public enum MenuItem {
+public enum Menu {
     ADD("Добавить книгу."),
     FIND("Найти и выдать книгу по названию."),
     REMOVE("Удалить книгу по названию."),
@@ -11,7 +11,7 @@ public enum MenuItem {
 
     private final String description;
 
-    MenuItem(String description) {
+    Menu(String description) {
         this.description = description;
     }
 
@@ -19,29 +19,24 @@ public enum MenuItem {
         return description;
     }
 
-    public static MenuItem[] createMenu(int bookCount, int maxCapacity) {
+    public static Menu[] createMenu(int bookCount, int maxCapacity) {
         if (bookCount == 0) {
-            return new MenuItem[]{ADD, CLOSE};
+            return new Menu[]{ADD, CLOSE};
         } else if (bookCount > 0 && bookCount < maxCapacity) {
-            return new MenuItem[]{ADD, FIND, REMOVE, CLEAR, CLOSE};
+            return new Menu[]{ADD, FIND, REMOVE, CLEAR, CLOSE};
         } else {
-            return new MenuItem[]{ FIND, REMOVE, CLEAR, CLOSE};
+            return new Menu[]{ FIND, REMOVE, CLEAR, CLOSE};
         }
     }
 
-    public static MenuItem chooseOption(int inputCommand) {
-        if (inputCommand >= 1 && inputCommand <= values().length) {
-            for (MenuItem value : values()) {
-                if (value.ordinal() == (inputCommand - 1)) {
-                    return value;
-                }
-            }
+    public static Menu chooseOption(int inputCommand, int bookCount, int maxCapacity) {
+        Menu[] menu = createMenu(bookCount, maxCapacity);
+        if (inputCommand >= 1 && inputCommand <= menu.length) {
+            return menu[inputCommand - 1];
         } else {
-            throw new MenuException("Ошибка: Неверное значение меню (" +
+            throw new IndexOfBoundsMenuException("Ошибка: Неверное значение меню (" +
                     inputCommand + ")" + " Допустимые значения " + (1) +
-                    " - " + (inputCommand));
+                    " - " + (menu.length));
         }
-
-        return null;
     }
 }
