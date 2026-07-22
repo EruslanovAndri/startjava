@@ -31,20 +31,12 @@ public class Book {
         return publishedYear;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public Year getPublishedYear() {
-        return publishedYear;
-    }
-
     @Override
     public String toString() {
-        return String.format("| %s, %s, %s |", author, title, publishedYear);
+        return String.format("%s, %s, %s", author, title, publishedYear);
     }
 }
