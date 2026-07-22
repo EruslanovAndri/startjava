@@ -9,7 +9,7 @@ public class Bookcase {
     private static int bookCounter;
     private Book[] books;
     private int counter;
-    private int maxBookcaseLength;
+    public int bookcaseLength;
 
     public Bookcase() {
         books = new Book[CAPACITY];
@@ -31,7 +31,7 @@ public class Bookcase {
         bookCounter++;
     }
 
-    public Book[] foundBooksByTitle(String title) {
+    public Book[] findBooks(String title) {
         Book[] findBook = new Book[bookCounter];
         counter = 0;
         for (int i = 0; i < bookCounter; i++) {
@@ -46,7 +46,7 @@ public class Bookcase {
         return findBook;
     }
 
-    public int removeBookByTitle(String title) {
+    public int removeBooks(String title) {
         int i = 0;
         counter = 0;
         while (i < bookCounter) {
@@ -65,6 +65,7 @@ public class Bookcase {
     }
 
     public Book[] getAllBooks() {
+        findBookcaseLength();
         Book[] books = Arrays.copyOf(this.books, bookCounter);
         return books;
     }
@@ -74,16 +75,9 @@ public class Bookcase {
         bookCounter = 0;
     }
 
-    public int findMaxBookcaseLength(Book[] books) {
-        maxBookcaseLength = books[0].getAuthor().length() + books[0].getTitle().length() +
-                books[0].getPublishedYear().toString().length();
+    private void findBookcaseLength() {
         for (int i = 0; i < bookCounter; i++) {
-            if (maxBookcaseLength < books[i].getAuthor().length() + books[i].getTitle().length() +
-                    books[i].getPublishedYear().toString().length()) {
-                maxBookcaseLength = books[i].getAuthor().length() + books[i].getTitle().length() +
-                        books[i].getPublishedYear().toString().length();
-            }
+            bookcaseLength = Math.max(bookcaseLength, books[i].toString().length());
         }
-        return maxBookcaseLength;
     }
 }
