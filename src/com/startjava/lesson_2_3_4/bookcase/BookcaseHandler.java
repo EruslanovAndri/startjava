@@ -2,7 +2,6 @@ package com.startjava.lesson_2_3_4.bookcase;
 
 import com.startjava.lesson_2_3_4.bookcase.exception.BookNotExistException;
 import com.startjava.lesson_2_3_4.bookcase.exception.BookcaseOverflowException;
-import com.startjava.lesson_2_3_4.bookcase.exception.ExitException;
 import com.startjava.lesson_2_3_4.bookcase.exception.MenuIndexOutOfBoundsException;
 import java.time.Year;
 import java.util.InputMismatchException;
@@ -20,10 +19,14 @@ public class BookcaseHandler {
         typeWelcomeMessage();
     }
 
-    public void run() {
+    public boolean run() {
         Menu[] menu = Menu.createMenu(bookcase.getBookCounter(), bookcase.CAPACITY);
         printMenu(menu);
         Menu menuItem = inputCommand();
+        if (menuItem.equals(Menu.CLOSE)) {
+            System.out.println("Программа закрыта.");
+            return false;
+        }
         try {
             scanner.nextLine();
             performSwitchCaseOperation(menuItem);
@@ -34,6 +37,7 @@ public class BookcaseHandler {
             System.out.println(e.getMessage());
         }
         printBookcase();
+        return true;
     }
 
     private void typeWelcomeMessage() {
@@ -77,7 +81,7 @@ public class BookcaseHandler {
             case FIND -> findBook();
             case REMOVE -> removeBook();
             case CLEAR -> bookcase.clearBookcase();
-            case CLOSE -> throw new ExitException("Программа закрыта.");
+            case CLOSE -> System.out.println(" ");
             default -> System.out.println("Default");
         }
     }

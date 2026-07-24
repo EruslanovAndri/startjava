@@ -36,14 +36,13 @@ public class Bookcase {
         counter = 0;
         for (int i = 0; i < bookCounter; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title)) {
-                findBook[i] = books[i];
-                counter++;
+                findBook[counter++] = books[i];
             }
         }
         if (counter == 0) {
             throw new BookNotExistException("Книги с таким названием нет на полке.");
         }
-        return findBook;
+        return Arrays.copyOf(findBook, counter);
     }
 
     public int removeBooks(String title) {

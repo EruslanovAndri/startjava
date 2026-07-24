@@ -25,7 +25,7 @@ public enum Menu {
             return new Menu[]{ADD, CLOSE};
         }
         if (bookCount == maxCapacity) {
-            return new Menu[]{ FIND, REMOVE, CLEAR, CLOSE};
+            return new Menu[]{FIND, REMOVE, CLEAR, CLOSE};
         }
         return values();
     }
