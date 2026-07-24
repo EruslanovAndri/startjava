@@ -65,7 +65,7 @@ public class Bookcase {
     }
 
     public Book[] getAllBooks() {
-        findBookcaseLength();
+        updateBookcaseLength();
         Book[] books = Arrays.copyOf(this.books, bookCounter);
         return books;
     }
@@ -75,7 +75,7 @@ public class Bookcase {
         bookCounter = 0;
     }
 
-    private void findBookcaseLength() {
+    private void updateBookcaseLength() {
         for (int i = 0; i < bookCounter; i++) {
             bookcaseLength = Math.max(bookcaseLength, books[i].toString().length());
         }
