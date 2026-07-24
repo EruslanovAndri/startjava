@@ -132,9 +132,7 @@ public class BookcaseHandler {
 
     private void showFoundBook(Book[] books) {
         for (Book book : books) {
-            if (book != null) {
-                System.out.println("| " + book + " |");
-            }
+            System.out.println("| " + book + " |");
         }
     }
 
