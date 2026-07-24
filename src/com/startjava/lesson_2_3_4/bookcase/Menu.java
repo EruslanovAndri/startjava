@@ -9,6 +9,7 @@ public enum Menu {
     CLEAR("Очистить шкаф."),
     CLOSE("Закрыть программу.");
 
+    private static final int START_MENU_POSITION = 1;
     private final String description;
 
     Menu(String description) {
@@ -22,18 +23,18 @@ public enum Menu {
     public static Menu[] createMenu(int bookCount, int maxCapacity) {
         if (bookCount == 0) {
             return new Menu[]{ADD, CLOSE};
-        } else if (bookCount > 0 && bookCount < maxCapacity) {
-            return new Menu[]{ADD, FIND, REMOVE, CLEAR, CLOSE};
-        } else {
+        }
+        if (bookCount == maxCapacity) {
             return new Menu[]{ FIND, REMOVE, CLEAR, CLOSE};
         }
+        return values();
     }
 
     public static Menu chooseOption(int inputCommand, int bookCount, int maxCapacity) {
         Menu[] menu = createMenu(bookCount, maxCapacity);
-        if (inputCommand < 1 || inputCommand > menu.length) {
+        if (inputCommand < START_MENU_POSITION || inputCommand > menu.length) {
             throw new MenuIndexOutOfBoundsException("Ошибка: Неверное значение меню (" +
-                    inputCommand + ")" + " Допустимые значения " + (1) +
+                    inputCommand + ")" + " Допустимые значения " + (START_MENU_POSITION) +
                     " - " + (menu.length));
         }
         return menu[inputCommand - 1];
