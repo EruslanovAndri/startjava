@@ -65,3 +65,7 @@ man <имя команды> например <mkdir>
 
 * Горячие клавиши для Intellije Idea 
 https://www.jetbrains.com/help/idea/reference-keymap-win-default.html
+
+## PostgresSQL
+Для входа в терминал: sudo psql -U eruslanovandrey -d postgres
+Команды:
