@@ -72,6 +72,7 @@ public class Bookcase {
     public void clearBookcase() {
         Arrays.fill(books, 0, bookCounter, null);
         bookCounter = 0;
+        bookcaseLength = 0;
     }
 
     private void updateBookcaseLength() {
