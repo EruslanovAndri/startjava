@@ -67,5 +67,5 @@ man <имя команды> например <mkdir>
 https://www.jetbrains.com/help/idea/reference-keymap-win-default.html
 
 ## PostgresSQL
-Для входа в терминал: sudo psql -U eruslanovandrey -d postgres
+Для входа в терминал: psql -U postgres -d postgres
 Команды:
