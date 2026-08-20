@@ -68,4 +68,5 @@ https://www.jetbrains.com/help/idea/reference-keymap-win-default.html
 
 ## PostgresSQL
 Для входа в терминал: psql -U postgres -d postgres
-Команды:
+Команды: 
+\i + file_name запуск файла из терминала.
